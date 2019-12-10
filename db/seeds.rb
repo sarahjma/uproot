@@ -259,7 +259,44 @@ puts "creating Questions 5"
   puts "created #{QuizResult.count} QuizResults"
   puts "created #{Question.count} Questions"
 
+#======================================================
+# Veronica testing API (let's see how this goes)
+# First let's get the cities:
+url = 'https://api.teleport.org/api/countries/'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+intermediate = JSON.parse(response)
+array = intermediate['_links']['country:items']
+puts array.class
+array.each do |item|
+  puts item['name']
+end
 
+
+# Do loop for each of the cities:
+# Table: cities, Property: health;
+url = 'https://api.teleport.org/api/urban_areas/slug:amsterdam/details/'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+# puts(JSON.parse(response))
+veronica = JSON.parse(response)
+ puts veronica['categories'][7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
+
+# SArah for safety
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
+
+
+# Sarah mobility car
+
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][19]['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]["float_value"]
 
 
 
