@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_145817) do
+ActiveRecord::Schema.define(version: 2019_12_10_154243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 2019_12_10_145817) do
   end
 
   create_table "chosen_answers", force: :cascade do |t|
-    t.bigint "answers_id"
-    t.bigint "quiz_results_id"
+    t.bigint "answer_id"
+    t.bigint "quiz_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answers_id"], name: "index_chosen_answers_on_answers_id"
-    t.index ["quiz_results_id"], name: "index_chosen_answers_on_quiz_results_id"
+    t.index ["answer_id"], name: "index_chosen_answers_on_answer_id"
+    t.index ["quiz_result_id"], name: "index_chosen_answers_on_quiz_result_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -50,6 +50,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_145817) do
   end
 
   add_foreign_key "answers", "questions"
-  add_foreign_key "chosen_answers", "answers", column: "answers_id"
-  add_foreign_key "chosen_answers", "quiz_results", column: "quiz_results_id"
+  add_foreign_key "chosen_answers", "answers"
+  add_foreign_key "chosen_answers", "quiz_results"
 end
