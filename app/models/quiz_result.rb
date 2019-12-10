@@ -1,4 +1,3 @@
 class QuizResult < ApplicationRecord
-  has_many :answers
-  has_many :questions, through: :answers
+  has_many :answers, through: :chosen_answers
 end
