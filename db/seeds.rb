@@ -275,32 +275,46 @@ end
 
 # Do loop for each of the cities:
 # Table: cities, Property: health;
-url = 'https://api.teleport.org/api/urban_areas/slug:amsterdam/details/'
+url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 # puts(JSON.parse(response))
-veronica = JSON.parse(response)
- puts veronica['categories'][7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
+search = JSON.parse(response)
+ puts search['categories'][7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
 
-# SArah for safety
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+# Sarah for safety
+url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
 
-
 # Sarah mobility car
-
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][19]['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]["float_value"]
 
+# Average weather high
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][2]['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0]["string_value"]
 
+# Average weather low
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][2]['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
 
-
-
+# Weather by type
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][2]['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
 
 
