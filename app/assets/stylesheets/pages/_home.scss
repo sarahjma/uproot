@@ -1,1 +1,22 @@
 // Specific CSS for your home-page
+$global-font: 'Roboto Condensed', sans-serif;
+.main-container{
+ margin: 0 auto;
+ padding: 0 18px;
+}
+h1{
+  padding-top: 18px;
+  font-size: 28px;
+  font-family: $global-font;
+}
+h3{
+  font-size: 20px;
+  font-family: $global-font;
+}
+p{
+  font-size:14px;
+  font-family: $global-font;
+}
+body{
+  font-family: $global-font;
+}
