@@ -1,4 +1,23 @@
 <h1><%= @question.content %></h1>
-<% @question.answers.each do |answer| %>
-  <%= image_tag answer.image %>
+
+<%if @question.display_type == "type-image"%>
+  <% @question.answers.each do |answer| %>
+    <%= image_tag answer.image %>
+  <% end %>
+<%elsif @question.display_type == "type-dropdown"%>
+  <%= form_for @chosen_answer, url: chosen_answer_index_path(@chosen_answer) do |f|%>
+    <%= f.collection_select :answer_id, @question.answers, :id, :text %>
+  <% end %>
+<% elsif @question.display_type == "type-buttons"%>
+  <% @question.answers.each do |answer| %>
+  <a href="#"><%= answer.text %></a>
+  <% end %>
+<% else %>
+  <%= form_for @chosen_answer, url: chosen_answer_index_path(@chosen_answer) do |f|%>
+  <% @question.answers.each do |answer| %>
+    <%= f.select(:answer_id, answer.min..answer.max, step: 500) %>
+    <% end %>
+  <% end %>
 <% end %>
+
+<!-- f.collection_select :score_id, Score.all, :id, :name -->
