@@ -268,7 +268,7 @@ puts "creating Questions 5"
 # First let's get the cities:
 
 def obtain_cities
-  cities = []
+  cities_url = []
   url = 'https://api.teleport.org/api/urban_areas/'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -276,15 +276,15 @@ def obtain_cities
   hash_of_city_data = data['_links']['ua:item']
   # Add each city to an array
   hash_of_city_data.each do |city|
-    cities << city['name']
+    cities_url << city['href']
   end
-  return cities
+  return cities_url
 end
 
 def obtain_healthcare(search_data)
   # Health from teleport
-  health_data_check = search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]
-  if health_data_check.nil?
+  health_data = search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]
+  if health_data.nil?
     return 0
   else
     return search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
@@ -293,7 +293,12 @@ end
 
 # Sarah for safety from teleport
 def obtain_safety(search_data)
-puts search_data[16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
+  safety_data = search_data[16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]
+  if safety_data.nil?
+    puts "doesn't exist"
+  else
+    puts search_data[16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
+  end
 end
 
 # Sarah mobility car from teleport
@@ -371,20 +376,18 @@ def seed_scores
   # Get array of all cities
   all_cities = obtain_cities
   puts "Browsing #{all_cities.length} cities"
-  all_cities.each do |city|
-    cleaned_city = city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")
-    url = "https://api.teleport.org/api/urban_areas/slug:#{cleaned_city}/details/"
+  all_cities.each do |city_url|
+    # cleaned_city = city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")
+    # url = "https://api.teleport.org/api/urban_areas/slug:#{cleaned_city}/details/"
     #puts url
-    uri = URI(url)
+    uri = URI(city_url + "details/")
+    puts uri
     response = Net::HTTP.get(uri)
     search_data = JSON.parse(response)
-    #puts search_data
     # Assign each variable we got to an array
-    puts cleaned_city
-    puts obtain_healthcare(search_data['categories'])
-
-    #puts "City #{city.downcase}: #{obtain_safety(search_data)}"
-    # obtain_mobility(search_data)
+    obtain_healthcare(search_data['categories'])
+    obtain_safety(search_data['categories'])
+    #obtain_mobility(search_data['categories'])
     #puts "City: #{city.downcase} #{obtain_weather(search_data)}"
     # obtain_education(search_data)
     # obtain_housing(search_data)
