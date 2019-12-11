@@ -1,0 +1,57 @@
+<div class="main-container">
+  <h3>Select an action</h3>
+
+  <div class="grid-options">
+    <!-- QUIZ ACTION -->
+    <%= link_to(quiz_results_path, method: :post) do %>
+      <div class="card-action">
+        <div class="card-action-item">
+          <p>Get matched with a city</p>
+        </div>
+        <div class="card-action-item">
+          <i class="far fa-heart"></i>
+        </div>
+      </div>
+    <%end%>
+
+    <!-- DISCOVER ACTION -->
+    <%= link_to("#") do %>
+      <div class="card-action">
+        <div class="card-action-item">
+          <p>Discover a city</p>
+        </div>
+        <div class="card-action-item">
+          <i class="far fa-compass"></i>
+        </div>
+      </div>
+    <%end%>
+
+    <!-- HANGOUT ACTION -->
+    <%= link_to("#") do %>
+      <div class="card-action">
+        <div class="card-action-item">
+          <p>Uproot Hangout</p>
+        </div>
+        <div class="card-action-item">
+          <i class="far fa-user"></i><i class="far fa-user"></i><i class="far fa-user"></i>
+        </div>
+      </div>
+    <%end%>
+
+    <!-- UNDEFINED ACTION -->
+    <%= link_to("#") do %>
+      <div class="card-action">
+        <div class="card-action-item">
+          <!-- <p></p> -->
+        </div>
+        <div class="card-action-item">
+          <!-- <i></i> -->
+        </div>
+      </div>
+    <%end%>
+  </div>
+
+</div>
+
+
+
