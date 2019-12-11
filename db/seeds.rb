@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'json'
+require 'pry-byebug'
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
@@ -282,7 +283,12 @@ end
 
 def obtain_healthcare(search_data)
   # Health from teleport
- puts search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
+  health_data_check = search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]
+  if health_data_check.nil?
+    return 0
+  else
+    return search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
+  end
 end
 
 # Sarah for safety from teleport
@@ -366,14 +372,16 @@ def seed_scores
   all_cities = obtain_cities
   puts "Browsing #{all_cities.length} cities"
   all_cities.each do |city|
-    url = "https://api.teleport.org/api/urban_areas/slug:#{city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")}/details/"
-    puts url
+    cleaned_city = city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")
+    url = "https://api.teleport.org/api/urban_areas/slug:#{cleaned_city}/details/"
+    #puts url
     uri = URI(url)
     response = Net::HTTP.get(uri)
     search_data = JSON.parse(response)
-    #puts city
+    #puts search_data
     # Assign each variable we got to an array
-    #puts "City:#{city}: #{obtain_healthcare(search_data['categories'])}"
+    puts cleaned_city
+    puts obtain_healthcare(search_data['categories'])
 
     #puts "City #{city.downcase}: #{obtain_safety(search_data)}"
     # obtain_mobility(search_data)
