@@ -1,57 +1,42 @@
 <div class="main-container">
   <h1><%= @question.content %></h1>
 
-
+  <%if @question.display_type == "type-image"%>
     <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-      <div class="thump-option-grid">
-
-          <% @question.answers.each do |answer| %>
-            <input type="checkbox" class="hidden" style="display: none;">
-              <div class="thumb-option" style="background-image: url(<%= answer.image%>)">
-              </div>
-          <% end %>
-        <% end %>
+      <div class="grid-options">
+        <% @question.answers.each do |answer| %>
+          <input type="checkbox" class="hidden" style="display: none;">
+            <div class="thumb-option" style="background-image: url(<%= answer.image%>)"></div>
+          <%end%>
+        <%end%>
       </div>
+
     <%elsif @question.display_type == "type-dropdown"%>
       <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
         <%= f.collection_select :answer_id, @question.answers, :id, :text %>
       <% end %>
-    </div>
 
-  <!-- DROPDOWN QUESTION -->
-  <%elsif @question.display_type == "type-dropdown"%>
-    <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-      <%= f.collection_select :answer_id, @question.answers, :id, :text %>
-    <% end %>
-
-  <!-- TEXT QUESTION -->
   <% elsif @question.display_type == "type-buttons"%>
     <% @question.answers.each do |answer| %>
-      <a href="#" class="btn-selector"><%= answer.text %></a>
+      <a href="#" class="btn-option"><%= answer.text %></a>
     <% end %>
 
-  <!-- RANGE QUESTION -->
-  <% else %>
+  <% elsif @question.display_type == "type-range"%>
     <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
       <% @question.answers.each do |answer| %>
-        <a href="#" class="btn-selector"><%= answer.text %></a>
+        <%= f.select(:answer_id, answer.min..answer.max, step: 500) %>
       <% end %>
-    <% elsif @question.display_type == "type-range"%>
-      <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-        <% @question.answers.each do |answer| %>
-          <%= f.select(:answer_id, answer.min..answer.max, step: 500) %>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-          <ul id="sortable-list" class='sortable'>
-            <% @question.answers.each_with_index do |answer, index| %>
-              <li class="list-unstyled">
-                <input class="btn-sortable" type="text" value='<%= answer.text %>' name='chosen_answers[]' >
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
+    <% end %>
+
+  <% else %>
+    <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
+      <ul id="sortable-list" class='sortable'>
+      <% @question.answers.each_with_index do |answer, index| %>
+        <li class="list-unstyled">
+          <input class="btn-sortable" type="text" value='<%= answer.text %>' name='chosen_answers[]' >
+        </li>
+      <% end %>
+      </ul>
     <% end %>
   <% end %>
 </div>
