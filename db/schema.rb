@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_154243) do
+ActiveRecord::Schema.define(version: 2019_12_11_161758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_154243) do
     t.integer "max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sort"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_154243) do
     t.bigint "quiz_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "preference_priority"
     t.index ["answer_id"], name: "index_chosen_answers_on_answer_id"
     t.index ["quiz_result_id"], name: "index_chosen_answers_on_quiz_result_id"
   end

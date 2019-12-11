@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+
   root to: 'pages#home'
-  resources :questions, only: [:show]
-  resources :chosen_answer, only: [:new, :create]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'action', to: 'pages#action', as: :action
+  resources :chosen_answers, only: [:new, :create]
+  resources :quiz_results, only: [:new, :create] do
+    resources :questions, only: [:show]
+  end
 end
