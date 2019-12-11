@@ -377,24 +377,62 @@ def obtain_housing(search_data)
   return all_housing_array
 end
 
-def obtain_extracurricular(search_data)
-  # Monthly avg fitness membership cost in dollar
-  puts search_data[3]['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0]["currency_dollar_value"]
-  # Number of art galleries in city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-ART-GALLERIES-VENUE-COUNT"}[0]["int_value"]
-  # Number of movie theaters in the city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-CINEMAS-VENUE-COUNT"}[0]["int_value"]
-  # Number of comedy clubs in the city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
-  # Number of concert venues in the city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
-  # Number of museums in the city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0]["int_value"]
-  # Number of sports venue in the city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-SPORTS-VENUE-COUNT"}[0]["int_value"]
-  # Number of zoos in the city
-  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
+def obtain_fitness_club(search_data)
+   # Monthly avg fitness membership cost in dollar
+  fitness_data = search_data.select{|property| property["id"] == "COST-OF-LIVING"}[0]
+  if fitness_data.nil?
+    return 0
+  else
+    # puts fitness_data['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0]
+    if fitness_data['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0].nil?
+      return 0
+    else
+      return fitness_data['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0]["currency_dollar_value"]
+    end
+  end
 end
+  # Number of art galleries in city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-ART-GALLERIES-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-ART-GALLERIES-VENUE-COUNT"}[0]["int_value"]
+  # end
+  # # Number of movie theaters in the city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-CINEMAS-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-CINEMAS-VENUE-COUNT"}[0]["int_value"]
+  # end
+  # # Number of comedy clubs in the city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
+  # end
+  # # Number of concert venues in the city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
+  # end
+  # # Number of museums in the city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0]["int_value"]
+  # end
+  # # Number of sports venue in the city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-SPORTS-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-SPORTS-VENUE-COUNT"}[0]["int_value"]
+  # end
+  # # Number of zoos in the city
+  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0].nil?
+  #   all_extra_data << 0
+  # else
+  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
+  # end
 
 def obtain_employment(search_data)
   # Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
@@ -433,8 +471,8 @@ def seed_scores
     #WORKING obtain_mobility(search_data['categories'])
     #WORKING obtain_education(search_data['categories'])
     #WORKING obtain_weather(search_data['categories'])
-    p obtain_housing(search_data['categories'])
-    # obtain_extracurricular(search_data['categories'])
+    #WORKING obtain_housing(search_data['categories'])
+    obtain_fitness_club(search_data['categories'])
     # obtain_employment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
   end
