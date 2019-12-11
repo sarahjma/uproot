@@ -301,6 +301,17 @@ end
 def obtain_mobility(search_data)
   mobility_data = search_data.select{ |property| property["id"] == "TRAFFIC"}[0]
   mobility_data.nil? ? 0 : mobility_data['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]['float_value']
+end
+
+# Education from teleport
+def obtain_education(search_data)
+  edu_data = search_data.select{ |property| property["id"] == "EDUCATION"}[0]
+  if edu_data.nil?
+    return 0
+  elsif edu_data['data'].select{|property| property["id"] == "QUALITY-OF-UNIVERSITIES-TELESCORE"}[0].nil?
+    return 0
+  else
+    return edu_data['data'].select{|property| property["id"] == "QUALITY-OF-UNIVERSITIES-TELESCORE"}[0]["float_value"]
   end
 end
 
@@ -312,11 +323,6 @@ def obtain_weather(search_data)
   puts search_data[2]['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
   # Weather by type from teleport
   puts search_data[2]['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
-end
-
-# Education from teleport
-def obtain_education(search_data)
-  puts search_data[6]['data'].select{|property| property["id"] == "QUALITY-OF-UNIVERSITIES-TELESCORE"}[0]["float_value"]
 end
 
 def obtain_housing(search_data)
@@ -383,13 +389,13 @@ def seed_scores
     # Assign each variable we got to an array
     #WORKING obtain_healthcare(search_data['categories'])
     #WORKING obtain_safety(search_data['categories'])
-    obtain_mobility(search_data['categories'])
+    #WORKING obtain_mobility(search_data['categories'])
     #puts "City: #{city.downcase} #{obtain_weather(search_data)}"
-    # obtain_education(search_data)
-    # obtain_housing(search_data)
-    # obtain_extracurricular(search_data)
-    # obtain_employment(search_data)
-    # obtain_other_characteristics(search_data)
+    obtain_education(search_data['categories'])
+    # obtain_housing(search_data['categories'])
+    # obtain_extracurricular(search_data['categories'])
+    # obtain_employment(search_data['categories'])
+    # obtain_other_characteristics(search_data['categories'])
   end
 end
 
