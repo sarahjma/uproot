@@ -316,13 +316,29 @@ def obtain_education(search_data)
 end
 
 def obtain_weather(search_data)
-  puts(search_data)
   # Average weather high from teleport
-  puts search_data[2]['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0]["string_value"]
-  # Average weather low from teleport
-  puts search_data[2]['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
-  # Weather by type from teleport
-  puts search_data[2]['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
+  weather_data = search_data.select{ |property| property["id"] == "CLIMATE"}[0]
+  if weather_data.nil?
+    puts "DOESNT EXIST"
+  else
+    if weather_data['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0].nil?
+      puts 0
+    else
+      puts weather_data['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0]["string_value"]
+    end
+    # Average weather low from teleport
+    if weather_data['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0].nil?
+      puts "DOESNT EXIST"
+    else
+      puts weather_data['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
+    end
+    # Weather by type from teleport
+    if weather_data['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0].nil?
+      puts "DOESNT EXIST"
+    else
+      puts weather_data['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
+    end
+  end
 end
 
 def obtain_housing(search_data)
@@ -391,7 +407,8 @@ def seed_scores
     #WORKING obtain_safety(search_data['categories'])
     #WORKING obtain_mobility(search_data['categories'])
     #puts "City: #{city.downcase} #{obtain_weather(search_data)}"
-    obtain_education(search_data['categories'])
+    #WORKING obtain_education(search_data['categories'])
+    obtain_weather(search_data['categories'])
     # obtain_housing(search_data['categories'])
     # obtain_extracurricular(search_data['categories'])
     # obtain_employment(search_data['categories'])
