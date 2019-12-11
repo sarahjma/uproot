@@ -262,6 +262,11 @@ puts "creating Questions 5"
 #======================================================
 # Veronica testing API (let's see how this goes)
 # First let's get the cities:
+require 'open-uri'
+require 'json'
+
+
+
 url = 'https://api.teleport.org/api/countries/'
 uri = URI(url)
 response = Net::HTTP.get(uri)
@@ -275,6 +280,8 @@ end
 
 # Do loop for each of the cities:
 # Table: cities, Property: health;
+
+# Health from teleport
 url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
@@ -282,39 +289,178 @@ response = Net::HTTP.get(uri)
 search = JSON.parse(response)
  puts search['categories'][7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
 
-# Sarah for safety
+# Sarah for safety from teleport
 url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
 
-# Sarah mobility car
+# Sarah mobility car from teleport
 url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][19]['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]["float_value"]
 
-# Average weather high
+# Average weather high from teleport
 url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][2]['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0]["string_value"]
 
-# Average weather low
+# Average weather low from teleport
 url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][2]['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
 
-# Weather by type
+# Weather by type from teleport
 url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
 uri = URI(url)
 response = Net::HTTP.get(uri)
 search = JSON.parse(response)
 puts search['categories'][2]['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
 
+# Education from teleport
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][6]['data'].select{|property| property["id"] == "QUALITY-OF-UNIVERSITIES-TELESCORE"}[0]["float_value"]
 
+
+# Housing- rent index score from teleport
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][8]['data'].select{|property| property["id"] == "RENT-INDEX-TELESCORE"}[0]["float_value"]
+
+
+# Housing- small apartment avg rent
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][8]['data'].select{|property| property["id"] == "APARTMENT-RENT-SMALL"}[0]["currency_dollar_value"]
+
+
+#Housing- medium apartment avg rent
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][8]['data'].select{|property| property["id"] == "APARTMENT-RENT-MEDIUM"}[0]["currency_dollar_value"]
+
+
+#Housing- large apartment avg rent
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][8]['data'].select{|property| property["id"] == "APARTMENT-RENT-LARGE"}[0]["currency_dollar_value"]
+
+
+# Monthly avg public transportation cost in dollar
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][3]['data'].select{|property| property["id"] == "COST-PUBLIC-TRANSPORT"}[0]["currency_dollar_value"]
+
+
+# Monthly avg fitness membership cost in dollar
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][3]['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0]["currency_dollar_value"]
+
+
+# Number of art galleries in city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-ART-GALLERIES-VENUE-COUNT"}[0]["int_value"]
+
+# Number of movie theaters in the city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-CINEMAS-VENUE-COUNT"}[0]["int_value"]
+
+# Number of comedy clubs in the city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
+
+# Number of concert venues in the city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
+
+# Number of museums in the city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0]["int_value"]
+
+# Number of sports venue in the city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-SPORTS-VENUE-COUNT"}[0]["int_value"]
+
+# Number of zoos in the city
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
+
+
+# Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
+
+# Number of startup jobs available on avg
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][10]['data'].select{|property| property["id"] == "STARTUP-JOBS-AVAILABLE"}[0]["int_value"]
+
+# City's spoken language. Returns a string
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][11]['data'].select{|property| property["id"] == "SPOKEN-LANGUAGES"}[0]["string_value"]
+
+# LGBTQ marriage legalization status. Returns a string
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][12]['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
+
+# Air quality score. Full score is 1
+url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
+uri = URI(url)
+response = Net::HTTP.get(uri)
+search = JSON.parse(response)
+puts search['categories'][15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
