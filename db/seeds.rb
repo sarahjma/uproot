@@ -257,51 +257,51 @@ puts "creating Questions 5"
   puts "creating Questions 6"
 
   q7 = Question.create(
-    category: "nature",
-    content: "It's Saturday. You finally have a free day. Where do you choose to spend it?",
+    category: "sorting",
+    content: "Drag in order what’s important to you?",
     display_type: "type-sortable"
   )
 
 
   a1 = Answer.create(
     question: q7,
-    text: 'safety'
+    text: 'safety',
     score: 'safety'
   )
 
   a2 = Answer.create(
     question: q7,
-    text: "education"
+    text: "education",
     score: "education"
   )
 
   a3 = Answer.create(
     question: q7,
-    text: "housing"
+    text: "housing",
     score: "housing"
   )
 
   a4 = Answer.create(
     question: q7,
-    text: "career"
+    text: "career",
     score: "career"
   )
 
   a5 = Answer.create(
   question: q7,
-  text: "mobility"
+  text: "mobility",
   score: "mobility"
   )
 
   a6 = Answer.create(
   question: q7,
-  text: "leisure"
+  text: "leisure",
   score: "leisure"
   )
 
   a7 = Answer.create(
   question: q7,
-  text: "health"
+  text: "health",
   score: "health"
   )
   puts "created #{Answer.count} Answers"
