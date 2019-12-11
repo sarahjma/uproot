@@ -1,8 +1,5 @@
 <div class="main-container">
   <h1><%= @question.content %></h1>
-
-
-
   <%if @question.display_type == "type-image"%>
     <%= form_for @chosen_answer, url: chosen_answer_index_path(@chosen_answer) do |f|%>
       <div class="cards">
@@ -12,9 +9,6 @@
               </div>
           <% end %>
         <% end %>
-
-
-
 
       </div>
     <%elsif @question.display_type == "type-dropdown"%>

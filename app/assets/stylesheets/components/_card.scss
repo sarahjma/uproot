@@ -9,12 +9,12 @@
   background-size: cover;
   background-position: center;
   border-radius: 8px;
-  opacity: 0.8;
+    opacity: 0.8;
 
   &.active{
-    border: 2px solid #00BAAA;
+    border: 3px solid #00BAAA;
     opacity: 1;
-    // background: linear-gradient(rgba(255, 0, 0, 1), rgba(0, 255, 0, 1));
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.99));
   }
 }
 .card-top-rated {
