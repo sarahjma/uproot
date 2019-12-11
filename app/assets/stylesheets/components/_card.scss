@@ -5,13 +5,12 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.thumb-option {
+.thumb-option{
   height: 179px;
   background-size: cover;
   background-position: center;
   border-radius: 8px;
-    opacity: 0.8;
-
+  opacity: 0.8;
   &.active{
     border: 3px solid #00BAAA;
     opacity: 1;

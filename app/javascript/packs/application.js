@@ -1,25 +1,9 @@
-
 import "bootstrap";
 
-
-// $(document).ready(function(){
-//   $(".thumb").click(function(){
-//     $(this).toggleClass("active");
-//   });
-// });
-
-// thumb = document.querySelector(".thumb")
-// // console.log(thumbs)
-//   thumb.addEventListener('click', (event) =>{
-//     console.log(thumb)
-//     event.currentTarget.classList.toggle('active');
-//   });
-
-thumbs = document.querySelectorAll(".thumb")
-// console.log(thumbs)
-thumbs.forEach((thumb) => {
+const thumb_options = document.querySelectorAll(".thumb-option")
+thumb_options.forEach((thumb) => {
   thumb.addEventListener('click', (event) =>{
-    // console.log(thumb)
     event.currentTarget.classList.toggle('active');
   })
 });
+
