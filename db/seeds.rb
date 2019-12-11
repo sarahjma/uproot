@@ -581,8 +581,18 @@ def obtain_LGBT(search_data)
 end
 
 # Air quality score. Full score is 1
-#  puts search_data[15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
-
+def obtain_air_quality(search_data)
+  air_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if air_data.nil?
+    return 0
+  else
+    if air_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0].nil?
+      return 0
+    else
+      return air_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
 
 
 # Do loop for each of the cities:
@@ -591,9 +601,6 @@ def seed_scores
   all_cities = obtain_cities
   puts "Browsing #{all_cities.length} cities"
   all_cities.each do |city_url|
-    # cleaned_city = city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")
-    # url = "https://api.teleport.org/api/urban_areas/slug:#{cleaned_city}/details/"
-    #puts url
     uri = URI(city_url + "details/")
     puts uri
     response = Net::HTTP.get(uri)
@@ -615,7 +622,8 @@ def seed_scores
     #WORKING obtain_zoos(search_data['categories'])
     #WORKING obtain_employment(search_data['categories'])
     #WORKING obtain_unemployment(search_data['categories'])
-    puts obtain_LGBT(search_data['categories'])
+    #WORKING obtain_LGBT(search_data['categories'])
+    puts obtain_air_quality(search_data['categories'])
   end
 end
 
