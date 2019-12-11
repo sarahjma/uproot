@@ -344,14 +344,37 @@ def obtain_weather(search_data)
 end
 
 def obtain_housing(search_data)
+  all_housing_array = []
   # Housing- rent index score from teleport
-  puts search_data[8]['data'].select{|property| property["id"] == "RENT-INDEX-TELESCORE"}[0]["float_value"]
-  # Housing- small apartment avg rent
-  puts search_data[8]['data'].select{|property| property["id"] == "APARTMENT-RENT-SMALL"}[0]["currency_dollar_value"]
-  #Housing- medium apartment avg rent
-  puts search_data[8]['data'].select{|property| property["id"] == "APARTMENT-RENT-MEDIUM"}[0]["currency_dollar_value"]
-  #Housing- large apartment avg rent
-  puts search_data[8]['data'].select{|property| property["id"] == "APARTMENT-RENT-LARGE"}[0]["currency_dollar_value"]
+  housing_data = search_data.select{ |property| property["id"] == "HOUSING"}[0]
+  if housing_data.nil?
+    puts "doesn't exist"
+  else
+    if housing_data['data'].select{|property| property["id"] == "RENT-INDEX-TELESCORE"}[0].nil?
+      all_housing_array << 0
+    else
+      all_housing_array << housing_data['data'].select{|property| property["id"] == "RENT-INDEX-TELESCORE"}[0]["float_value"]
+    end
+    # Housing- small apartment avg rent
+    if housing_data['data'].select{|property| property["id"] == "APARTMENT-RENT-SMALL"}[0].nil?
+      all_housing_array << 0
+    else
+      all_housing_array << housing_data['data'].select{|property| property["id"] == "APARTMENT-RENT-SMALL"}[0]["currency_dollar_value"]
+    end
+    #Housing- medium apartment avg rent
+    if housing_data['data'].select{|property| property["id"] == "APARTMENT-RENT-MEDIUM"}[0].nil?
+      all_housing_array << 0
+    else
+      all_housing_array << housing_data['data'].select{|property| property["id"] == "APARTMENT-RENT-MEDIUM"}[0]["currency_dollar_value"]
+    end
+    if housing_data['data'].select{|property| property["id"] == "APARTMENT-RENT-LARGE"}[0].nil?
+      all_housing_array << 0
+    else
+    #Housing- large apartment avg rent
+      all_housing_array << housing_data['data'].select{|property| property["id"] == "APARTMENT-RENT-LARGE"}[0]["currency_dollar_value"]
+    end
+  end
+  return all_housing_array
 end
 
 def obtain_extracurricular(search_data)
@@ -408,10 +431,9 @@ def seed_scores
     #WORKING obtain_healthcare(search_data['categories'])
     #WORKING obtain_safety(search_data['categories'])
     #WORKING obtain_mobility(search_data['categories'])
-    #puts "City: #{city.downcase} #{obtain_weather(search_data)}"
     #WORKING obtain_education(search_data['categories'])
-    p obtain_weather(search_data['categories'])
-    # obtain_housing(search_data['categories'])
+    #WORKING obtain_weather(search_data['categories'])
+    p obtain_housing(search_data['categories'])
     # obtain_extracurricular(search_data['categories'])
     # obtain_employment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
