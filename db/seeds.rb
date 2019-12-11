@@ -254,7 +254,56 @@ puts "creating Questions 5"
     max: 2000,
     score: "rent"
   )
+  puts "creating Questions 6"
 
+  q7 = Question.create(
+    category: "nature",
+    content: "It's Saturday. You finally have a free day. Where do you choose to spend it?",
+    display_type: "type-sortable"
+  )
+
+
+  a1 = Answer.create(
+    question: q7,
+    text: 'safety'
+    score: 'safety'
+  )
+
+  a2 = Answer.create(
+    question: q7,
+    text: "education"
+    score: "education"
+  )
+
+  a3 = Answer.create(
+    question: q7,
+    text: "housing"
+    score: "housing"
+  )
+
+  a4 = Answer.create(
+    question: q7,
+    text: "career"
+    score: "career"
+  )
+
+  a5 = Answer.create(
+  question: q7,
+  text: "mobility"
+  score: "mobility"
+  )
+
+  a6 = Answer.create(
+  question: q7,
+  text: "leisure"
+  score: "leisure"
+  )
+
+  a7 = Answer.create(
+  question: q7,
+  text: "health"
+  score: "health"
+  )
   puts "created #{Answer.count} Answers"
   puts "created #{QuizResult.count} QuizResults"
   puts "created #{Question.count} Questions"
