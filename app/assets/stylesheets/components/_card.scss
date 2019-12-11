@@ -1,21 +1,60 @@
-.thumb-option-grid{
-  display:grid;
-  border-radius:8px;
+// RESPONSIVE GRID
+.grid-options {
+  display: grid;
   grid-gap: 18px;
   grid-template-columns: 1fr 1fr;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .grid-options {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .grid-options {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .grid-options {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
 
-.thumb-option{
-  height: 179px;
+
+
+// IMAGE CARD IN QUIZ
+.thumb-option {
+  height: 223px;
   background-size: cover;
   background-position: center;
   border-radius: 8px;
   opacity: 0.8;
+
   &.active{
     border: 3px solid #00BAAA;
     opacity: 1;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.99));
   }
+}
+
+// CARD FOR QUIZ, DISCOVER, COMMUNITY
+.card-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 223px;
+  width: 223px;
+  border: 1px solid black;
+  border-radius: 8px;
+
 }
 
 // .card-city {
