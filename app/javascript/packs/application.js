@@ -1,4 +1,6 @@
 import "bootstrap";
+import { initSortable } from '../plugins/init_sortable'; // <-- add this
+
 
 const thumb_options = document.querySelectorAll(".thumb-option")
 thumb_options.forEach((thumb) => {
@@ -6,4 +8,6 @@ thumb_options.forEach((thumb) => {
     event.currentTarget.classList.toggle('active');
   })
 });
+
+initSortable();
 
