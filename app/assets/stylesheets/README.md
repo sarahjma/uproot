@@ -10,7 +10,7 @@ rails new APP_NAME --webpack
 Ensure you have bootstrap and it's dependencies
 
 ```bash
-yarn add bootstrap
+# yarn add bootstrap
 yarn add jquery popper.js
 ```
 
