@@ -294,11 +294,7 @@ end
 # Sarah for safety from teleport
 def obtain_safety(search_data)
   safety_data = search_data.select{ |property| property["id"] == "SAFETY"}[0]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}
-  if safety_data.nil?
-    return 0
-  else
-    return safety_data[0]['float_value']
-  end
+  safety_data.nil? ? 0 : safety_data[0]['float_value']
 end
 
 # Sarah mobility car from teleport
