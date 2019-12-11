@@ -1,21 +1,7 @@
-
 import "bootstrap";
+import { initSortable } from '../plugins/init_sortable'; // <-- add this
 
-
-// $(document).ready(function(){
-//   $(".thumb").click(function(){
-//     $(this).toggleClass("active");
-//   });
-// });
-
-// thumb = document.querySelector(".thumb")
-// // console.log(thumbs)
-//   thumb.addEventListener('click', (event) =>{
-//     console.log(thumb)
-//     event.currentTarget.classList.toggle('active');
-//   });
-
-thumbs = document.querySelectorAll(".thumb")
+const thumbs = document.querySelectorAll(".thumb")
 // console.log(thumbs)
 thumbs.forEach((thumb) => {
   thumb.addEventListener('click', (event) =>{
@@ -23,3 +9,6 @@ thumbs.forEach((thumb) => {
     event.currentTarget.classList.toggle('active');
   })
 });
+
+
+initSortable();
