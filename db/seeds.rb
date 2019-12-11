@@ -299,9 +299,9 @@ end
 
 # Sarah mobility car from teleport
 def obtain_mobility(search_data)
-  puts search_data[19]['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]["float_value"]
-  # Monthly avg public transportation cost in dollar
-  puts search_data[3]['data'].select{|property| property["id"] == "COST-PUBLIC-TRANSPORT"}[0]["currency_dollar_value"]
+  mobility_data = search_data.select{ |property| property["id"] == "TRAFFIC"}[0]
+  mobility_data.nil? ? 0 : mobility_data['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]['float_value']
+  end
 end
 
 def obtain_weather(search_data)
@@ -381,9 +381,9 @@ def seed_scores
     response = Net::HTTP.get(uri)
     search_data = JSON.parse(response)
     # Assign each variable we got to an array
-    obtain_healthcare(search_data['categories'])
-    obtain_safety(search_data['categories'])
-    #obtain_mobility(search_data['categories'])
+    #WORKING obtain_healthcare(search_data['categories'])
+    #WORKING obtain_safety(search_data['categories'])
+    obtain_mobility(search_data['categories'])
     #puts "City: #{city.downcase} #{obtain_weather(search_data)}"
     # obtain_education(search_data)
     # obtain_housing(search_data)
