@@ -433,12 +433,20 @@ def obtain_comedy_clubs(search_data)
   end
 end
 
-  # # Number of concert venues in the city
-  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0].nil?
-  #   all_extra_data << 0
-  # else
-  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
-  # end
+# Number of concert venues in the city
+def obtain_concerts(search_data)
+  concerts_data = search_data.select{|property| property["id"] == "CULTURE"}[0]
+  if concerts_data.nil?
+    return 0
+  else
+    if concerts_data['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0].nil?
+      return 0
+    else
+      return concerts_data['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
+    end
+  end
+end
+
   # # Number of museums in the city
   # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0].nil?
   #   all_extra_data << 0
@@ -499,7 +507,8 @@ def seed_scores
     #WORKING obtain_fitness_club(search_data['categories'])
     #WORKING obtain_galleries(search_data['categories'])
     #WORKING obtain_movies(search_data['categories'])
-    puts obtain_comedy_clubs(search_data['categories'])
+    #WORKING obtain_comedy_clubs(search_data['categories'])
+    puts obtain_concerts(search_data['categories'])
     # obtain_employment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
   end
