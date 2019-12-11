@@ -552,15 +552,6 @@ def obtain_employment(search_data)
   end
 end
 
-def obtain_other_characteristics(search_data)
-  # City's spoken language. Returns a string
-  puts search_data[11]['data'].select{|property| property["id"] == "SPOKEN-LANGUAGES"}[0]["string_value"]
-  # LGBTQ marriage legalization status. Returns a string
-  puts search_data[12]['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
-  # Air quality score. Full score is 1
-  puts search_data[15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
-end
-
 # Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
 def obtain_unemployment(search_data)
   unemployment_data = search_data.select{|property| property["id"] == "INTERNAL"}[0]
@@ -574,6 +565,25 @@ def obtain_unemployment(search_data)
     end
   end
 end
+
+# LGBT rights
+def obtain_LGBT(search_data)
+  minority_data = search_data.select{|property| property["id"] == "MINORITIES"}[0]
+  if minority_data.nil?
+    return 0
+  else
+    if minority_data['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0].nil?
+      return 0
+    else
+      return minority_data['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
+    end
+  end
+end
+
+# Air quality score. Full score is 1
+#  puts search_data[15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+
+
 
 # Do loop for each of the cities:
 def seed_scores
@@ -604,8 +614,8 @@ def seed_scores
     #WORKING obtain_sports_venues(search_data['categories'])
     #WORKING obtain_zoos(search_data['categories'])
     #WORKING obtain_employment(search_data['categories'])
-    puts obtain_unemployment(search_data['categories'])
-    # obtain_other_characteristics(search_data['categories'])
+    #WORKING obtain_unemployment(search_data['categories'])
+    puts obtain_LGBT(search_data['categories'])
   end
 end
 
