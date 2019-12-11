@@ -377,8 +377,8 @@ def obtain_housing(search_data)
   return all_housing_array
 end
 
+# Monthly avg fitness membership cost in dollar
 def obtain_fitness_club(search_data)
-   # Monthly avg fitness membership cost in dollar
   fitness_data = search_data.select{|property| property["id"] == "COST-OF-LIVING"}[0]
   if fitness_data.nil?
     return 0
@@ -418,12 +418,21 @@ def obtain_movies(search_data)
     end
   end
 end
-  # # Number of comedy clubs in the city
-  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0].nil?
-  #   all_extra_data << 0
-  # else
-  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
-  # end
+
+  # Number of comedy clubs in the city
+def obtain_comedy_clubs(search_data)
+  comedy_data = search_data.select{|property| property["id"] == "CULTURE"}[0]
+  if comedy_data.nil?
+    return 0
+  else
+    if comedy_data['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0].nil?
+      return 0
+    else
+      return comedy_data['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
+    end
+  end
+end
+
   # # Number of concert venues in the city
   # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0].nil?
   #   all_extra_data << 0
@@ -489,7 +498,8 @@ def seed_scores
     #WORKING obtain_housing(search_data['categories'])
     #WORKING obtain_fitness_club(search_data['categories'])
     #WORKING obtain_galleries(search_data['categories'])
-    puts obtain_movies(search_data['categories'])
+    #WORKING obtain_movies(search_data['categories'])
+    puts obtain_comedy_clubs(search_data['categories'])
     # obtain_employment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
   end
