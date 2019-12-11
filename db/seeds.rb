@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -262,205 +265,125 @@ puts "creating Questions 5"
 #======================================================
 # Veronica testing API (let's see how this goes)
 # First let's get the cities:
-require 'open-uri'
-require 'json'
 
-
-
-url = 'https://api.teleport.org/api/countries/'
-uri = URI(url)
-response = Net::HTTP.get(uri)
-intermediate = JSON.parse(response)
-array = intermediate['_links']['country:items']
-puts array.class
-array.each do |item|
-  puts item['name']
+def obtain_cities
+  cities = []
+  url = 'https://api.teleport.org/api/urban_areas/'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  data = JSON.parse(response)
+  hash_of_city_data = data['_links']['ua:item']
+  # Add each city to an array
+  hash_of_city_data.each do |city|
+    cities << city['name']
+  end
+  return cities
 end
 
+def obtain_healthcare(search_data)
+  # Health from teleport
+ puts search_data[7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
+end
+
+# Sarah for safety from teleport
+def obtain_safety(search_data)
+puts search_data[16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
+end
+
+# Sarah mobility car from teleport
+def obtain_mobility(search_data)
+  puts search_data[19]['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]["float_value"]
+  # Monthly avg public transportation cost in dollar
+  puts search_data[3]['data'].select{|property| property["id"] == "COST-PUBLIC-TRANSPORT"}[0]["currency_dollar_value"]
+end
+
+def obtain_weather(search_data)
+  puts(search_data)
+  # Average weather high from teleport
+  puts search_data[2]['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0]["string_value"]
+  # Average weather low from teleport
+  puts search_data[2]['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
+  # Weather by type from teleport
+  puts search_data[2]['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
+end
+
+# Education from teleport
+def obtain_education(search_data)
+  puts search_data[6]['data'].select{|property| property["id"] == "QUALITY-OF-UNIVERSITIES-TELESCORE"}[0]["float_value"]
+end
+
+def obtain_housing(search_data)
+  # Housing- rent index score from teleport
+  puts search_data[8]['data'].select{|property| property["id"] == "RENT-INDEX-TELESCORE"}[0]["float_value"]
+  # Housing- small apartment avg rent
+  puts search_data[8]['data'].select{|property| property["id"] == "APARTMENT-RENT-SMALL"}[0]["currency_dollar_value"]
+  #Housing- medium apartment avg rent
+  puts search_data[8]['data'].select{|property| property["id"] == "APARTMENT-RENT-MEDIUM"}[0]["currency_dollar_value"]
+  #Housing- large apartment avg rent
+  puts search_data[8]['data'].select{|property| property["id"] == "APARTMENT-RENT-LARGE"}[0]["currency_dollar_value"]
+end
+
+def obtain_extracurricular(search_data)
+  # Monthly avg fitness membership cost in dollar
+  puts search_data[3]['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0]["currency_dollar_value"]
+  # Number of art galleries in city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-ART-GALLERIES-VENUE-COUNT"}[0]["int_value"]
+  # Number of movie theaters in the city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-CINEMAS-VENUE-COUNT"}[0]["int_value"]
+  # Number of comedy clubs in the city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
+  # Number of concert venues in the city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
+  # Number of museums in the city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0]["int_value"]
+  # Number of sports venue in the city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-SPORTS-VENUE-COUNT"}[0]["int_value"]
+  # Number of zoos in the city
+  puts search_data[4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
+end
+
+def obtain_employment(search_data)
+  # Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
+  puts search_data[9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
+  # Number of startup jobs available on avg
+  puts search_data[10]['data'].select{|property| property["id"] == "STARTUP-JOBS-AVAILABLE"}[0]["int_value"]
+end
+
+def obtain_other_characteristics(search_data)
+  # City's spoken language. Returns a string
+  puts search_data[11]['data'].select{|property| property["id"] == "SPOKEN-LANGUAGES"}[0]["string_value"]
+  # LGBTQ marriage legalization status. Returns a string
+  puts search_data[12]['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
+  # Air quality score. Full score is 1
+  puts search_data[15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+end
 
 # Do loop for each of the cities:
 # Table: cities, Property: health;
 
-# Health from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-# puts(JSON.parse(response))
-search = JSON.parse(response)
- puts search['categories'][7]['data'].select{|property| property["id"] == "HEALTHCARE-QUALITY-TELESCORE" }[0]["float_value"]
+def seed_scores
+  # Get array of all cities
+  all_cities = obtain_cities
+  puts "Browsing #{all_cities.length} cities"
+  all_cities.each do |city|
+    url = "https://api.teleport.org/api/urban_areas/slug:#{city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")}/details/"
+    puts url
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    search_data = JSON.parse(response)
+    #puts city
+    # Assign each variable we got to an array
+    #puts "City:#{city}: #{obtain_healthcare(search_data['categories'])}"
 
-# Sarah for safety from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
+    #puts "City #{city.downcase}: #{obtain_safety(search_data)}"
+    # obtain_mobility(search_data)
+    #puts "City: #{city.downcase} #{obtain_weather(search_data)}"
+    # obtain_education(search_data)
+    # obtain_housing(search_data)
+    # obtain_extracurricular(search_data)
+    # obtain_employment(search_data)
+    # obtain_other_characteristics(search_data)
+  end
+end
 
-# Sarah mobility car from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:#{city}/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][19]['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]["float_value"]
-
-# Average weather high from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][2]['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0]["string_value"]
-
-# Average weather low from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][2]['data'].select{|property| property["id"] == "WEATHER-AVERAGE-LOW"}[0]["string_value"]
-
-# Weather by type from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][2]['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
-
-# Education from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][6]['data'].select{|property| property["id"] == "QUALITY-OF-UNIVERSITIES-TELESCORE"}[0]["float_value"]
-
-
-# Housing- rent index score from teleport
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][8]['data'].select{|property| property["id"] == "RENT-INDEX-TELESCORE"}[0]["float_value"]
-
-
-# Housing- small apartment avg rent
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][8]['data'].select{|property| property["id"] == "APARTMENT-RENT-SMALL"}[0]["currency_dollar_value"]
-
-
-#Housing- medium apartment avg rent
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][8]['data'].select{|property| property["id"] == "APARTMENT-RENT-MEDIUM"}[0]["currency_dollar_value"]
-
-
-#Housing- large apartment avg rent
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][8]['data'].select{|property| property["id"] == "APARTMENT-RENT-LARGE"}[0]["currency_dollar_value"]
-
-
-# Monthly avg public transportation cost in dollar
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][3]['data'].select{|property| property["id"] == "COST-PUBLIC-TRANSPORT"}[0]["currency_dollar_value"]
-
-
-# Monthly avg fitness membership cost in dollar
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][3]['data'].select{|property| property["id"] == "COST-FITNESS-CLUB"}[0]["currency_dollar_value"]
-
-
-# Number of art galleries in city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-ART-GALLERIES-VENUE-COUNT"}[0]["int_value"]
-
-# Number of movie theaters in the city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-CINEMAS-VENUE-COUNT"}[0]["int_value"]
-
-# Number of comedy clubs in the city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-COMEDY-CLUBS-VENUE-COUNT"}[0]["int_value"]
-
-# Number of concert venues in the city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-CONCERTS-VENUE-COUNT"}[0]["int_value"]
-
-# Number of museums in the city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-MUSEUMS-VENUE-COUNT"}[0]["int_value"]
-
-# Number of sports venue in the city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-SPORTS-VENUE-COUNT"}[0]["int_value"]
-
-# Number of zoos in the city
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
-
-
-# Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
-
-# Number of startup jobs available on avg
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][10]['data'].select{|property| property["id"] == "STARTUP-JOBS-AVAILABLE"}[0]["int_value"]
-
-# City's spoken language. Returns a string
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][11]['data'].select{|property| property["id"] == "SPOKEN-LANGUAGES"}[0]["string_value"]
-
-# LGBTQ marriage legalization status. Returns a string
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][12]['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
-
-# Air quality score. Full score is 1
-url = "https://api.teleport.org/api/urban_areas/slug:amsterdam/details/"
-uri = URI(url)
-response = Net::HTTP.get(uri)
-search = JSON.parse(response)
-puts search['categories'][15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+seed_scores
