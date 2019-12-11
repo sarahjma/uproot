@@ -1,8 +1,10 @@
 // Specific CSS for your home-page
+// This is the CSS that is defined for global user(main-container, font that is used in multiple pages)
 .main-container{
  margin: 0 auto;
  padding: 0 18px;
 }
+
 h1{
   padding-top: 18px;
   font-size: 28px;
@@ -12,4 +14,29 @@ h3{
 }
 p{
   font-size:14px;
+}
+
+
+// This is the CSS that is customized specifically for the landing page.
+.page-position {
+  padding: 430px 18px;
+}
+
+.background-image {
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://images.unsplash.com/photo-1549643276-fdf2fab574f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80");
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.landing-h1 {
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  margin-bottom: 0;
+}
+
+.landing-p {
+  color: white;
+  padding-bottom: 9px;
 }
