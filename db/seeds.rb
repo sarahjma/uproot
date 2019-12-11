@@ -489,11 +489,18 @@ def obtain_zoos(search_data)
   end
 end
 
+# Number of startup jobs available on avg
 def obtain_employment(search_data)
-  # Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
-  puts search_data[9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
-  # Number of startup jobs available on avg
-  puts search_data[10]['data'].select{|property| property["id"] == "STARTUP-JOBS-AVAILABLE"}[0]["int_value"]
+  employment_data = search_data.select{|property| property["id"] == "JOB-MARKET"}[0]
+  if employment_data.nil?
+    return 0
+  else
+    if employment_data['data'].select{|property| property["id"] == "STARTUP-JOBS-AVAILABLE"}[0].nil?
+      return 0
+    else
+      return employment_data['data'].select{|property| property["id"] == "STARTUP-JOBS-AVAILABLE"}[0]["int_value"]
+    end
+  end
 end
 
 def obtain_other_characteristics(search_data)
@@ -504,6 +511,9 @@ def obtain_other_characteristics(search_data)
   # Air quality score. Full score is 1
   puts search_data[15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
 end
+
+# Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
+ # puts search_data[9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
 
 # Do loop for each of the cities:
 # Table: cities, Property: health;
@@ -534,8 +544,8 @@ def seed_scores
     #WORKING obtain_concerts(search_data['categories'])
     #WORKING obtain_museums(search_data['categories'])
     #WORKING obtain_sports_venues(search_data['categories'])
-    puts obtain_zoos(search_data['categories'])
-    # obtain_employment(search_data['categories'])
+    #WORKING obtain_zoos(search_data['categories'])
+    #WORKING obtain_employment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
   end
 end
