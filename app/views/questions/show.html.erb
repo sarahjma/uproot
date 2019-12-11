@@ -1,15 +1,15 @@
 <div class="main-container">
   <h1><%= @question.content %></h1>
   <%if @question.display_type == "type-image"%>
+
     <%= form_for @chosen_answer, url: chosen_answer_index_path(@chosen_answer) do |f|%>
-      <div class="cards">
+      <div class="thump-option-grid">
           <% @question.answers.each do |answer| %>
             <input type="checkbox" class="hidden" style="display: none;">
-              <div class="thumb" style="background-image: url(<%= answer.image%>)">
+              <div class="thumb-option" style="background-image: url(<%= answer.image%>)">
               </div>
           <% end %>
         <% end %>
-
       </div>
     <%elsif @question.display_type == "type-dropdown"%>
       <%= form_for @chosen_answer, url: chosen_answer_index_path(@chosen_answer) do |f|%>
