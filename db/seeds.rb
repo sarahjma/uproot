@@ -293,11 +293,11 @@ end
 
 # Sarah for safety from teleport
 def obtain_safety(search_data)
-  safety_data = search_data[16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]
+  safety_data = search_data.select{ |property| property["id"] == "SAFETY"}[0]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}
   if safety_data.nil?
-    puts "doesn't exist"
+    return 0
   else
-    puts search_data[16]['data'].select{|property| property["id"] == "CRIME-RATE-TELESCORE"}[0]["float_value"]
+    return safety_data[0]['float_value']
   end
 end
 
