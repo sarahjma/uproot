@@ -475,12 +475,19 @@ def obtain_sports_venues(search_data)
   end
 end
 
-  # # Number of zoos in the city
-  # if search_data[4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0].nil?
-  #   all_extra_data << 0
-  # else
-  #   all_extra_data << search_data[4]['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
-  # end
+# Number of zoos in the city
+def obtain_zoos(search_data)
+  zoo_data = search_data.select{|property| property["id"] == "CULTURE"}[0]
+  if zoo_data.nil?
+    return 0
+  else
+    if zoo_data['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0].nil?
+      return 0
+    else
+      return zoo_data['data'].select{|property| property["id"] == "CULTURE-ZOOS-VENUE-COUNT"}[0]["int_value"]
+    end
+  end
+end
 
 def obtain_employment(search_data)
   # Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
@@ -526,7 +533,8 @@ def seed_scores
     #WORKING obtain_comedy_clubs(search_data['categories'])
     #WORKING obtain_concerts(search_data['categories'])
     #WORKING obtain_museums(search_data['categories'])
-    puts obtain_sports_venues(search_data['categories'])
+    #WORKING obtain_sports_venues(search_data['categories'])
+    puts obtain_zoos(search_data['categories'])
     # obtain_employment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
   end
