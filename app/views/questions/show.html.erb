@@ -2,9 +2,9 @@
   <h1><%= @question.content %></h1>
 
   <%if @question.display_type == "type-image"%>
-      <div class="cards">
+      <div class="thump-option-grid">
     <% @question.answers.each do |answer| %>
-      <div class="thumb" style="background-image: url(<%= image_path answer.image %>)">
+      <div class="thumb-option" style="background-image: url(<%= image_path answer.image %>)">
       </div>
     <% end %>
        </div>
