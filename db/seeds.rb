@@ -562,11 +562,20 @@ def obtain_other_characteristics(search_data)
 end
 
 # Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
- # puts search_data[9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
+def obtain_unemployment(search_data)
+  unemployment_data = search_data.select{|property| property["id"] == "INTERNAL"}[0]
+  if unemployment_data.nil?
+    return 0
+  else
+    if unemployment_data['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0].nil?
+      return 0
+    else
+      return unemployment_data['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
+    end
+  end
+end
 
 # Do loop for each of the cities:
-# Table: cities, Property: health;
-
 def seed_scores
   # Get array of all cities
   all_cities = obtain_cities
@@ -595,6 +604,7 @@ def seed_scores
     #WORKING obtain_sports_venues(search_data['categories'])
     #WORKING obtain_zoos(search_data['categories'])
     #WORKING obtain_employment(search_data['categories'])
+    puts obtain_unemployment(search_data['categories'])
     # obtain_other_characteristics(search_data['categories'])
   end
 end
