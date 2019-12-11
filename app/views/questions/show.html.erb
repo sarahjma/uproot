@@ -4,6 +4,7 @@
 
     <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
       <div class="thump-option-grid">
+
           <% @question.answers.each do |answer| %>
             <input type="checkbox" class="hidden" style="display: none;">
               <div class="thumb-option" style="background-image: url(<%= answer.image%>)">
