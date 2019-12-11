@@ -1,12 +1,21 @@
-.navbar-lewagon {
+.navbar {
   justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+
+  .navbar-brand {
+    font-weight: bolder;
+    font-family: 'Roboto Mono', "sans-serif";
+  }
+  .navbar-collapse {
+    flex-grow: 0;
+  }
+  .navbar-toggler {
+    border: none;
+    &:focus{
+    outline: 0px auto -webkit-focus-ring-color;
+  }
+
+  }
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
+
