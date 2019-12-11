@@ -594,6 +594,19 @@ def obtain_air_quality(search_data)
   end
 end
 
+def obtain_greenery(search_data)
+  greenery_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if greenery_data.nil?
+    return 0
+  else
+    if greenery_data['data'].select{|property| property["id"] == "URBAN-GREENERY-TELESCORE"}[0].nil?
+      return 0
+    else
+      return greenery_data['data'].select{|property| property["id"] == "URBAN-GREENERY-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
+
 
 # Do loop for each of the cities:
 def seed_scores
@@ -623,7 +636,9 @@ def seed_scores
     #WORKING obtain_employment(search_data['categories'])
     #WORKING obtain_unemployment(search_data['categories'])
     #WORKING obtain_LGBT(search_data['categories'])
-    puts obtain_air_quality(search_data['categories'])
+    #WORKING obtain_air_quality(search_data['categories'])
+    #WORKING obtain_air_quality(search_data['categories'])
+    puts obtain_greenery(search_data['categories'])
   end
 end
 
