@@ -656,7 +656,7 @@ City.destroy_all
 
 # We have an array of cities
 # We want to create a new object for every city
-obtain_cities[0..9].each do |api_city|
+obtain_cities[0..4].each do |api_city|
   city = City.new(name: api_city['name'])
 
   uri = URI(api_city['href'] + "details/")
@@ -666,8 +666,13 @@ obtain_cities[0..9].each do |api_city|
   city.healthcare_score = obtain_healthcare(search_data['categories'])
   city.safety_score = obtain_safety(search_data['categories'])
   city.traffic_score = obtain_mobility(search_data['categories'])
+  city.education_score = obtain_education(search_data['categories'])
+  city.rent_small_price = obtain_housing(search_data['categories'])[1]
+  city.rent_medium_price = obtain_housing(search_data['categories'])[2]
+  city.rent_large_price = obtain_housing(search_data['categories'])[3]
 
   city.save!
   puts "#{city.name} was created with healthcare_score #{city.healthcare_score} and safety score of #{city.safety_score} and traffic score of #{city.traffic_score}"
+  puts "#{city.name} with an education score of #{city.education_score} and small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
 end
 # seed_scores
