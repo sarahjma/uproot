@@ -1,6 +1,6 @@
 // Specific CSS for your home-page
-.page-position {
-  padding: 430px 18px;
+.home-page-position {
+  padding: 350px 18px;
 }
 
 .background-image {
@@ -20,4 +20,11 @@
 .landing-p {
   color: white;
   padding-bottom: 9px;
+}
+
+.btn-home {
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
