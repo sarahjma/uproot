@@ -650,12 +650,9 @@ def seed_scores
   end
 end
 
-puts "Deleting any previous city data"
+puts "Deleting any previous city data..."
 City.destroy_all
 
-
-# We have an array of cities
-# We want to create a new object for every city
 obtain_cities[0..4].each do |api_city|
   city = City.new(name: api_city['name'])
 
@@ -681,5 +678,6 @@ obtain_cities[0..4].each do |api_city|
   puts "with an education score of #{city.education_score}"
   puts "with small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
   puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
+  puts " "
 end
 # seed_scores
