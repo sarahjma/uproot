@@ -712,7 +712,7 @@ obtain_cities[0..4].each do |api_city|
   city.temp_min = obtain_weather(search_data['categories'])[1]
   city.temp_max = obtain_weather(search_data['categories'])[0]
   # To be added to MODEL:
-  city.train_score = obtain_train(search_data['categories'])[0]
+  city.train_score = obtain_train(search_data['categories'])
   # Average of sunny days %, safety, and greenery
   city.walking_score = (obtain_weather(search_data['categories'])[3] + \
           obtain_safety(search_data['categories']) + \
@@ -738,6 +738,11 @@ obtain_cities[0..4].each do |api_city|
   puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
   puts "with train score of #{city.train_score}"
   puts "with bike score of #{city.bike_score}"
+  puts "with a museum count of #{city.museum_count}"
+  puts "with a zoo count of #{city.zoo_count}"
+  puts "with a park score of #{city.park_score}"
+  puts "with a beach score of #{city.beach_score}"
+  puts "with a hiking score of #{city.hiking_score}"
   puts " "
 end
 # seed_scores
