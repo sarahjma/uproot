@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_161758) do
+ActiveRecord::Schema.define(version: 2019_12_12_110024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(version: 2019_12_11_161758) do
     t.integer "preference_priority"
     t.index ["answer_id"], name: "index_chosen_answers_on_answer_id"
     t.index ["quiz_result_id"], name: "index_chosen_answers_on_quiz_result_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.float "safety_score"
+    t.float "education_score"
+    t.float "healthcare_score"
+    t.float "traffic_score"
+    t.integer "rent_small_price"
+    t.integer "rent_medium_price"
+    t.integer "rent_large_price"
+    t.float "temp_min"
+    t.float "temp_max"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
