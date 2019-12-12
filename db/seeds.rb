@@ -264,7 +264,7 @@ puts "creating Questions 5"
   a8 = Answer.create(
   question: q6,
   image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
-  score: "sports game"
+  score: "sports-game"
   )
 
   puts "creating Questions 7"
