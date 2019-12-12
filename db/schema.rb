@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_110024) do
+ActiveRecord::Schema.define(version: 2019_12_12_145355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2019_12_12_110024) do
     t.float "temp_max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "walking_score"
+    t.float "train_score"
+    t.float "bike_score"
+    t.integer "museum_count"
+    t.integer "zoo_count"
+    t.integer "sport_venues_count"
+    t.float "park_score"
+    t.float "beach_score"
+    t.float "hiking_score"
   end
 
   create_table "questions", force: :cascade do |t|
