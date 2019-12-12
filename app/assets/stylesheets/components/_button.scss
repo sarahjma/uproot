@@ -20,6 +20,10 @@
   padding: 8px 20px;
   transition: opacity 0.3s ease;
   margin-right: 4px;
+  &.active{
+    border: 3px solid #00BAAA;
+    color: #00BAAA;
+  }
 }
 
 .btn-main {
@@ -42,6 +46,9 @@
   border-radius: 18px;
   text-decoration:none;
   color: inherit;
+  &:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+  }
 }
 
 .btn-sortable:hover{
