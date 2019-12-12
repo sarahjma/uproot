@@ -347,6 +347,18 @@ def obtain_mobility(search_data)
   mobility_data.nil? ? 0 : mobility_data['data'].select{|property| property["id"] == "TRAFFIC-INDEX-TELESCORE"}[0]['float_value']
 end
 
+# Train score from teleport
+def obtain_train(search_data)
+  train_data = search_data.select{ |property| property["id"] == "TRAVEL-CONNECTIVITY"}[0]
+  if train_data.nil?
+    return 0
+  elsif train_data['data'].select{|property| property["id"] == "TRAIN-TRANSPORT-TELESCORE"}[0].nil?
+    return 0
+  else
+    return train_data['data'].select{|property| property["id"] == "TRAIN-TRANSPORT-TELESCORE"}[0]["float_value"]
+  end
+end
+
 # Education from teleport
 def obtain_education(search_data)
   edu_data = search_data.select{ |property| property["id"] == "EDUCATION"}[0]
@@ -669,6 +681,7 @@ obtain_cities[0..4].each do |api_city|
   city.rent_large_price = obtain_housing(search_data['categories'])[3]
   city.temp_min = obtain_weather(search_data['categories'])[1]
   city.temp_max = obtain_weather(search_data['categories'])[0]
+  city.train_score = obtain_train(search_data['categories'])[0]
 
   city.save!
   puts "#{city.name} was created."
@@ -678,6 +691,7 @@ obtain_cities[0..4].each do |api_city|
   puts "with an education score of #{city.education_score}"
   puts "with small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
   puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
+  puts "with train score of #{city.train_score}"
   puts " "
 end
 # seed_scores
