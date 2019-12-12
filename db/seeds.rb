@@ -670,9 +670,16 @@ obtain_cities[0..4].each do |api_city|
   city.rent_small_price = obtain_housing(search_data['categories'])[1]
   city.rent_medium_price = obtain_housing(search_data['categories'])[2]
   city.rent_large_price = obtain_housing(search_data['categories'])[3]
+  city.temp_min = obtain_weather(search_data['categories'])[1]
+  city.temp_max = obtain_weather(search_data['categories'])[0]
 
   city.save!
-  puts "#{city.name} was created with healthcare_score #{city.healthcare_score} and safety score of #{city.safety_score} and traffic score of #{city.traffic_score}"
-  puts "#{city.name} with an education score of #{city.education_score} and small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
+  puts "#{city.name} was created."
+  puts "with healthcare_score #{city.healthcare_score}"
+  puts "with safety score of #{city.safety_score}"
+  puts "with and traffic score of #{city.traffic_score}"
+  puts "with an education score of #{city.education_score}"
+  puts "with small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
+  puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
 end
 # seed_scores
