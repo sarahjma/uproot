@@ -317,17 +317,12 @@ puts "creating Questions 5"
 # First let's get the cities:
 
 def obtain_cities
-  cities_url = []
-  url = 'https://api.teleport.org/api/urban_areas/'
-  uri = URI(url)
+  # We want it to return an array
+  # for each city, a has of href and name
+  uri = URI('https://api.teleport.org/api/urban_areas/')
   response = Net::HTTP.get(uri)
   data = JSON.parse(response)
-  hash_of_city_data = data['_links']['ua:item']
-  # Add each city to an array
-  hash_of_city_data.each do |city|
-    cities_url << city['href']
-  end
-  return cities_url
+  data['_links']['ua:item']
 end
 
 def obtain_healthcare(search_data)
@@ -655,4 +650,5 @@ def seed_scores
   end
 end
 
-seed_scores
+# seed_scores
+p obtain_cities
