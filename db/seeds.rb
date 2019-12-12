@@ -650,5 +650,14 @@ def seed_scores
   end
 end
 
+puts "Deleting any previous city data"
+City.destroy_all
+
+
+# We have an array of cities
+# We want to create a new object for every city
+obtain_cities.each do |city|
+  City.create!(name: city['name'])
+  puts "#{city['name']} was created"
+end
 # seed_scores
-p obtain_cities
