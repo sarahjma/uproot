@@ -376,7 +376,7 @@ def obtain_weather(search_data)
   # Average weather high from teleport
   weather_data = search_data.select{ |property| property["id"] == "CLIMATE"}[0]
   if weather_data.nil?
-    all_weather_array = [0,0,0]
+    all_weather_array = [0,0,0,0]
   else
     if weather_data['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0].nil?
       all_weather_array << 0
@@ -394,6 +394,11 @@ def obtain_weather(search_data)
       all_weather_array << 0
     else
       all_weather_array << weather_data['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
+    end
+    if weather_data['data'].select{|property| property["id"] == "WEATHER-AV-POSSIBILITY-SUNSHINE"}[0].nil?
+      all_weather_array << 0
+    else
+      all_weather_array << weather_data['data'].select{|property| property["id"] == "WEATHER-AV-POSSIBILITY-SUNSHINE"}[0]["percent_value"]
     end
   end
   return all_weather_array
@@ -627,6 +632,19 @@ def obtain_greenery(search_data)
   end
 end
 
+def obtain_pollution(search_data)
+  pollution_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if pollution_data.nil?
+    return 0
+  else
+    if pollution_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0].nil?
+      return 0
+    else
+      return pollution_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
+
 
 # Do loop for each of the cities:
 def seed_scores
@@ -681,7 +699,16 @@ obtain_cities[0..4].each do |api_city|
   city.rent_large_price = obtain_housing(search_data['categories'])[3]
   city.temp_min = obtain_weather(search_data['categories'])[1]
   city.temp_max = obtain_weather(search_data['categories'])[0]
+  # To be added to MODEL:
   city.train_score = obtain_train(search_data['categories'])[0]
+  # Average of sunny days %, safety, and greenery
+  city.walking_score = (obtain_weather(search_data['categories'])[3] + \
+          obtain_safety(search_data['categories']) + \
+          obtain_greenery(search_data['categories'])) / 3
+  city.bike_score = ( (1 - obtain_pollution(search_data['categories'])) + \
+            obtain_weather(search_data['categories'])[3]) / 2
+  city.museum_count =
+
 
   city.save!
   puts "#{city.name} was created."
@@ -692,6 +719,7 @@ obtain_cities[0..4].each do |api_city|
   puts "with small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
   puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
   puts "with train score of #{city.train_score}"
+  puts "with bike score of #{city.bike_score}"
   puts " "
 end
 # seed_scores
