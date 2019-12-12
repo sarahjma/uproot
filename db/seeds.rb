@@ -552,29 +552,81 @@ def obtain_employment(search_data)
   end
 end
 
-def obtain_other_characteristics(search_data)
-  # City's spoken language. Returns a string
-  puts search_data[11]['data'].select{|property| property["id"] == "SPOKEN-LANGUAGES"}[0]["string_value"]
-  # LGBTQ marriage legalization status. Returns a string
-  puts search_data[12]['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
-  # Air quality score. Full score is 1
-  puts search_data[15]['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+# Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
+def obtain_unemployment(search_data)
+  unemployment_data = search_data.select{|property| property["id"] == "INTERNAL"}[0]
+  if unemployment_data.nil?
+    return 0
+  else
+    if unemployment_data['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0].nil?
+      return 0
+    else
+      return unemployment_data['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
+    end
+  end
 end
 
-# Unemployment rate in country. The number that is outputted, multiply by 10,000 to get the percent value. (0.00062 x 10,000 = 6.2%)
- # puts search_data[9]['data'].select{|property| property["id"] == "UNEMPLOYMENT-RATE"}[0]["percent_value"]
+# LGBT rights
+def obtain_LGBT(search_data)
+  minority_data = search_data.select{|property| property["id"] == "MINORITIES"}[0]
+  if minority_data.nil?
+    return 0
+  else
+    if minority_data['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0].nil?
+      return 0
+    else
+      return minority_data['data'].select{|property| property["id"] == "LGBT-DETAIL-MARRIAGE"}[0]["string_value"]
+    end
+  end
+end
+
+# Air quality score. Full score is 1
+def obtain_air_quality(search_data)
+  air_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if air_data.nil?
+    return 0
+  else
+    if air_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0].nil?
+      return 0
+    else
+      return air_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
+
+def obtain_greenery(search_data)
+  greenery_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if greenery_data.nil?
+    return 0
+  else
+    if greenery_data['data'].select{|property| property["id"] == "URBAN-GREENERY-TELESCORE"}[0].nil?
+      return 0
+    else
+      return greenery_data['data'].select{|property| property["id"] == "URBAN-GREENERY-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
+
+def obtain_greenery(search_data)
+  greenery_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if greenery_data.nil?
+    return 0
+  else
+    if greenery_data['data'].select{|property| property["id"] == "URBAN-GREENERY-TELESCORE"}[0].nil?
+      return 0
+    else
+      return greenery_data['data'].select{|property| property["id"] == "URBAN-GREENERY-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
+
 
 # Do loop for each of the cities:
-# Table: cities, Property: health;
-
 def seed_scores
   # Get array of all cities
   all_cities = obtain_cities
   puts "Browsing #{all_cities.length} cities"
   all_cities.each do |city_url|
-    # cleaned_city = city.downcase.gsub(/(\s)/, '-').gsub(/[,.]/,"")
-    # url = "https://api.teleport.org/api/urban_areas/slug:#{cleaned_city}/details/"
-    #puts url
     uri = URI(city_url + "details/")
     puts uri
     response = Net::HTTP.get(uri)
@@ -595,7 +647,11 @@ def seed_scores
     #WORKING obtain_sports_venues(search_data['categories'])
     #WORKING obtain_zoos(search_data['categories'])
     #WORKING obtain_employment(search_data['categories'])
-    # obtain_other_characteristics(search_data['categories'])
+    #WORKING obtain_unemployment(search_data['categories'])
+    #WORKING obtain_LGBT(search_data['categories'])
+    #WORKING obtain_air_quality(search_data['categories'])
+    #WORKING obtain_air_quality(search_data['categories'])
+    #WORKING obtain_greenery(search_data['categories'])
   end
 end
 
