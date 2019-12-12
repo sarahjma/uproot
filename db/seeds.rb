@@ -656,8 +656,16 @@ City.destroy_all
 
 # We have an array of cities
 # We want to create a new object for every city
-obtain_cities.each do |city|
-  City.create!(name: city['name'])
-  puts "#{city['name']} was created"
+obtain_cities[0..9].each do |api_city|
+  city = City.new(name: api_city['name'])
+
+  uri = URI(api_city['href'] + "details/")
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  city.healthcare_score = obtain_healthcare(search_data['categories'])
+
+  city.save!
+  puts "#{city.name} was created with healthcare_score #{city.healthcare_score}"
 end
 # seed_scores
