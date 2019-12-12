@@ -1,15 +1,18 @@
 <div class="main-container">
   <h1><%= @question.content %></h1>
 
+  <!-- IMAGE QUESTION -->
   <%if @question.display_type == "type-image"%>
     <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
       <div class="grid-options">
         <% @question.answers.each do |answer| %>
-          <input type="checkbox" class="hidden" style="display: none;">
-            <div class="thumb-option" style="background-image: url(<%= answer.image%>)"></div>
-          <%end%>
+          <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
+          <label for="<%=answer.id%>"><div class="thumb-option" style="background-image: url(<%= answer.image%>)"></div></label>
         <%end%>
       </div>
+      <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
+      <input type="submit" name="submit"/>
+    <%end%>
 
     <%elsif @question.display_type == "type-dropdown"%>
       <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
@@ -33,7 +36,7 @@
       <ul id="sortable-list" class='sortable'>
       <% @question.answers.each_with_index do |answer, index| %>
         <li class="list-unstyled">
-          <input class="btn-sortable" type="text" value='<%= answer.text %>' name='chosen_answers[]' >
+          <input class="btn-sortable" type="text" value='<%= answer.text %>' name='chosen_answer_ids[]' >
         </li>
       <% end %>
       </ul>

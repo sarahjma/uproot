@@ -1,4 +1,4 @@
 class ChosenAnswer < ApplicationRecord
-  belongs_to :answers
-  belongs_to :question_results
+  belongs_to :answer
+  belongs_to :quiz_result
 end
