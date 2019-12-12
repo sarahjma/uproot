@@ -664,8 +664,9 @@ obtain_cities[0..9].each do |api_city|
   search_data = JSON.parse(response)
 
   city.healthcare_score = obtain_healthcare(search_data['categories'])
+  city.safety_score = obtain_safety(search_data['categories'])
 
   city.save!
-  puts "#{city.name} was created with healthcare_score #{city.healthcare_score}"
+  puts "#{city.name} was created with healthcare_score #{city.healthcare_score} and safety score of #{city.safety_score}"
 end
 # seed_scores
