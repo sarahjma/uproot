@@ -54,72 +54,72 @@ puts "creating Questions 1"
   )
 
 
-puts "creating Questions 2"
+# puts "creating Questions 2"
 
-  q2 = Question.create(
-    category: "career",
-    content: "What do you do for work?",
-    display_type: "type-dropdown"
-  )
-
-
-  a1 = Answer.create(
-    question: q2,
-    text: "doctor",
-    score: "doctor",
-  )
-
-  a2 = Answer.create(
-    question: q2,
-    text: "tech",
-    score: "tech",
-  )
-
-  a3 = Answer.create(
-    question: q2,
-    text: "teacher",
-    score: "teacher",
-  )
-
-  a4 = Answer.create(
-    question: q2,
-    text: "artist",
-    score: "artist",
-  )
+#   q2 = Question.create(
+#     category: "career",
+#     content: "What do you do for work?",
+#     display_type: "type-dropdown"
+#   )
 
 
-puts "creating Questions 3"
+#   a1 = Answer.create(
+#     question: q2,
+#     text: "doctor",
+#     score: "doctor",
+#   )
 
-  q3 = Question.create(
-    category: "leisure",
-    content: "What do you usually do in your free time?",
-    display_type: "type-buttons"
-  )
+#   a2 = Answer.create(
+#     question: q2,
+#     text: "tech",
+#     score: "tech",
+#   )
+
+#   a3 = Answer.create(
+#     question: q2,
+#     text: "teacher",
+#     score: "teacher",
+#   )
+
+#   a4 = Answer.create(
+#     question: q2,
+#     text: "artist",
+#     score: "artist",
+#   )
 
 
-  a1 = Answer.create(
-    question: q3,
-    text: "gym",
-    score: "gym",
-  )
+# puts "creating Questions 3"
 
-  a2 = Answer.create(
-    question: q3,
-    text: "museum",
-    score: "museum",
-  )
+#   q3 = Question.create(
+#     category: "leisure",
+#     content: "What do you usually do in your free time?",
+#     display_type: "type-buttons"
+#   )
 
-  a3 = Answer.create(
-    question: q3,
-    text: "cafe",
-    score: "cafe",
-  )
 
-  a4 = Answer.create(
-    question: q3,
-    text: "concerts",
-    score: "concerts",
-  )
+#   a1 = Answer.create(
+#     question: q3,
+#     text: "gym",
+#     score: "gym",
+#   )
+
+#   a2 = Answer.create(
+#     question: q3,
+#     text: "museum",
+#     score: "museum",
+#   )
+
+#   a3 = Answer.create(
+#     question: q3,
+#     text: "cafe",
+#     score: "cafe",
+#   )
+
+#   a4 = Answer.create(
+#     question: q3,
+#     text: "concerts",
+#     score: "concerts",
+#   )
 
 puts "creating Questions 4"
 
@@ -138,13 +138,13 @@ puts "creating Questions 4"
 
   a2 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3906&q=80",
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
     score: "medium apartment"
   )
 
   a3 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1553524788-4d21ef434fae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+    image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
     score: "large apartment"
   )
 
@@ -198,17 +198,17 @@ puts "creating Questions 5"
   score: "homebody"
   )
 
-  # a7 = Answer.create(
-  # question: q5,
-  # image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  # score: "art-gallery"
-  # )
+  a7 = Answer.create(
+  question: q5,
+  image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+  score: "art-gallery"
+  )
 
-  # a8 = Answer.create(
-  # question: q5,
-  # image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
-  # score: "comedy-club"
-  # )
+  a8 = Answer.create(
+  question: q5,
+  image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
+  score: "comedy-club"
+  )
 
   puts "creating Questions 6"
 
@@ -255,17 +255,17 @@ puts "creating Questions 5"
   score: "homebody"
   )
 
-  # a7 = Answer.create(
-  # question: q6,
-  # image: "https://images.unsplash.com/photo-1503919005314-30d93d07d823?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  # score: "zoo"
-  # )
+  a7 = Answer.create(
+  question: q6,
+  image: "https://images.unsplash.com/photo-1503919005314-30d93d07d823?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+  score: "zoo"
+  )
 
-  # a8 = Answer.create(
-  # question: q6,
-  # image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
-  # score: "sports game"
-  # )
+  a8 = Answer.create(
+  question: q6,
+  image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
+  score: "sports game"
+  )
 
   puts "creating Questions 7"
 
