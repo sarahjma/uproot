@@ -1,0 +1,36 @@
+.slider{
+  -webkit-appearance: none;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  &:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+  }
+}
+.slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #00BAAA;
+  border-radius: 50%;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.box{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  // border: 1px  solid rgba(0, 0, 0, 0.1);
+  // transform: rotate(-135deg);
+  position: absolute;
+  top: 200px;
+  left: 145px;
+  text-align: center;
+  align-item: center;
+}
+
+#value{
+  color: #00BAAA;
+
+}
