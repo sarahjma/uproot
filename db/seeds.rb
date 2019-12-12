@@ -317,17 +317,12 @@ puts "creating Questions 5"
 # First let's get the cities:
 
 def obtain_cities
-  cities_url = []
-  url = 'https://api.teleport.org/api/urban_areas/'
-  uri = URI(url)
+  # We want it to return an array
+  # for each city, a has of href and name
+  uri = URI('https://api.teleport.org/api/urban_areas/')
   response = Net::HTTP.get(uri)
   data = JSON.parse(response)
-  hash_of_city_data = data['_links']['ua:item']
-  # Add each city to an array
-  hash_of_city_data.each do |city|
-    cities_url << city['href']
-  end
-  return cities_url
+  data['_links']['ua:item']
 end
 
 def obtain_healthcare(search_data)
@@ -655,4 +650,34 @@ def seed_scores
   end
 end
 
-seed_scores
+puts "Deleting any previous city data..."
+City.destroy_all
+
+obtain_cities[0..4].each do |api_city|
+  city = City.new(name: api_city['name'])
+
+  uri = URI(api_city['href'] + "details/")
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  city.healthcare_score = obtain_healthcare(search_data['categories'])
+  city.safety_score = obtain_safety(search_data['categories'])
+  city.traffic_score = obtain_mobility(search_data['categories'])
+  city.education_score = obtain_education(search_data['categories'])
+  city.rent_small_price = obtain_housing(search_data['categories'])[1]
+  city.rent_medium_price = obtain_housing(search_data['categories'])[2]
+  city.rent_large_price = obtain_housing(search_data['categories'])[3]
+  city.temp_min = obtain_weather(search_data['categories'])[1]
+  city.temp_max = obtain_weather(search_data['categories'])[0]
+
+  city.save!
+  puts "#{city.name} was created."
+  puts "with healthcare_score #{city.healthcare_score}"
+  puts "with safety score of #{city.safety_score}"
+  puts "with and traffic score of #{city.traffic_score}"
+  puts "with an education score of #{city.education_score}"
+  puts "with small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
+  puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
+  puts " "
+end
+# seed_scores
