@@ -665,8 +665,9 @@ obtain_cities[0..9].each do |api_city|
 
   city.healthcare_score = obtain_healthcare(search_data['categories'])
   city.safety_score = obtain_safety(search_data['categories'])
+  city.traffic_score = obtain_mobility(search_data['categories'])
 
   city.save!
-  puts "#{city.name} was created with healthcare_score #{city.healthcare_score} and safety score of #{city.safety_score}"
+  puts "#{city.name} was created with healthcare_score #{city.healthcare_score} and safety score of #{city.safety_score} and traffic score of #{city.traffic_score}"
 end
 # seed_scores
