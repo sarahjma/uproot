@@ -15,20 +15,25 @@ class QuizResultsController < ApplicationController
       sum_of_scores_array = []
       cat = result.chosen_answers.answer.question.category
       score = result.chosen_answers.answer.score
+
       if cat == category
         sum_of_scores_array << score
       end
-      return sum_of_scores_array.num / sum_of_scores_array.count
+      return sum_of_scores_array.sum / sum_of_scores_array.count
   end
 
   def define_priorities
     weighting = { health: 0.35, \
                   leisure: 0.3, \
                   safety: 0.2, \
-                  education: 0.15 }
+                  mobility: 0.05, \
+                  nature: 0.05, \
+                  career: 0.05, \
+                  education: 0, \
+                  housing: 0 }
     overall_city_score = Hash.new(0)
     @cities.each do |city|
-      @weighting.each do |category, weight|
+      weighting.each do |category, weight|
         overall_city_score[category] = logic_category(category, city) * weight
       end
     end
