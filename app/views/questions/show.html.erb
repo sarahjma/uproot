@@ -41,17 +41,19 @@
     <%end%>
 
   <% elsif @question.display_type == "type-range"%>
-    <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-      <% @question.answers.each do |answer| %>
-      <input type="range"  name="quiz_result" id="slider" min="0" max="2000" class="slider" >
-      <label type="text" class="box" id="value" value=""></label>
+    <div class="container-option d-flex">
+      <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
+        <% @question.answers.each do |answer| %>
+          <input type="range"  name="quiz_result" id="slider" min="0" max="2000" class="slider d-flex flex-column" >
+          <label type="text align-item" class="box" id="value" value=""></label>
+        <% end %>
+    </div>
+        <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
+        <input type="hidden" name="question" value="<%=@question.id%>">
+        <%= f.button :submit, class: "btn-next" do %>
+          <i class="fas fa-chevron-right"></i>
+        <% end %>
       <% end %>
-     <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
-      <input type="hidden" name="question" value="<%=@question.id%>">
-      <%= f.button :submit, class: "btn-next" do %>
-        <i class="fas fa-chevron-right"></i>
-  <% end %>
-  <% end %>
 
   <% else %>
     <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
