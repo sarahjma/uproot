@@ -376,7 +376,7 @@ def obtain_weather(search_data)
   # Average weather high from teleport
   weather_data = search_data.select{ |property| property["id"] == "CLIMATE"}[0]
   if weather_data.nil?
-    all_weather_array = [0,0,0]
+    all_weather_array = [0,0,0,0]
   else
     if weather_data['data'].select{|property| property['id'] == "WEATHER-AVERAGE-HIGH"}[0].nil?
       all_weather_array << 0
@@ -394,6 +394,11 @@ def obtain_weather(search_data)
       all_weather_array << 0
     else
       all_weather_array << weather_data['data'].select{|property| property["id"] == "WEATHER-TYPE"}[0]["string_value"]
+    end
+    if weather_data['data'].select{|property| property["id"] == "WEATHER-AV-POSSIBILITY-SUNSHINE"}[0].nil?
+      all_weather_array << 0
+    else
+      all_weather_array << weather_data['data'].select{|property| property["id"] == "WEATHER-AV-POSSIBILITY-SUNSHINE"}[0]["percent_value"]
     end
   end
   return all_weather_array
@@ -627,6 +632,31 @@ def obtain_greenery(search_data)
   end
 end
 
+def obtain_pollution(search_data)
+  pollution_data = search_data.select{|property| property["id"] == "POLLUTION"}[0]
+  if pollution_data.nil?
+    return 0
+  else
+    if pollution_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0].nil?
+      return 0
+    else
+      return pollution_data['data'].select{|property| property["id"] == "AIR-POLLUTION-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
+
+def obtain_beach(search_data)
+  beach_data = search_data.select{|property| property["id"] == "OUTDOORS"}[0]
+  if beach_data.nil?
+    return 0
+  else
+    if beach_data['data'].select{|property| property["id"] == "SEASIDE-ACCESS-TELESCORE"}[0].nil?
+      return 0
+    else
+      return beach_data['data'].select{|property| property["id"] == "SEASIDE-ACCESS-TELESCORE"}[0]["float_value"]
+    end
+  end
+end
 
 # Do loop for each of the cities:
 def seed_scores
@@ -639,26 +669,26 @@ def seed_scores
     response = Net::HTTP.get(uri)
     search_data = JSON.parse(response)
     # Assign each variable we got to an array
-    #WORKING obtain_healthcare(search_data['categories'])
-    #WORKING obtain_safety(search_data['categories'])
-    #WORKING obtain_mobility(search_data['categories'])
-    #WORKING obtain_education(search_data['categories'])
-    #WORKING obtain_weather(search_data['categories'])
-    #WORKING obtain_housing(search_data['categories'])
-    #WORKING obtain_fitness_club(search_data['categories'])
-    #WORKING obtain_galleries(search_data['categories'])
-    #WORKING obtain_movies(search_data['categories'])
-    #WORKING obtain_comedy_clubs(search_data['categories'])
-    #WORKING obtain_concerts(search_data['categories'])
-    #WORKING obtain_museums(search_data['categories'])
-    #WORKING obtain_sports_venues(search_data['categories'])
-    #WORKING obtain_zoos(search_data['categories'])
-    #WORKING obtain_employment(search_data['categories'])
-    #WORKING obtain_unemployment(search_data['categories'])
-    #WORKING obtain_LGBT(search_data['categories'])
-    #WORKING obtain_air_quality(search_data['categories'])
-    #WORKING obtain_air_quality(search_data['categories'])
-    #WORKING obtain_greenery(search_data['categories'])
+    #obtain_healthcare(search_data['categories'])
+    #obtain_safety(search_data['categories'])
+    #obtain_mobility(search_data['categories'])
+    #obtain_education(search_data['categories'])
+    #obtain_weather(search_data['categories'])
+    #obtain_housing(search_data['categories'])
+    #obtain_fitness_club(search_data['categories'])
+    #obtain_galleries(search_data['categories'])
+    #obtain_movies(search_data['categories'])
+    #obtain_comedy_clubs(search_data['categories'])
+    #obtain_concerts(search_data['categories'])
+    #obtain_museums(search_data['categories'])
+    #obtain_sports_venues(search_data['categories'])
+    #obtain_zoos(search_data['categories'])
+    #obtain_employment(search_data['categories'])
+    #obtain_unemployment(search_data['categories'])
+    #obtain_LGBT(search_data['categories'])
+    #obtain_air_quality(search_data['categories'])
+    #obtain_air_quality(search_data['categories'])
+    #obtain_greenery(search_data['categories'])
   end
 end
 
@@ -681,7 +711,22 @@ obtain_cities[0..4].each do |api_city|
   city.rent_large_price = obtain_housing(search_data['categories'])[3]
   city.temp_min = obtain_weather(search_data['categories'])[1]
   city.temp_max = obtain_weather(search_data['categories'])[0]
+  # To be added to MODEL:
   city.train_score = obtain_train(search_data['categories'])[0]
+  # Average of sunny days %, safety, and greenery
+  city.walking_score = (obtain_weather(search_data['categories'])[3] + \
+          obtain_safety(search_data['categories']) + \
+          obtain_greenery(search_data['categories'])) / 3
+  city.bike_score = ( (1 - obtain_pollution(search_data['categories'])) + \
+            obtain_weather(search_data['categories'])[3]) / 2
+  city.museum_count = obtain_museums(search_data['categories'])
+  city.zoo_count = obtain_zoos(search_data['categories'])
+  city.sport_venues_count = obtain_sports_venues(search_data['categories'])
+  city.park_score = obtain_greenery(search_data['categories'])
+  city.beach_score = (obtain_beach(search_data['categories']) + \
+              obtain_weather(search_data['categories'])[3]) / 2
+  city.hiking_score = obtain_greenery(search_data['categories'])
+
 
   city.save!
   puts "#{city.name} was created."
@@ -692,6 +737,7 @@ obtain_cities[0..4].each do |api_city|
   puts "with small rent of #{city.rent_small_price} dollars, medium rent of #{city.rent_medium_price}, large rent of #{city.rent_large_price} dollars."
   puts "with weather min of #{city.temp_min} and max of #{city.temp_max}"
   puts "with train score of #{city.train_score}"
+  puts "with bike score of #{city.bike_score}"
   puts " "
 end
 # seed_scores
