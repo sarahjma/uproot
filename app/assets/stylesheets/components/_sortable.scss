@@ -1,0 +1,37 @@
+#sortable-list {
+  padding: 0;
+
+}
+#sortable-list li {
+  cursor: grab;
+  padding: 10px 20px;
+  justify-content: center;
+  width: 300px;
+  border-radius: 50px;
+  margin: 4px auto;
+  border: 1px solid black;
+  vertical-align: center;
+  background-color: white;
+  text-align: center;
+  list-style: none;
+}
+
+#sortable-list li:active {
+  cursor: grabbing;
+  background-color: #00BAAA;
+  color: white;
+}
+
+#sortable-list li.ghost {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+#sortable-list label {
+  display: inline;
+}
+
+#sortable-list li:hover {
+  background-color: #00BAAA;
+  color: white;
+}
