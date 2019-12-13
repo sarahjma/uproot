@@ -7,6 +7,7 @@ class QuizResultsController < ApplicationController
     redirect_to quiz_result_question_path(quiz_result, Question.first)
   end
 
-  def show
+  def results
+    @cities = @quiz_result.top_3_cities
   end
 end
