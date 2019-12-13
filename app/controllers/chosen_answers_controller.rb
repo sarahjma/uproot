@@ -7,7 +7,6 @@ class ChosenAnswersController < ApplicationController
         quiz_result_id: params[:quiz_result]
       )
     end
-    raise
 
     if Question.find(params[:question]) == Question.last
       redirect_to root_path
