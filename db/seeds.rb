@@ -11,6 +11,7 @@ require 'json'
   # enable_extension "plpgsql"
 
 puts "cleaning database"
+ChosenAnswer.destroy_all
 Answer.destroy_all
 Question.destroy_all
 QuizResult.destroy_all
@@ -53,98 +54,98 @@ puts "creating Questions 1"
   )
 
 
-puts "creating Questions 2"
+# puts "creating Questions 2"
 
-  q2 = Question.create(
-    category: "career",
-    content: "What do you do for work?",
-    display_type: "type-dropdown"
-  )
-
-
-  a1 = Answer.create(
-    question: q2,
-    text: "doctor",
-    score: "doctor",
-  )
-
-  a2 = Answer.create(
-    question: q2,
-    text: "tech",
-    score: "tech",
-  )
-
-  a3 = Answer.create(
-    question: q2,
-    text: "teacher",
-    score: "teacher",
-  )
-
-  a4 = Answer.create(
-    question: q2,
-    text: "artist",
-    score: "artist",
-  )
+#   q2 = Question.create(
+#     category: "career",
+#     content: "What do you do for work?",
+#     display_type: "type-dropdown"
+#   )
 
 
-puts "creating Questions 3"
+#   a1 = Answer.create(
+#     question: q2,
+#     text: "doctor",
+#     score: "doctor",
+#   )
 
-  q3 = Question.create(
-    category: "leisure",
-    content: "What do you usually do in your free time?",
-    display_type: "type-buttons"
-  )
+#   a2 = Answer.create(
+#     question: q2,
+#     text: "tech",
+#     score: "tech",
+#   )
+
+#   a3 = Answer.create(
+#     question: q2,
+#     text: "teacher",
+#     score: "teacher",
+#   )
+
+#   a4 = Answer.create(
+#     question: q2,
+#     text: "artist",
+#     score: "artist",
+#   )
 
 
-  a1 = Answer.create(
-    question: q3,
-    text: "gym",
-    score: "gym",
-  )
+# puts "creating Questions 3"
 
-  a2 = Answer.create(
-    question: q3,
-    text: "museum",
-    score: "museum",
-  )
+#   q3 = Question.create(
+#     category: "leisure",
+#     content: "What do you usually do in your free time?",
+#     display_type: "type-buttons"
+#   )
 
-  a3 = Answer.create(
-    question: q3,
-    text: "cafe",
-    score: "cafe",
-  )
 
-  a4 = Answer.create(
-    question: q3,
-    text: "concerts",
-    score: "concerts",
-  )
+#   a1 = Answer.create(
+#     question: q3,
+#     text: "gym",
+#     score: "gym",
+#   )
+
+#   a2 = Answer.create(
+#     question: q3,
+#     text: "museum",
+#     score: "museum",
+#   )
+
+#   a3 = Answer.create(
+#     question: q3,
+#     text: "cafe",
+#     score: "cafe",
+#   )
+
+#   a4 = Answer.create(
+#     question: q3,
+#     text: "concerts",
+#     score: "concerts",
+#   )
 
 puts "creating Questions 4"
 
   q4 = Question.create(
     category: "housing",
-    content: "What is home?",
+    content: "Which looks most like home?",
     display_type: "type-image"
   )
 
 
   a1 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1469022563428-aa04fef9f5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2553&q=80",
-    score: "apartment"
+    image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+    score: "small apartment"
   )
 
   a2 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3906&q=80",
-    score: "house"
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
+    score: "medium apartment"
   )
 
   a3 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2989&q=80",
-    score: "villa"
+    image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+    score: "large apartment"
   )
 
   a4 = Answer.create(
@@ -197,6 +198,18 @@ puts "creating Questions 5"
   score: "homebody"
   )
 
+  a7 = Answer.create(
+  question: q5,
+  image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+  score: "art-gallery"
+  )
+
+  a8 = Answer.create(
+  question: q5,
+  image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
+  score: "comedy-club"
+  )
+
   puts "creating Questions 6"
 
   q6 = Question.create(
@@ -208,26 +221,26 @@ puts "creating Questions 5"
 
   a1 = Answer.create(
     question: q6,
-    image: "https://images.unsplash.com/photo-1446844805183-9f5af45f89ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2167&q=80",
+    image: "https://images.unsplash.com/photo-1523849161192-3a6e717932c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2237&q=80",
     score: "park"
   )
 
   a2 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-    score: "mountains"
+    score: "hiking"
   )
 
   a3 = Answer.create(
     question: q6,
-    image: "https://images.unsplash.com/photo-1496275068113-fff8c90750d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+    image: "https://images.unsplash.com/photo-1480884296740-b04505e99dca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
     score: "beach"
   )
 
   a4 = Answer.create(
     question: q6,
-    image: "https://images.unsplash.com/photo-1551524559-8af4e6624178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80",
-    score: "ski"
+    image: "https://images.unsplash.com/photo-1562754193-ba39a22c110b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2224&q=80",
+    score: "museum"
   )
 
   a5 = Answer.create(
@@ -240,6 +253,18 @@ puts "creating Questions 5"
   question: q6,
   image: "https://images.unsplash.com/photo-1550763200-c150c99abfbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
   score: "homebody"
+  )
+
+  a7 = Answer.create(
+  question: q6,
+  image: "https://images.unsplash.com/photo-1503919005314-30d93d07d823?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+  score: "zoo"
+  )
+
+  a8 = Answer.create(
+  question: q6,
+  image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
+  score: "sports-game"
   )
 
   puts "creating Questions 7"
@@ -259,7 +284,7 @@ puts "creating Questions 5"
   )
   puts "creating Questions 6"
 
-  q7 = Question.create(
+  q8 = Question.create(
     category: "sorting",
     content: "Drag in order what’s important to you?",
     display_type: "type-sortable"
@@ -267,43 +292,43 @@ puts "creating Questions 5"
 
 
   a1 = Answer.create(
-    question: q7,
+    question: q8,
     text: 'safety',
     score: 'safety'
   )
 
   a2 = Answer.create(
-    question: q7,
+    question: q8,
     text: "education",
     score: "education"
   )
 
   a3 = Answer.create(
-    question: q7,
+    question: q8,
     text: "housing",
     score: "housing"
   )
 
   a4 = Answer.create(
-    question: q7,
+    question: q8,
     text: "career",
     score: "career"
   )
 
   a5 = Answer.create(
-  question: q7,
+  question: q8,
   text: "mobility",
   score: "mobility"
   )
 
   a6 = Answer.create(
-  question: q7,
+  question: q8,
   text: "leisure",
   score: "leisure"
   )
 
   a7 = Answer.create(
-  question: q7,
+  question: q8,
   text: "health",
   score: "health"
   )

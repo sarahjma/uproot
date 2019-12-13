@@ -1,0 +1,47 @@
+.slider{
+  -webkit-appearance: none;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  &:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+  }
+}
+.slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #00BAAA;
+  border-radius: 50%;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.box{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  position: relative;
+}
+
+#value{
+  color: #00BAAA;
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .slider {
+   width: 400px;
+   }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .slider {
+   width: 500px;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .slider {
+  width: 600px;
+  }
+}
