@@ -1,16 +1,17 @@
-<div class="main-container">
-  <h1><%= @question.content %></h1>
-
-  <!-- IMAGE QUESTION -->
-  <%if @question.display_type == "type-image"%>
-    <%= render 'type_image'%>
-  <%elsif @question.display_type == "type-dropdown"%>
-    <%= render 'type_dropdown'%>
-  <% elsif @question.display_type == "type-buttons"%>
-    <%= render 'type_buttons'%>
-  <% elsif @question.display_type == "type-range"%>
-    <%= render 'type_range'%>
-  <% else %>
-    <%= render 'type_sortable'%>
-  <% end %>
+<div class="main-container show-container">
+  <h3><%= @question.content %></h3>
+  <div class="option-type">
+    <!-- IMAGE QUESTION -->
+    <%if @question.display_type == "type-image"%>
+      <%= render 'type_image'%>
+    <%elsif @question.display_type == "type-dropdown"%>
+      <%= render 'type_dropdown'%>
+    <% elsif @question.display_type == "type-buttons"%>
+      <%= render 'type_buttons'%>
+    <% elsif @question.display_type == "type-range"%>
+      <%= render 'type_range'%>
+    <% else %>
+      <%= render 'type_sortable'%>
+    <% end %>
+  </div>
 </div>
