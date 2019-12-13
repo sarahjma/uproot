@@ -2,7 +2,7 @@
     <div class="grid-cards">
       <% @question.answers.each do |answer| %>
         <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
-        <label for="<%=answer.id%>">
+        <label for="<%=answer.id%>" class="query">
           <div class="thumb-option" style="background-image: url(<%=answer.image%>)">
           </div>
         </label>
