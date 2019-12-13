@@ -1,5 +1,5 @@
 <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-  <%= f.collection_select :answer_id, @question.answers, :id, :text , prompt: true, {:include_blank => 'None Specified'}%>
+  <%= f.collection_select :answer_id, @question.answers, :id, :text , prompt: true, include_blank: 'None Specified' %>
   <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
   <input type="hidden" name="question" value="<%=@question.id%>">
   <%=  f.button :submit, class: "btn-next" do %>
