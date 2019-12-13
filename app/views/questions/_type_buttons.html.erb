@@ -1,0 +1,11 @@
+<%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
+    <% @question.answers.each do |answer| %>
+      <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
+      <label for="<%=answer.id%>" class="btn-option"><%= answer.text %></label>
+    <%end%>
+    <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
+    <input type="hidden" name="question" value="<%=@question.id%>">
+    <%=  f.button :submit, class: "btn-next" do %>
+      <i class="fas fa-chevron-right"></i>
+    <%end%>
+<%end%>

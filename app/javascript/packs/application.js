@@ -1,6 +1,7 @@
 import "bootstrap";
 import { initSortable } from '../plugins/init_sortable'; // <-- add this
 
+initSortable();
 
 const thumb_options = document.querySelectorAll(".thumb-option")
 thumb_options.forEach((thumb) => {
@@ -23,4 +24,3 @@ slider.oninput=function(){
   value.innerHTML=this.value + "€";
 }
 
-initSortable();
