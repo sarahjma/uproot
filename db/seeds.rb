@@ -156,7 +156,7 @@ puts "creating Questions 4"
 puts "creating Questions 5"
 
   q5 = Question.create(
-    category: "leisure",
+    category: "lex",
     content: "It's Friday! What does it look like?",
     display_type: "type-image"
   )
@@ -332,6 +332,17 @@ puts "creating Questions 5"
   text: "health",
   score: "health"
   )
+
+  ChosenAnswer.create(
+    answer: a7,
+    quiz_result: r1,
+    )
+
+  ChosenAnswer.create(
+    answer: a6,
+    quiz_result: r1,
+    )
+
   puts "created #{Answer.count} Answers"
   puts "created #{QuizResult.count} QuizResults"
   puts "created #{Question.count} Questions"

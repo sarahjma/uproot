@@ -7,40 +7,7 @@ class QuizResultsController < ApplicationController
     redirect_to quiz_result_question_path(quiz_result, Question.first)
   end
 
-  # LOGIC - > need to check if this is the right
-  # place to have this
-  def logic_category(category, city)
-    # Check the category of a question
-    @quiz_result.each do |result|
-      sum_of_scores_array = []
-      cat = result.chosen_answers.answer.question.category
-      score = result.chosen_answers.answer.score
-
-      if cat == category
-        sum_of_scores_array << score
-      end
-      return sum_of_scores_array.sum / sum_of_scores_array.count
+  def results
+    @cities = @quiz_result.top_3_cities
   end
-
-  def define_priorities
-    weighting = { health: 0.35, \
-                  leisure: 0.3, \
-                  safety: 0.2, \
-                  mobility: 0.05, \
-                  nature: 0.05, \
-                  career: 0.05, \
-                  education: 0, \
-                  housing: 0 }
-    overall_city_score = Hash.new(0)
-    @cities.each do |city|
-      weighting.each do |category, weight|
-        overall_city_score[category] = logic_category(category, city) * weight
-      end
-    end
-  end
-  # Group all the results of each of the categies
-  # Calculate the score of each of the categories
-  # Get the sorted order of priority
-  # Calculate a final score for each city
-  # Return the top 3 cities
 end
