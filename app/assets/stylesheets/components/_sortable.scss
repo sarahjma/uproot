@@ -16,15 +16,16 @@
   list-style: none;
 }
 
-#sortable-list li:active {
+#sortable-list li.drag {
   cursor: grabbing;
   background-color: #00BAAA;
   color: white;
 }
 
-#sortable-list li.ghost {
-  filter: grayscale(1);
+#sortable-list li.chosen {
+  cursor: grabbing;
   opacity: 0.5;
+  color: white;
 }
 
 #sortable-list label {
