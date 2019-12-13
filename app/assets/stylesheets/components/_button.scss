@@ -10,9 +10,9 @@
   align-items: center;
   border: 1px solid black;
   border-radius: 18px;
-  width: 91px;
-  height: 37px;
+  height: 30px;
   margin-right: 3px;
+  padding: 0 12px;
   // transition: opacity 0.3s ease;
   &.active {
     border: 1px solid #00BAAA;

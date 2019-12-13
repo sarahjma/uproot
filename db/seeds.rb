@@ -121,6 +121,54 @@ puts "creating Questions 3"
     score: "concerts",
   )
 
+  a5 = Answer.create(
+    question: q3,
+    text: "pilates",
+    score: "pilates",
+  )
+
+  a6 = Answer.create(
+    question: q3,
+    text: "climbing",
+    score: "climbing",
+  )
+
+  a7 = Answer.create(
+    question: q3,
+    text: "basketball",
+    score: "basketball",
+  )
+
+  a8 = Answer.create(
+    question: q3,
+    text: "soccer",
+    score: "soccer",
+  )
+
+  a9 = Answer.create(
+    question: q3,
+    text: "swimming",
+    score: "swimming",
+  )
+
+  a10 = Answer.create(
+    question: q3,
+    text: "study",
+    score: "study",
+  )
+
+  a11 = Answer.create(
+    question: q3,
+    text: "code",
+    score: "code",
+  )
+
+  a12 = Answer.create(
+    question: q3,
+    text: "wine tasting",
+    score: "wine tasting",
+  )
+
 puts "creating Questions 4"
 
   q4 = Question.create(
