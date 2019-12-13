@@ -1,16 +1,24 @@
-<div class="main-container">
-  <h1><%= @question.content %></h1>
+<div class="main-container show-container">
+  <div class="quiz-welcome">
+    <% if @question.content == "How do you get to work?" %>
+      <p>Help us get to know you better by answering the series of questions below.</p>
+    <% else %>
+    <% end %>
+  </div>
 
-  <!-- IMAGE QUESTION -->
-  <%if @question.display_type == "type-image"%>
-    <%= render 'type_image'%>
-  <%elsif @question.display_type == "type-dropdown"%>
-    <%= render 'type_dropdown'%>
-  <% elsif @question.display_type == "type-buttons"%>
-    <%= render 'type_buttons'%>
-  <% elsif @question.display_type == "type-range"%>
-    <%= render 'type_range'%>
-  <% else %>
-    <%= render 'type_sortable'%>
-  <% end %>
+  <h3><%= @question.content %></h3>
+  <div class="option-type">
+    <!-- IMAGE QUESTION -->
+    <%if @question.display_type == "type-image"%>
+      <%= render 'type_image'%>
+    <%elsif @question.display_type == "type-dropdown"%>
+      <%= render 'type_dropdown'%>
+    <% elsif @question.display_type == "type-buttons"%>
+      <%= render 'type_buttons'%>
+    <% elsif @question.display_type == "type-range"%>
+      <%= render 'type_range'%>
+    <% else %>
+      <%= render 'type_sortable'%>
+    <% end %>
+  </div>
 </div>
