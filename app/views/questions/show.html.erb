@@ -1,4 +1,11 @@
 <div class="main-container show-container">
+  <div class="quiz-welcome">
+    <% if @question.content == "How do you get to work?" %>
+      <p>Help us get to know you better by answering the series of questions below.</p>
+    <% else %>
+    <% end %>
+  </div>
+
   <h3><%= @question.content %></h3>
   <div class="option-type">
     <!-- IMAGE QUESTION -->
