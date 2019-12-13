@@ -1,4 +1,3 @@
-
 const submit = () => {
   const labels = document.querySelectorAll(".query")
   const btn_next = document.querySelector(".btn-next")
