@@ -26,5 +26,22 @@
 
 #value{
   color: #00BAAA;
-
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .slider {
+   width: 400px;
+   }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .slider {
+   width: 500px;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .slider {
+  width: 600px;
+  }
 }

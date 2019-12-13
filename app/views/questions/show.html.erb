@@ -45,7 +45,7 @@
       <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
         <% @question.answers.each do |answer| %>
           <input type="range"  name="quiz_result" id="slider" min="0" max="2000" class="slider d-flex flex-column" >
-          <label type="text align-item" class="box" id="value" value=""></label>
+          <label type="text align-item" class="box " id="value" value=""></label>
         <% end %>
     </div>
         <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
