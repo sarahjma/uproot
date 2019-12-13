@@ -156,7 +156,7 @@ puts "creating Questions 4"
 puts "creating Questions 5"
 
   q5 = Question.create(
-    category: "lex",
+    category: "leisure",
     content: "It's Friday! What does it look like?",
     display_type: "type-image"
   )
