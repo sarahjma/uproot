@@ -54,72 +54,72 @@ puts "creating Questions 1"
   )
 
 
-# puts "creating Questions 2"
+puts "creating Questions 2"
 
-#   q2 = Question.create(
-#     category: "career",
-#     content: "What do you do for work?",
-#     display_type: "type-dropdown"
-#   )
-
-
-#   a1 = Answer.create(
-#     question: q2,
-#     text: "doctor",
-#     score: "doctor",
-#   )
-
-#   a2 = Answer.create(
-#     question: q2,
-#     text: "tech",
-#     score: "tech",
-#   )
-
-#   a3 = Answer.create(
-#     question: q2,
-#     text: "teacher",
-#     score: "teacher",
-#   )
-
-#   a4 = Answer.create(
-#     question: q2,
-#     text: "artist",
-#     score: "artist",
-#   )
+  q2 = Question.create(
+    category: "career",
+    content: "What do you do for work?",
+    display_type: "type-dropdown"
+  )
 
 
-# puts "creating Questions 3"
+  a1 = Answer.create(
+    question: q2,
+    text: "doctor",
+    score: "doctor",
+  )
 
-#   q3 = Question.create(
-#     category: "leisure",
-#     content: "What do you usually do in your free time?",
-#     display_type: "type-buttons"
-#   )
+  a2 = Answer.create(
+    question: q2,
+    text: "tech",
+    score: "tech",
+  )
+
+  a3 = Answer.create(
+    question: q2,
+    text: "teacher",
+    score: "teacher",
+  )
+
+  a4 = Answer.create(
+    question: q2,
+    text: "artist",
+    score: "artist",
+  )
 
 
-#   a1 = Answer.create(
-#     question: q3,
-#     text: "gym",
-#     score: "gym",
-#   )
+puts "creating Questions 3"
 
-#   a2 = Answer.create(
-#     question: q3,
-#     text: "museum",
-#     score: "museum",
-#   )
+  q3 = Question.create(
+    category: "leisure",
+    content: "What do you usually do in your free time?",
+    display_type: "type-buttons"
+  )
 
-#   a3 = Answer.create(
-#     question: q3,
-#     text: "cafe",
-#     score: "cafe",
-#   )
 
-#   a4 = Answer.create(
-#     question: q3,
-#     text: "concerts",
-#     score: "concerts",
-#   )
+  a1 = Answer.create(
+    question: q3,
+    text: "gym",
+    score: "gym",
+  )
+
+  a2 = Answer.create(
+    question: q3,
+    text: "museum",
+    score: "museum",
+  )
+
+  a3 = Answer.create(
+    question: q3,
+    text: "cafe",
+    score: "cafe",
+  )
+
+  a4 = Answer.create(
+    question: q3,
+    text: "concerts",
+    score: "concerts",
+  )
 
 puts "creating Questions 4"
 
