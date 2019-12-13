@@ -1,5 +1,5 @@
 // RESPONSIVE GRID
-.grid-options {
+.grid-cards {
   display: grid;
   grid-gap: 18px;
   grid-template-columns: 1fr 1fr;
@@ -10,23 +10,22 @@
 }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .grid-options {
+  .grid-cards {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .grid-options {
+  .grid-cards {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .grid-options {
+  .grid-cards {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
-
 
 
 // IMAGE CARD IN QUIZ
