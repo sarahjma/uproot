@@ -2,7 +2,7 @@
 <div class="container-btn-option d-flex flex-wrap">
   <% @question.answers.each do |answer| %>
     <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
-    <label for="<%=answer.id%>" class="btn-option d-flex"><%= answer.text %></label>
+    <label for="<%=answer.id%>" class="btn-option d-flex query"><%= answer.text %></label>
   <%end%>
   <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
   <input type="hidden" name="question" value="<%=@question.id%>">
