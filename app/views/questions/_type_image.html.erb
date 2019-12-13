@@ -1,8 +1,8 @@
 <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
   <div class="grid-cards">
     <% @question.answers.each do |answer| %>
-      <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
-      <label for="<%=answer.id%>">
+      <input type="checkbox"  name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
+      <label for="<%=answer.id%>" class="query">
         <div class="thumb-option" style="background-image: url(<%=answer.image%>)">
         </div>
       </label>
