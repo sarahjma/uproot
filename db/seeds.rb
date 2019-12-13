@@ -54,72 +54,120 @@ puts "creating Questions 1"
   )
 
 
-# puts "creating Questions 2"
+puts "creating Questions 2"
 
-#   q2 = Question.create(
-#     category: "career",
-#     content: "What do you do for work?",
-#     display_type: "type-dropdown"
-#   )
-
-
-#   a1 = Answer.create(
-#     question: q2,
-#     text: "doctor",
-#     score: "doctor",
-#   )
-
-#   a2 = Answer.create(
-#     question: q2,
-#     text: "tech",
-#     score: "tech",
-#   )
-
-#   a3 = Answer.create(
-#     question: q2,
-#     text: "teacher",
-#     score: "teacher",
-#   )
-
-#   a4 = Answer.create(
-#     question: q2,
-#     text: "artist",
-#     score: "artist",
-#   )
+  q2 = Question.create(
+    category: "career",
+    content: "What do you do for work?",
+    display_type: "type-dropdown"
+  )
 
 
-# puts "creating Questions 3"
+  a1 = Answer.create(
+    question: q2,
+    text: "doctor",
+    score: "doctor",
+  )
 
-#   q3 = Question.create(
-#     category: "leisure",
-#     content: "What do you usually do in your free time?",
-#     display_type: "type-buttons"
-#   )
+  a2 = Answer.create(
+    question: q2,
+    text: "tech",
+    score: "tech",
+  )
+
+  a3 = Answer.create(
+    question: q2,
+    text: "teacher",
+    score: "teacher",
+  )
+
+  a4 = Answer.create(
+    question: q2,
+    text: "artist",
+    score: "artist",
+  )
 
 
-#   a1 = Answer.create(
-#     question: q3,
-#     text: "gym",
-#     score: "gym",
-#   )
+puts "creating Questions 3"
 
-#   a2 = Answer.create(
-#     question: q3,
-#     text: "museum",
-#     score: "museum",
-#   )
+  q3 = Question.create(
+    category: "leisure",
+    content: "What do you usually do in your free time?",
+    display_type: "type-buttons"
+  )
 
-#   a3 = Answer.create(
-#     question: q3,
-#     text: "cafe",
-#     score: "cafe",
-#   )
 
-#   a4 = Answer.create(
-#     question: q3,
-#     text: "concerts",
-#     score: "concerts",
-#   )
+  a1 = Answer.create(
+    question: q3,
+    text: "gym",
+    score: "gym",
+  )
+
+  a2 = Answer.create(
+    question: q3,
+    text: "museum",
+    score: "museum",
+  )
+
+  a3 = Answer.create(
+    question: q3,
+    text: "cafe",
+    score: "cafe",
+  )
+
+  a4 = Answer.create(
+    question: q3,
+    text: "concerts",
+    score: "concerts",
+  )
+
+  a5 = Answer.create(
+    question: q3,
+    text: "pilates",
+    score: "pilates",
+  )
+
+  a6 = Answer.create(
+    question: q3,
+    text: "climbing",
+    score: "climbing",
+  )
+
+  a7 = Answer.create(
+    question: q3,
+    text: "basketball",
+    score: "basketball",
+  )
+
+  a8 = Answer.create(
+    question: q3,
+    text: "soccer",
+    score: "soccer",
+  )
+
+  a9 = Answer.create(
+    question: q3,
+    text: "swimming",
+    score: "swimming",
+  )
+
+  a10 = Answer.create(
+    question: q3,
+    text: "study",
+    score: "study",
+  )
+
+  a11 = Answer.create(
+    question: q3,
+    text: "code",
+    score: "code",
+  )
+
+  a12 = Answer.create(
+    question: q3,
+    text: "wine tasting",
+    score: "wine tasting",
+  )
 
 puts "creating Questions 4"
 
@@ -332,6 +380,17 @@ puts "creating Questions 5"
   text: "health",
   score: "health"
   )
+
+  ChosenAnswer.create(
+    answer: a7,
+    quiz_result: r1,
+    )
+
+  ChosenAnswer.create(
+    answer: a6,
+    quiz_result: r1,
+    )
+
   puts "created #{Answer.count} Answers"
   puts "created #{QuizResult.count} QuizResults"
   puts "created #{Question.count} Questions"
