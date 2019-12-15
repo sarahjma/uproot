@@ -3,6 +3,5 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @quiz_result = QuizResult.find(params[:quiz_result_id])
     @chosen_answer = ChosenAnswer.new
-@a = Question.first
   end
 end

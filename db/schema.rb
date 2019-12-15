@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_145355) do
+ActiveRecord::Schema.define(version: 2019_12_15_125700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_145355) do
     t.float "park_score"
     t.float "beach_score"
     t.float "hiking_score"
+    t.string "image"
   end
 
   create_table "questions", force: :cascade do |t|
