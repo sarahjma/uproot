@@ -741,16 +741,6 @@ def obtain_beach(search_data)
   end
 end
 
-
-# def obtain_city_image
-#   # We want it to return an array
-#   # for each city, a has of href and name
-#   uri = URI('https://api.teleport.org/api/urban_areas/')
-#   response = Net::HTTP.get(uri)
-#   data = JSON.parse(response)
-#   data['_links']['ua:item']
-# end
-
 # Do loop for each of the cities:
 def seed_scores
   # Get array of all cities
@@ -820,8 +810,15 @@ obtain_cities[0..4].each do |api_city|
               obtain_weather(search_data['categories'])[3]) / 2
   city.hiking_score = obtain_greenery(search_data['categories'])
 
+  # This is to obtain the image associated with each city. In different part or API
+  uri = URI(api_city['href'] + 'images/')
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  city.image = search_data['photos'][0]['image']['mobile']
 
   city.save!
+
   puts "#{city.name} was created."
   puts "with healthcare_score #{city.healthcare_score}"
   puts "with safety score of #{city.safety_score}"
@@ -836,19 +833,8 @@ obtain_cities[0..4].each do |api_city|
   puts "with a park score of #{city.park_score}"
   puts "with a beach score of #{city.beach_score}"
   puts "with a hiking score of #{city.hiking_score}"
+  puts "link to city image is #{city.image}"
   puts " "
 end
 
-obtain_cities[0..4].each do |api_city|
-  city = City.new(name: api_city['name'])
-
-  uri = URI(api_city['href'])
-  response = Net::HTTP.get(uri)
-  search_data = JSON.parse(response)
-
-  city.image = search_data['_links']['ua:images']['href']
-  city.save!
-
-  puts "link to city image is #{city.image}"
-end
 # seed_scores
