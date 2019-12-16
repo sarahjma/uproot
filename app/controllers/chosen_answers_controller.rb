@@ -11,7 +11,6 @@ class ChosenAnswersController < ApplicationController
       quiz_result = QuizResult.new(
         chosen_answer_category: @chosen_answer_category
       )
-      res = quiz_result.top_3_cities
     end
 
     if Question.find(params[:question]) == Question.last

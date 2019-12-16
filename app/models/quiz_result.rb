@@ -10,21 +10,10 @@ class QuizResult < ApplicationRecord
   end
 
   def define_priorities
-    result = {}
+    weighting = {}
     values = [0.35, 0.3, 0.2, 0.05, 0.05, 0.05, 0, 0]
-
     @chosen_answer_category.each_with_index { |category, index|
-      result[category.to_sym] = values[index]
-      }
-    return result
-    # weighting = { health: 0.35, \
-    #               leisure: 0.3, \
-    #               safety: 0.2, \
-    #               mobility: 0.05, \
-    #               nature: 0.05, \
-    #               career: 0.05, \
-    #               education: 0, \
-    #               housing: 0 }
+      result[category.to_sym] = values[index] }
     overall_city_score = Hash.new(0)
     @cities.each do |city|
       weighting.each do |category, weight|
