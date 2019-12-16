@@ -26,6 +26,7 @@
   background-color: black;
   padding: 8px 40px;
   font-size: 1.25em;
+  text-align: center;
   &:hover {
     text-decoration: none;
     color: white;
@@ -34,10 +35,19 @@
 
 // BUTTON NEXT
 .btn-next {
-  background-color: white;
-  border: 1px solid black;
+  background-color: black;
+  // border: 1px solid black;
+  color: white;
   width: 100%;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  // margin-top:12px;
+  margin: 12px auto;
+  position: relative;
+  bottom: 0vh;
+  left: 0px;
+
   // margin-top: 20px;
   // position: fixed;
   // bottom: 18px;

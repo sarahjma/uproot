@@ -9,3 +9,48 @@
 @import "dropdown";
 @import "sortable";
 
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .grid-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 50%
+  }
+  .slider {
+   width: 400px;
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .grid-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 50%
+  }
+  .slider {
+   width: 500px;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .grid-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 50%
+  }
+  .slider {
+  width: 600px;
+  }
+}
