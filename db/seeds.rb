@@ -650,9 +650,6 @@ obtain_cities.each do |api_city|
 
   city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score
 
-  # city.beach_score = (obtain_beach(search_data['categories']) + \
-  #             obtain_weather(search_data['categories'])[3]) / 2
-
   city.hiking_score = city.greenery_score
 
   city.walking_score = \
@@ -661,6 +658,18 @@ obtain_cities.each do |api_city|
   city.bike_score = \
     0.5 * (1 - city.air_quality_score) + 0.5 * city.sunny_score
 
+  # Getting careers from teleport
+  uri = URI(api_city['href'] + 'salaries/')
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  i = 0
+  while search_data['salaries'][i]
+    city.career << search_data['salaries'][i]['job']['title']
+    i += 1
+  end
+
+  p city.career
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)
