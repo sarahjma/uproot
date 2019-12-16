@@ -1114,23 +1114,26 @@ obtain_cities.each do |api_city|
     "CLIMATE" , \
     "WEATHER-TYPE")
 
-  city.beach_score = 0.5 * city.beach_score.to_f + 0.5 * city.sunny_score.to_f
+
+  city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score
+
+  # city.beach_score = (obtain_beach(search_data['categories']) + \
+  #             obtain_weather(search_data['categories'])[3]) / 2
 
   city.hiking_score = city.greenery_score
 
   city.walking_score = \
-    1/3 * city.greenery_score.to_f + 1/3 * city.safety_score.to_f + 1/3 * city.sunny_score.to_f
+    1/3 * city.greenery_score + 1/3 * city.safety_score + 1/3 * city.sunny_score
 
   city.bike_score = \
-    0.5 * (1 - city.air_quality_score.to_f) + 0.5 * city.sunny_score.to_f
-
-  city.image = search_data['photos'][0]['image']['mobile']
+    0.5 * (1 - city.air_quality_score) + 0.5 * city.sunny_score
 
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)
   search_data = JSON.parse(response)
 
+  city.image = search_data['photos'][0]['image']['mobile']
 
   city.save!
 
