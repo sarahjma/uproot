@@ -1,11 +1,23 @@
-<div class="main-container show-container">
-  <div class="quiz-welcome">
+<div class="main-container">
+<!--   <div class="quiz-welcome">
     <% if @question.content == "How do you get to work?" %>
       <p>Help us get to know you better by answering the series of questions below.</p>
     <% end %>
+  </div> -->
+
+  <div>
+    <h3><%= @question.content %></h3>
   </div>
 
-  <h3><%= @question.content %></h3>
+  <div class="quiz-flow">
+    <%@count.times do %>
+      <i class="fas fa-circle"></i>
+    <% end %>
+    <%(Question.all.count - @count).times do %>
+      <i class="far fa-circle"></i>
+    <% end %>
+  </div>
+
   <div class="option-type">
     <%if @question.display_type == "type-image"%>
       <%= render 'type_image'%>
@@ -20,12 +32,5 @@
     <% end %>
   </div>
 
-  <div class="quiz-flow">
-    <%@count.times do %>
-      <i class="fas fa-circle"></i>
-    <% end %>
-    <%(Question.all.count - @count).times do %>
-      <i class="far fa-circle"></i>
-    <% end %>
-  </div>
+
 </div>

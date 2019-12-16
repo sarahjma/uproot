@@ -23,21 +23,25 @@
 // BUTTON HOMEPAGE
 .btn-main {
   color: white;
-  background-color: #00BAAA;
+  background-color: black;
   padding: 8px 40px;
-  border-radius: 50px;
-  font-weight: lighter;
-  transition: opacity 0.3s ease;
+  font-size: 1.25em;
+  a {
+    text-decoration: none;
+    color:white;
+  }
 }
 
 // BUTTON NEXT
 .btn-next {
-  margin-top: 20px;
-  position: fixed;
-  bottom: 18px;
-  right: 18px;
-  background: none;
-  border: none;
+  background-color: white;
+  border: 1px solid black;
+  width: 100%;
+  border-radius: 3px;
+  // margin-top: 20px;
+  // position: fixed;
+  // bottom: 18px;
+  // right: 18px;
   &:focus {
     outline: 0px auto -webkit-focus-ring-color;
   }
