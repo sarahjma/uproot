@@ -23,13 +23,23 @@
         </ul>
 
 
+        <!-- Housing -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#housing" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-home"></i> Housing </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="housing">
+          <li>Average small apartment price:  $<%= @city.rent_small_price %></li>
+          <li>Average medium apartment price:  $<%= @city.rent_medium_price %></li>
+          <li>Average large apartment price:  $<%= @city.rent_large_price %></li>
+        </ul>
+
 
         <!-- Safety -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#safety" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <p><i class="fas fa-unlock-alt"></i> Safety </p>
         </button></li>
         <ul class="collapse content-collapse" id="safety">
-          <li>Crime rate score: <%= @city.safety_score * 100 %>%</li>
+          <li>Crime rate score: <%= (@city.safety_score * 100).to_i %>%</li>
         </ul>
 
 
@@ -39,17 +49,20 @@
           <p><i class="fas fa-graduation-cap"></i> Education </p>
         </button></li>
         <ul class="collapse content-collapse" id="education">
-          <li>Education quality rate score: <%= @city.education_score * 100 %>%</li>
+          <li>Education quality rate score: <%= (@city.education_score * 100).to_i %>%</li>
         </ul>
 
 
 
-        <!-- Traffic -->
-        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#traffic" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-traffic-light"></i> Traffic </p>
+        <!-- Mobility -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#mobility" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-traffic-light"></i> Mobility </p>
         </button></li>
-        <ul class="collapse content-collapse" id="traffic">
-          <li>City score: <%= @city.traffic_score * 100 %>%</li>
+        <ul class="collapse content-collapse" id="mobility">
+          <li>Traffic handling score: <%= (@city.traffic_score * 100).to_i %>%</li>
+          <li>Train interconnectivity score: <%= (@city.train_score * 100).to_i %>%</li>
+          <li>Walking accessibility score: <%= (@city.train_score * 100).to_i %>%</li>
+          <li>Bikability score: <%= (@city.train_score * 100).to_i %>%</li>
         </ul>
 
 
@@ -58,7 +71,17 @@
           <p><i class="fas fa-user-md"></i> Healthcare </p>
         </button></li>
         <ul class="collapse content-collapse" id="healthcare">
-          <li>Healthcare quality score: <%= @city.healthcare_score * 100 %>%</li>
+          <li>Healthcare quality score: <%= (@city.healthcare_score * 100).to_i %>%</li>
+        </ul>
+
+        <!-- Leisure -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#leisure" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-theater-masks"></i> Leisure and Culture </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="leisure">
+          <li>Number of museums in this city: <%= @city.museum_count %></li>
+          <li>Number of zoos in this city: <%= @city.zoo_count %></li>
+          <li>Number of sport venues in this city: <%= @city.sport_venues_count %></li>
         </ul>
 
 
