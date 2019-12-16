@@ -10,12 +10,59 @@
     <div>
       <h3>Here are some things you might want to know about <%= @city.name %>!</h3>
     </div>
+
     <div class="city-show-content">
-      <p><i class="fas fa-cloud-sun"></i> Weather </p>
-      <p><i class="fas fa-unlock-alt"></i> Safety </p>
-      <p><i class="fas fa-graduation-cap"></i> Education </p>
-      <p><i class="fas fa-traffic-light"></i> Traffic </p>
-      <p><i class="fas fa-user-md"></i> Healthcare </p>
+      <ul>
+        <!-- Weather -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#weather" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-cloud-sun"></i> Weather </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="weather">
+          <li>Average minimum temperature:  <%= @city.temp_min %>°C</li>
+          <li>Average maximum temperature:  <%= @city.temp_max %>°C</li>
+        </ul>
+
+
+
+        <!-- Safety -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#safety" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-unlock-alt"></i> Safety </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="safety">
+          <li>Crime rate score: <%= @city.safety_score * 100 %>%</li>
+        </ul>
+
+
+
+        <!-- Education -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#education" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-graduation-cap"></i> Education </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="education">
+          <li>Education quality rate score: <%= @city.education_score * 100 %>%</li>
+        </ul>
+
+
+
+        <!-- Traffic -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#traffic" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-traffic-light"></i> Traffic </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="traffic">
+          <li>City score: <%= @city.traffic_score * 100 %>%</li>
+        </ul>
+
+
+        <!-- Healthcare -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#healthcare" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-user-md"></i> Healthcare </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="healthcare">
+          <li>Healthcare quality score: <%= @city.healthcare_score * 100 %>%</li>
+        </ul>
+
+
+      </ul>
     </div>
   </div>
 </div>
