@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_125700) do
+ActiveRecord::Schema.define(version: 2019_12_16_125153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,25 @@ ActiveRecord::Schema.define(version: 2019_12_15_125700) do
     t.float "beach_score"
     t.float "hiking_score"
     t.string "image"
+    t.float "sports_venues_score"
+    t.float "zoo_score"
+    t.float "museum_score"
+    t.integer "galleries_count"
+    t.float "galleries_score"
+    t.integer "comedy_count"
+    t.float "comedy_score"
+    t.integer "movie_venues_count"
+    t.float "movie_venues_score"
+    t.float "concerts_score"
+    t.float "air_quality_score"
+    t.float "greenery_score"
+    t.float "airport_score"
+    t.float "water_score"
+    t.float "life_expectancy"
+    t.float "sunny_score"
+    t.string "weather_type"
+    t.integer "concerts_venues"
+    t.string "lgbtq_status"
   end
 
   create_table "questions", force: :cascade do |t|
