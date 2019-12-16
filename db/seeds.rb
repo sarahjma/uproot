@@ -909,7 +909,7 @@ end
 puts "Deleting any previous city data..."
 City.destroy_all
 #[0..4]
-obtain_cities[95..266].each do |api_city|
+obtain_cities[0..4].each do |api_city|
   city = City.new(name: api_city['name'])
 
   uri = URI(api_city['href'] + "details/")
@@ -937,7 +937,7 @@ obtain_cities[95..266].each do |api_city|
   city.bike_score = ( (1 - obtain_pollution(search_data['categories'])) + \
             obtain_weather(search_data['categories'])[3]) / 2
   city.museum_count = obtain_museums_count(search_data['categories'])
-  city.museum_count = obtain_museums_score(search_data['categories'])
+  city.museum_score = obtain_museums_score(search_data['categories'])
   city.zoo_count = obtain_zoos_count(search_data['categories'])
   city.zoo_score = obtain_zoos_score(search_data['categories'])
 
