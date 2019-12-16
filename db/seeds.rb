@@ -810,8 +810,15 @@ obtain_cities[0..4].each do |api_city|
               obtain_weather(search_data['categories'])[3]) / 2
   city.hiking_score = obtain_greenery(search_data['categories'])
 
+  # This is to obtain the image associated with each city. In different part or API
+  uri = URI(api_city['href'] + 'images/')
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  city.image = search_data['photos'][0]['image']['mobile']
 
   city.save!
+
   puts "#{city.name} was created."
   puts "with healthcare_score #{city.healthcare_score}"
   puts "with safety score of #{city.safety_score}"
@@ -826,6 +833,8 @@ obtain_cities[0..4].each do |api_city|
   puts "with a park score of #{city.park_score}"
   puts "with a beach score of #{city.beach_score}"
   puts "with a hiking score of #{city.hiking_score}"
+  puts "link to city image is #{city.image}"
   puts " "
 end
+
 # seed_scores
