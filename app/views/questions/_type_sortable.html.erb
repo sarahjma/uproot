@@ -3,6 +3,7 @@
     <% @question.answers.each_with_index do |answer, index| %>
       <li>
         <input type="hidden"  id="<%=answer.id%>" type="text" value='<%= answer.id %>' name='chosen_answer_ids[]' >
+        <input type="hidden"  id="<%=answer.id%>" type="text" value='<%= answer.score %>' name='chosen_answer_category[]' >
         <label for="<%=answer.id%>"><%= answer.text %></label>
       </li>
     <% end %>

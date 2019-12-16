@@ -1,10 +1,25 @@
 class QuizResult < ApplicationRecord
   has_many :chosen_answers
   has_many :answers, through: :chosen_answers
+  attr_accessor :chosen_answer_category
 
   def top_3_cities
     # get em - calling method pry>QuizResult.last.top_3_cities
     puts "123"
+    define_priorities
+  end
+
+  def define_priorities
+    weighting = {}
+    values = [0.35, 0.3, 0.2, 0.05, 0.05, 0.05, 0, 0]
+    @chosen_answer_category.each_with_index { |category, index|
+      result[category.to_sym] = values[index] }
+    overall_city_score = Hash.new(0)
+    @cities.each do |city|
+      weighting.each do |category, weight|
+        overall_city_score[category] = logic_category(category, city) * weight
+      end
+    end
   end
 
   private
@@ -23,23 +38,7 @@ class QuizResult < ApplicationRecord
     score = chosen_answer.answer.score
     sum_of_scores_array << score if cat == category
     return sum_of_scores_array.sum / sum_of_scores_array.count
-  end
-
-  def define_priorities
-    weighting = { health: 0.35, \
-                  leisure: 0.3, \
-                  safety: 0.2, \
-                  mobility: 0.05, \
-                  nature: 0.05, \
-                  career: 0.05, \
-                  education: 0, \
-                  housing: 0 }
-    overall_city_score = Hash.new(0)
-    @cities.each do |city|
-      weighting.each do |category, weight|
-        overall_city_score[category] = logic_category(category, city) * weight
-        end
-      end
     end
   end
+
 end
