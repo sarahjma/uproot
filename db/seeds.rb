@@ -32,7 +32,7 @@ puts "creating Questions 1"
   a1 = Answer.create(
     question: q1,
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    score: "car"
+    score: "traffic"
   )
 
   a2 = Answer.create(
@@ -50,7 +50,7 @@ puts "creating Questions 1"
   a4 = Answer.create(
     question: q1,
     image: "https://images.unsplash.com/photo-1506751470038-e579eb91f580?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    score: "walk"
+    score: "walking"
   )
 
 

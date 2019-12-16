@@ -12,7 +12,6 @@ class ChosenAnswersController < ApplicationController
         chosen_answer_category: @chosen_answer_category
       )
     end
-
     if Question.find(params[:question]) == Question.last
       redirect_to quiz_result_path(params[:quiz_result])
     else

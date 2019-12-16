@@ -9,7 +9,6 @@ class QuizResult < ApplicationRecord
     define_priorities
   end
 
-
   private
 
   # Group all the results of each of the categies
@@ -20,13 +19,16 @@ class QuizResult < ApplicationRecord
 
   def logic_category(category, city)
     # Check the category of a question
+    quiz_result = QuizResult.last
+    sum_scores_array = []
+    total_score = 0
+    temp_min = 0
+    temp_max = 0
     quiz_result.chosen_answers.each do |chosen_answer|
-      sum_of_scores_array = []
-      cat = chosen_answer.answer.question.category
+      question_id = Answer.find(chosen_answer.answer_id).question_id
+      cat = Question.find(question_id).category
       score = chosen_answer.answer.score
-      total_score = 0
-      temp_min = 0
-      temp_max = 0
+      This gives a score its corresponding value
       if score.include?("rent")
         total_score = city.send("#{score}_price")
       elsif score.include?("temp")
@@ -35,9 +37,9 @@ class QuizResult < ApplicationRecord
       else
         total_score = city.send("#{score}_score")
       end
-      sum_of_scores_array << score if cat == category
-      return sum_of_scores_array.sum / sum_of_scores_array.count
+      sum_scores_array << total_score if cat == category
     end
+    return sum_scores_array.sum / sum_scores_array.count
   end
 
   def define_priorities
