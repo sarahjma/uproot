@@ -1,14 +1,13 @@
 <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-<div class="container-btn-option d-flex flex-wrap">
-  <% @question.answers.each do |answer| %>
-    <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
-    <label for="<%=answer.id%>" class="btn-option d-flex query"><%= answer.text %></label>
-  <%end%>
-  <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
-  <input type="hidden" name="question" value="<%=@question.id%>">
-  <input type="hidden" name="count" value="<%=@count + 1 %>">
-  <%=  f.button :submit, class: "btn-next" do %>
-    <i class="fas fa-chevron-right"></i>
-  <%end%>
-</div>
+  <div class="d-flex flex-wrap flex-grow-1">
+    <% @question.answers.each do |answer| %>
+      <input type="checkbox" id="<%=answer.id%>" name="chosen_answer_ids[]" value="<%=answer.id%>" style="display:none">
+      <label for="<%=answer.id%>" class="btn-option d-flex query"><%= answer.text %></label>
+    <%end%>
+
+    <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
+    <input type="hidden" name="question" value="<%=@question.id%>">
+    <input type="hidden" name="count" value="<%=@count + 1 %>">
+    <input type='submit' value='Submit' class= "btn-next"></input>
+  </div>
 <%end%>

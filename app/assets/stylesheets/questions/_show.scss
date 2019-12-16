@@ -1,13 +1,5 @@
-.show-container {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
-}
-
 .option-type {
   margin-top: 45px;
-  flex-grow: 1;
 }
 
 .quiz-welcome {
@@ -20,4 +12,10 @@
     font-size: 21px;
     opacity: 0.5;
   }
+}
+
+.container-option{
+  position: relative;
+  justify-content: center;
+  margin-top: 150px;
 }
