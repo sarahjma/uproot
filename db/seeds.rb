@@ -63,31 +63,16 @@ puts "creating Questions 2"
   )
 
 
-  a1 = Answer.create(
+  career_choices = ["Account Manager", "Accountant", "Administrative Assistant", "Architect", "Attorney", "Business Analyst", "Business Development", "C Level Executive", "Cashier", "Chef", "Chemical Engineer", "Civil Engineer", "Content Marketing", "Copywriter", "Customer Support", "Data Analyst", "Data Scientist", "Dentist", "Electrical Engineer", "Executive Assistant", "Fashion Designer", "Finance Manager", "Financial Analyst", "Graphic Designer", "Hardware Engineer", "Human Resources Manager", "IT Manager", "Industrial Designer", "Interior Designer", "Lecturer", "Marketing Manager", "Mechanical Engineer", "Mobile Developer", "Nurse", "Office Manager", "Operations Manager", "Pharmacist", "Physician", "Postdoctoral Researcher", "Product Manager", "Project Manager", "QA Engineer", "Receptionist", "Research Scientist", "Sales Manager", "Software Engineer", "Systems Administrator", "Teacher", "UX Designer", "Waiter", "Web Designer", "Web Developer"]
+
+  # Creating question #2
+  career_choices.each do |career|
+    Answer.create(
     question: q2,
-    text: "doctor",
-    score: "doctor",
-  )
-
-  a2 = Answer.create(
-    question: q2,
-    text: "tech",
-    score: "tech",
-  )
-
-  a3 = Answer.create(
-    question: q2,
-    text: "teacher",
-    score: "teacher",
-  )
-
-  a4 = Answer.create(
-    question: q2,
-    text: "artist",
-    score: "artist",
-  )
-
-
+    text: career,
+    score: career,
+    )
+  end
 puts "creating Questions 3"
 
   q3 = Question.create(
