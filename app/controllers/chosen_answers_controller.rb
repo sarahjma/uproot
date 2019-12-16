@@ -13,7 +13,7 @@ class ChosenAnswersController < ApplicationController
     else
       next_question = Question.find(params[:question].to_i + 1)
       next_question = Question.find(next_question.id + 1) while next_question.nil?
-      redirect_to quiz_result_question_path(params[:quiz_result], next_question.id)
+      redirect_to quiz_result_question_path(params[:quiz_result], next_question.id, params.permit!)
     end
   end
 end

@@ -2,13 +2,11 @@
   <div class="quiz-welcome">
     <% if @question.content == "How do you get to work?" %>
       <p>Help us get to know you better by answering the series of questions below.</p>
-    <% else %>
     <% end %>
   </div>
 
   <h3><%= @question.content %></h3>
   <div class="option-type">
-    <!-- IMAGE QUESTION -->
     <%if @question.display_type == "type-image"%>
       <%= render 'type_image'%>
     <%elsif @question.display_type == "type-dropdown"%>
@@ -19,6 +17,15 @@
       <%= render 'type_range'%>
     <% else %>
       <%= render 'type_sortable'%>
+    <% end %>
+  </div>
+
+  <div class="quiz-flow">
+    <%@count.times do %>
+      <i class="fas fa-circle"></i>
+    <% end %>
+    <%(Question.all.count - @count).times do %>
+      <i class="far fa-circle"></i>
     <% end %>
   </div>
 </div>

@@ -1,12 +1,23 @@
 .show-container {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
 }
 
 .option-type {
   margin-top: 45px;
+  flex-grow: 1;
 }
 
 .quiz-welcome {
   margin-top: 20px;
   margin-bottom: 45px;
+}
+
+.quiz-flow {
+  .fa-circle:before {
+    font-size: 21px;
+    opacity: 0.5;
+  }
 }
