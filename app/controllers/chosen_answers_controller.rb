@@ -1,11 +1,17 @@
 class ChosenAnswersController < ApplicationController
   def create
+    # raise
+    @chosen_answer_category = params[:chosen_answer_category]
     chosen_answers_ids = params[:chosen_answer_ids].to_a
     chosen_answers_ids.each do |chosen_answer_id|
       ChosenAnswer.create(
         answer_id: chosen_answer_id,
         quiz_result_id: params[:quiz_result]
       )
+      quiz_result = QuizResult.new(
+        chosen_answer_category: @chosen_answer_category
+      )
+      res = quiz_result.top_3_cities
     end
 
     if Question.find(params[:question]) == Question.last
