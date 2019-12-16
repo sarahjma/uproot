@@ -55,3 +55,10 @@ button {
   }
 }
 
+.content-toggler {
+  border: none;
+  background: none;
+  &:focus {
+      outline: 0px auto -webkit-focus-ring-color;
+      }
+}
