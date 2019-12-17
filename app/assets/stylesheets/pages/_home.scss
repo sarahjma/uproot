@@ -2,11 +2,9 @@
   background-image: url(landing-image.png);
   background-size: cover;
   flex-grow: 1;
-  // background-position: 0;
-  // background-repeat: no-repeat;
-  // background-position: -257px;
 }
 
 .landing-content{
-  margin-top: 40%;
+  position: absolute;
+  bottom: 200px;
 }
