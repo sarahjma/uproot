@@ -180,53 +180,28 @@ puts "creating Questions 5"
     display_type: "type-image"
   )
 
-
   a1 = Answer.create(
     question: q5,
-    image: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-    score: "homebody"
+    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
+    score: "concerts_score"
   )
 
   a2 = Answer.create(
     question: q5,
-    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-    score: "outgoing"
+    image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+    score: "movie_venues_score"
   )
 
   a3 = Answer.create(
-    question: q5,
-    image: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80",
-    score: "outgoing"
+  question: q5,
+  image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+  score: "galleries_score"
   )
 
   a4 = Answer.create(
-    question: q5,
-    image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-    score: "chill"
-  )
-
-  a5 = Answer.create(
-  question: q5,
-  image: "https://images.unsplash.com/photo-1558086478-d632ccc5a833?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2546&q=80",
-  score: "homebody"
-  )
-
-  a6 = Answer.create(
-  question: q5,
-  image: "https://images.unsplash.com/photo-1571942389762-b0502602ed4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1700&q=80",
-  score: "homebody"
-  )
-
-  a7 = Answer.create(
-  question: q5,
-  image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  score: "art-gallery"
-  )
-
-  a8 = Answer.create(
   question: q5,
   image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
-  score: "comedy"
+  score: "comedy_score"
   )
 
   puts "creating Questions 6"
