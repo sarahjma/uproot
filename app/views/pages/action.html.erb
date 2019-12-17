@@ -4,17 +4,16 @@
   <div class="action-option-position ">
     <!-- QUIZ ACTION -->
     <%= link_to(quiz_results_path, method: :post) do %>
-      <div class="card-action d-flex flex-column">
-        <div class="card-action-item">
-          <p class="action-p">Get matched with a city</p>
-        </div>
-        <div class="card-action-item">
+      <div class="card-action ">
+        <div class="card-content">
+          <p>Get matched with a city</p>
           <i class="far fa-heart"></i>
         </div>
       </div>
     <%end%>
 
     <!-- DISCOVER ACTION -->
+
     <%= link_to(cities_path) do %>
       <div class="card-action d-flex flex-column">
         <div class="card-action-item">
@@ -25,6 +24,7 @@
         </div>
       </div>
     <%end%>
+
   </div>
 </div>
 

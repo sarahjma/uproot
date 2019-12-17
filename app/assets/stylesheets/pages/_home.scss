@@ -1,10 +1,10 @@
 .landing-background{
-  background-image: url(sunset.png);
+  background-image: url(landing-image.png);
   background-size: cover;
-  height: 100%;
-  background-position: 0;
-  background-repeat: no-repeat;
-  background-position: -257px;
+  flex-grow: 1;
+  // background-position: 0;
+  // background-repeat: no-repeat;
+  // background-position: -257px;
 }
 
 .landing-content{
