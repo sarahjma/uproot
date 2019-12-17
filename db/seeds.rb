@@ -152,19 +152,19 @@ puts "creating Questions 4"
   a1 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "small_rent"
+    score: "rent_small"
   )
 
   a2 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
-    score: "medium_rent"
+    score: "rent_medium"
   )
 
   a3 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "large_rent"
+    score: "rent_large"
   )
 
   a4 = Answer.create(
@@ -538,7 +538,7 @@ obtain_cities.each do |api_city|
     "MINORITIES", \
     "LGBT-INDEX-TELESCORE")
 
-  city.minority = obtain_score( \
+  city.minority_score = obtain_score( \
     search_data['categories'], \
     "MINORITIES", \
     "TOLERANCE-TOWARDS-MINORITIES-TELESCORE")

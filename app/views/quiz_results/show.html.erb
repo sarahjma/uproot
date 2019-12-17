@@ -1,17 +1,17 @@
 <div class="main-container quiz-result-show-page-position">
   <h3>After careful calculations, these are the top three cities we matched you with.</h3>
   <div class="quiz-result-show-cards">
-    <%= link_to("#") do %>
+    <%= link_to city_path(city.id) do %>
       <div class="card-city top-1">
-        <p>Barcelona</p>
+        <p><%= @cities.name %></p>
       </div>
     <% end %>
-    <%= link_to("#") do %>
+    <%= link_to city_path(city.id) do %>
       <div class="card-city top-2">
         <p>Paris</p>
       </div>
     <% end %>
-    <%= link_to("#") do %>
+    <%= link_to city_path(city.id) do %>
       <div class="card-city top-3">
         <p>Amsterdam</p>
       </div>
