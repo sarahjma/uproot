@@ -7,7 +7,7 @@
   padding: 10px 20px;
   justify-content: center;
   width: 300px;
-  border-radius: 50px;
+  border-radius: 8px;
   margin: 4px auto;
   border: 1px solid black;
   vertical-align: center;
@@ -20,6 +20,7 @@
   cursor: grabbing;
   background-color: #4232FF;
   color: white;
+  border: inherit;
 }
 
 #sortable-list li.chosen {
