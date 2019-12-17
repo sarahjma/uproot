@@ -1,12 +1,12 @@
 <div class="container-option d-flex">
   <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-    <% @question.answers.each do |answer| %>
-      <input type="range"  name="quiz_result" min="0" max="2000" class="slider d-flex flex-column" >
-      <label type="text align-item" class="box " id="value" value=""></label>
-    <% end %>
-</div>
+    <input type="range" id="rent" name=rent value="<%=@quiz_result.rent%>" min="0" max="2000" class="slider d-flex flex-column" >
+    <label type="text align-item" class="box" for="quiz_result[rent]" id="value" value=this.value></label>
+
     <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
     <input type="hidden" name="question" value="<%=@question.id%>">
     <input type="hidden" name="count" value="<%=@count + 1 %>">
     <input type='submit' value='Submit' class= "btn-next"></input>
   <% end %>
+</div>
+<!--  -->

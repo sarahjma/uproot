@@ -6,10 +6,13 @@ class QuizResult < ApplicationRecord
   def top_3_cities(sorted_categories)
     top3 = {}
     city_scores = calculate_city_score(sorted_categories)
-    city_scores.values.sort.reverse[0..2].each_with_index do |city_value, index|
-      top3[index + 1] = city_scores.key(city_value)
-    end
-    top3
+    #binding.pry
+
+    top3 = city_scores.sort_by{ | k, v| v }.reverse[0..2]
+    # city_scores.values.sort.reverse[0..2].each_with_index do |city_value, index|
+    #   top3[index + 1] = city_scores.key(city_value)
+    # end
+    return top3.to_h
   end
 
   # 1. Group results per the category. (LOGIC_CATEGORY)
@@ -47,6 +50,29 @@ class QuizResult < ApplicationRecord
     sum_scores_array.sum / sum_scores_array.count
   end
 
+  def is_rent_compatible?(city)
+    # get the score of the chosen apartment. find the question with category housing.
+    question = Question.find_by(category: 'housing')
+    # find the answers belonging to that question
+    answers = question.answers
+    # find chosen answers belonging to that question
+    chosen_answers = ChosenAnswer.where(
+      quiz_result_id: id,
+      answer_id: answers
+    )
+    puts chosen_answers
+    apartment_size = chosen_answers.first.answer.score
+    # return true if rent < city.rent
+    # else return false rent_medium_price
+    if apartment_size == "medium_rent"
+      if rent < city.rent_medium_price #rent 500, med 1000
+        return true
+      else
+        return false
+      end
+    end
+  end
+
   # CALCULATE_CITY_SCORE returns { city: overal_score }
   def calculate_city_score(sorted_categories)
     weightings = {}
@@ -61,16 +87,26 @@ class QuizResult < ApplicationRecord
 
     City.all.each do |city|
       overall_city_score = 0
-      weightings.each do |category, weight|
-        overall_category_scores[category] = logic_category(category, city) * weight
-        # OVERALL_CATEGORY_SCORE returns { category: overal_category_score }
+      # if rent is not possible for city then return zero as overall city score.
+      # if rent is possible, do a weighting loop to get an overall city score.
+      if is_rent_compatible?(city)
+        weightings.each do |category, weight|
+          overall_category_scores[category] = logic_category(category, city) * weight
+          # OVERALL_CATEGORY_SCORE returns { category: overal_category_score }
+        end
+        overall_category_scores.values.each do |overall_category_score|
+          overall_city_score += overall_category_score
+        end
+      else
+        # return 0 for city score
+        overall_city_score = 0
       end
-      overall_category_scores.values.each do |overall_category_score|
-        overall_city_score += overall_category_score
-      end
+      # binding.pry
       overall_city_scores[city.name] = overall_city_score
       # OVERALL_CITY_SCORE returns { city: overal_city_score }
     end
+    #binding.pry
+
     overall_city_scores
   end
 end

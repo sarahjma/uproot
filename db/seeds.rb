@@ -294,7 +294,7 @@ puts "creating Questions 5"
   puts "creating Questions 7"
 
   q7 = Question.create(
-    category: "housing",
+    category: "rent",
     content: "Rent is due. How much do you pay?",
     display_type: "type-range"
   )
@@ -462,7 +462,7 @@ end
 puts "Deleting any previous city data..."
 City.destroy_all
 #[0..4]
-obtain_cities.each do |api_city|
+obtain_cities[0..4].each do |api_city|
   city = City.new(name: api_city['name'])
 
   uri = URI(api_city['href'] + "details/")
