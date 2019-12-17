@@ -216,49 +216,37 @@ puts "creating Questions 5"
   a1 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1523849161192-3a6e717932c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2237&q=80",
-    score: "park"
+    score: "park_score"
   )
 
   a2 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-    score: "hiking"
+    score: "hiking_score"
   )
 
   a3 = Answer.create(
     question: q6,
-    image: "https://images.unsplash.com/photo-1480884296740-b04505e99dca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
-    score: "beach"
+    image: "https://cdn4.img.sputniknews.com/images/105402/35/1054023500.jpg",
+    score: "beach_score"
   )
 
   a4 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1562754193-ba39a22c110b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2224&q=80",
-    score: "museum"
+    score: "museum_score"
   )
 
   a5 = Answer.create(
   question: q6,
-  image: "https://images.unsplash.com/photo-1481437156560-3205f6a55735?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  score: "shopping"
+  image: "https://cdn.getyourguide.com/img/tour_img-664632-146.jpg",
+  score: "zoo_score"
   )
 
   a6 = Answer.create(
   question: q6,
-  image: "https://images.unsplash.com/photo-1550763200-c150c99abfbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-  score: "homebody"
-  )
-
-  a7 = Answer.create(
-  question: q6,
-  image: "https://images.unsplash.com/photo-1503919005314-30d93d07d823?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  score: "zoo"
-  )
-
-  a8 = Answer.create(
-  question: q6,
   image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
-  score: "sports-game"
+  score: "sports_venues_score"
   )
 
   puts "creating Questions 7"
