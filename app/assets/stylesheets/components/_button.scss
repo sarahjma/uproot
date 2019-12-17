@@ -57,3 +57,30 @@
     outline: 0px auto -webkit-focus-ring-color;
   }
 }
+
+@media (min-width: 768px) {
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 50%
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 50%
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 50%
+  }
+}
