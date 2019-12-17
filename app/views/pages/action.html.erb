@@ -13,10 +13,13 @@
     <%end%>
 
     <!-- DISCOVER ACTION -->
-    <%= link_to("#") do %>
-      <div class="card-action">
-        <div class="card-content">
-          <p>Discover a city</p>
+
+    <%= link_to(cities_path) do %>
+      <div class="card-action d-flex flex-column">
+        <div class="card-action-item">
+          <p class="action-p">Discover a city</p>
+        </div>
+        <div class="card-action-item">
           <i class="far fa-compass"></i>
         </div>
       </div>

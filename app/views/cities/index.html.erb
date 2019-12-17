@@ -1,0 +1,22 @@
+<div class="main-container">
+<h3 class="text-center">Enter the name of the city you would like to explore 🔍</h3>
+  <%= form_tag cities_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a city"
+    %>
+    <%= submit_tag "Search", class: "btn-next" %>
+  <% end %>
+  <div class="mt-3">
+    <% if @cities %>
+      <% @cities.each do |city| %>
+        <%= link_to city_path(city.id) do %>
+          <div class="card-city" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= city.image %>)">
+            <p> <%= city.name %> </p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
