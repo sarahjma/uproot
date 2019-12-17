@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_140419) do
+
+ActiveRecord::Schema.define(version: 2019_12_17_141203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +82,13 @@ ActiveRecord::Schema.define(version: 2019_12_17_140419) do
     t.integer "concerts_venues"
     t.string "lgbtq_status"
     t.string "career", default: [], array: true
+    t.float "lgbtq_score"
+    t.float "minority"
+    t.float "cleanliness_score"
+    t.float "gun_ownership_score"
+    t.float "gdp_growth_score"
+    t.float "startup_score"
+    t.float "business_freedom_score"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
