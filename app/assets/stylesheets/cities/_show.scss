@@ -25,17 +25,12 @@
     list-style: none;
   }
   .fas {
-    color: #00BAAA;
+    color: #4232FF;
+    margin-right: 10px;
   }
   p {
     font-size: 18px;
   }
-}
-
-.navbar {
-  // justify-content: space-between;
-  // flex-grow: 0;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 .content-collapse {
@@ -43,6 +38,8 @@
   padding-bottom: 20px;
   li {
     padding-left: 30px;
+    margin-bottom: 10px;
+    // border-top: .5px solid rgba(0,0,0,0.3);
   }
 }
 

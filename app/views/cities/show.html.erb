@@ -17,30 +17,38 @@
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#weather" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <p><i class="fas fa-cloud-sun"></i> Weather </p>
         </button></li>
-        <ul class="collapse content-collapse" id="weather">
-          <li>Average minimum temperature:  <%= @city.temp_min %>°C</li>
-          <li>Average maximum temperature:  <%= @city.temp_max %>°C</li>
-        </ul>
+        <div class="city-show-content-card">
+          <ul class="collapse content-collapse" id="weather">
+            <li>Average minimum temperature:  <%= @city.temp_min %>°C</li>
+            <li>Average maximum temperature:  <%= @city.temp_max %>°C</li>
+            <li>Average year percentage of sunny days:  <%= (@city.sunny_score * 100) %>%</li>
+            <li><%= @city.name %> has a <%= @city.weather_type %></li>
+          </ul>
+        </div>
 
 
         <!-- Housing -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#housing" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <p><i class="fas fa-home"></i> Housing </p>
         </button></li>
-        <ul class="collapse content-collapse" id="housing">
-          <li>Average small apartment price:  $<%= @city.rent_small_price %></li>
-          <li>Average medium apartment price:  $<%= @city.rent_medium_price %></li>
-          <li>Average large apartment price:  $<%= @city.rent_large_price %></li>
-        </ul>
+        <div class="city-show-content-card">
+          <ul class="collapse content-collapse" id="housing">
+            <li>Average small apartment price:  $<%= @city.rent_small_price %></li>
+            <li>Average medium apartment price:  $<%= @city.rent_medium_price %></li>
+            <li>Average large apartment price:  $<%= @city.rent_large_price %></li>
+          </ul>
+        </div>
 
 
         <!-- Safety -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#safety" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <p><i class="fas fa-unlock-alt"></i> Safety </p>
         </button></li>
-        <ul class="collapse content-collapse" id="safety">
-          <li>Crime rate score: <%= (@city.safety_score * 100).to_i %>%</li>
-        </ul>
+        <div class="city-show-content-card">
+          <ul class="collapse content-collapse" id="safety">
+            <li>Crime rate score: <%= (@city.safety_score * 100).to_i %>%</li>
+          </ul>
+        </div>
 
 
 
@@ -48,6 +56,7 @@
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#education" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <p><i class="fas fa-graduation-cap"></i> Education </p>
         </button></li>
+
         <ul class="collapse content-collapse" id="education">
           <li>Education quality rate score: <%= (@city.education_score * 100).to_i %>%</li>
         </ul>
@@ -82,6 +91,9 @@
           <li>Number of museums in this city: <%= @city.museum_count %></li>
           <li>Number of zoos in this city: <%= @city.zoo_count %></li>
           <li>Number of sport venues in this city: <%= @city.sport_venues_count %></li>
+          <li>Number of comedy clubs in this city: <%= @city.comedy_count %></li>
+          <li>Number of art galleries in this city: <%= @city.galleries_count %></li>
+          <li>Number of movie theaters in this city: <%= @city.movie_venues_count %></li>
         </ul>
 
 

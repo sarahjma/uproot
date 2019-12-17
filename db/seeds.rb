@@ -442,6 +442,18 @@ def obtain_string(search_data, main_category, sub_category)
   end
 end
 
+def obtain_currency(search_data, main_category, sub_category)
+  element_data = search_data.select{|property| property["id"] == main_category}[0]
+  if element_data.nil?
+    return 0
+  else
+    if element_data['data'].select{|property| property["id"] == sub_category}[0].nil?
+      return 0
+    else
+      return element_data['data'].select{|property| property["id"] == sub_category}[0]["currency_dollar_value"]
+    end
+  end
+end
 # Do loop for each of the cities:
 def seed_scores
   # Get array of all cities
@@ -597,28 +609,28 @@ obtain_cities.each do |api_city|
     "POLLUTION", \
     "URBAN-GREENERY-TELESCORE")
 
-  city.rent_small_price = obtain_value( \
+  city.rent_small_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
     "APARTMENT-RENT-SMALL")
 
-  city.rent_medium_price = obtain_value( \
+  city.rent_medium_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
     "APARTMENT-RENT-MEDIUM")
 
-  city.rent_large_price = obtain_value( \
+  city.rent_large_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
     "APARTMENT-RENT-LARGE")
 
-  city.temp_min = obtain_value( \
+  city.temp_min = obtain_string( \
     search_data['categories'], \
     "CLIMATE", \
     "WEATHER-AVERAGE-LOW")
 
-  city.temp_max = obtain_value( \
-    search_data, \
+  city.temp_max = obtain_string( \
+    search_data['categories'], \
     "CLIMATE", \
     "WEATHER-AVERAGE-HIGH")
 
