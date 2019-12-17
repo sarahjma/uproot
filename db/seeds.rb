@@ -63,31 +63,16 @@ puts "creating Questions 2"
   )
 
 
-  a1 = Answer.create(
+  career_choices = ["Account Manager", "Accountant", "Administrative Assistant", "Architect", "Attorney", "Business Analyst", "Business Development", "C Level Executive", "Cashier", "Chef", "Chemical Engineer", "Civil Engineer", "Content Marketing", "Copywriter", "Customer Support", "Data Analyst", "Data Scientist", "Dentist", "Electrical Engineer", "Executive Assistant", "Fashion Designer", "Finance Manager", "Financial Analyst", "Graphic Designer", "Hardware Engineer", "Human Resources Manager", "IT Manager", "Industrial Designer", "Interior Designer", "Lecturer", "Marketing Manager", "Mechanical Engineer", "Mobile Developer", "Nurse", "Office Manager", "Operations Manager", "Pharmacist", "Physician", "Postdoctoral Researcher", "Product Manager", "Project Manager", "QA Engineer", "Receptionist", "Research Scientist", "Sales Manager", "Software Engineer", "Systems Administrator", "Teacher", "UX Designer", "Waiter", "Web Designer", "Web Developer"]
+
+  # Creating question #2
+  career_choices.each do |career|
+    Answer.create(
     question: q2,
-    text: "doctor",
-    score: "doctor",
-  )
-
-  a2 = Answer.create(
-    question: q2,
-    text: "tech",
-    score: "tech",
-  )
-
-  a3 = Answer.create(
-    question: q2,
-    text: "teacher",
-    score: "teacher",
-  )
-
-  a4 = Answer.create(
-    question: q2,
-    text: "artist",
-    score: "artist",
-  )
-
-
+    text: career,
+    score: career,
+    )
+  end
 puts "creating Questions 3"
 
   q3 = Question.create(
@@ -650,9 +635,6 @@ obtain_cities.each do |api_city|
 
   city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score
 
-  # city.beach_score = (obtain_beach(search_data['categories']) + \
-  #             obtain_weather(search_data['categories'])[3]) / 2
-
   city.hiking_score = city.greenery_score
 
   city.walking_score = \
@@ -661,6 +643,18 @@ obtain_cities.each do |api_city|
   city.bike_score = \
     0.5 * (1 - city.air_quality_score) + 0.5 * city.sunny_score
 
+  # Getting careers from teleport
+  uri = URI(api_city['href'] + 'salaries/')
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  i = 0
+  while search_data['salaries'][i]
+    city.career << search_data['salaries'][i]['job']['title']
+    i += 1
+  end
+
+  p city.career
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)
