@@ -538,7 +538,7 @@ obtain_cities.each do |api_city|
     "MINORITIES", \
     "LGBT-INDEX-TELESCORE")
 
-  city.minority = obtain_score( \
+  city.minority_score = obtain_score( \
     search_data['categories'], \
     "MINORITIES", \
     "TOLERANCE-TOWARDS-MINORITIES-TELESCORE")
