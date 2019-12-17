@@ -76,62 +76,62 @@ puts "creating Questions 3"
   a1 = Answer.create(
     question: q3,
     text: "LGBTQ equality",
-    score: "lgbtq_score",
+    score: "lgbtq",
   )
 
   a2 = Answer.create(
     question: q3,
     text: "Air quality",
-    score: "air_quality_score",
+    score: "air_quality",
   )
 
   a3 = Answer.create(
     question: q3,
     text: "Water quality",
-    score: "water_score",
+    score: "water",
   )
 
   a4 = Answer.create(
     question: q3,
     text: "Minority equality",
-    score: "minority_score",
+    score: "minority",
   )
 
   a5 = Answer.create(
     question: q3,
     text: "Education",
-    score: "education_score",
+    score: "education",
   )
 
   a6 = Answer.create(
     question: q3,
     text: "GDP growth",
-    score: "gdp_growth_score",
+    score: "gdp_growth",
   )
 
   a7 = Answer.create(
     question: q3,
     text: "City cleanliness",
-    score: "cleanliness_score",
+    score: "cleanliness",
   )
 
   a8 = Answer.create(
     question: q3,
     text: "Business freedom",
-    score: "business_freedom_score",
+    score: "business_freedom",
   )
 
 
   a10 = Answer.create(
     question: q3,
     text: "Gun ownership rights",
-    score: "gun_ownership_score",
+    score: "gun_ownership",
   )
 
   a11 = Answer.create(
     question: q3,
     text: "Startup scene",
-    score: "startup_score",
+    score: "startup",
   )
 
   # a12 = Answer.create(
@@ -183,25 +183,25 @@ puts "creating Questions 5"
   a1 = Answer.create(
     question: q5,
     image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-    score: "concerts_score"
+    score: "concerts"
   )
 
   a2 = Answer.create(
     question: q5,
     image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-    score: "movie_venues_score"
+    score: "movie_venues"
   )
 
   a3 = Answer.create(
   question: q5,
   image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  score: "galleries_score"
+  score: "galleries"
   )
 
   a4 = Answer.create(
   question: q5,
   image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
-  score: "comedy_score"
+  score: "comedy"
   )
 
   puts "creating Questions 6"
@@ -216,37 +216,37 @@ puts "creating Questions 5"
   a1 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1523849161192-3a6e717932c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2237&q=80",
-    score: "park_score"
+    score: "park"
   )
 
   a2 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-    score: "hiking_score"
+    score: "hiking"
   )
 
   a3 = Answer.create(
     question: q6,
     image: "https://cdn4.img.sputniknews.com/images/105402/35/1054023500.jpg",
-    score: "beach_score"
+    score: "beach"
   )
 
   a4 = Answer.create(
     question: q6,
     image: "https://images.unsplash.com/photo-1562754193-ba39a22c110b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2224&q=80",
-    score: "museum_score"
+    score: "museum"
   )
 
   a5 = Answer.create(
   question: q6,
   image: "https://cdn.getyourguide.com/img/tour_img-664632-146.jpg",
-  score: "zoo_score"
+  score: "zoo"
   )
 
   a6 = Answer.create(
   question: q6,
   image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
-  score: "sports_venues_score"
+  score: "sports_venues"
   )
 
   puts "creating Questions 7"
