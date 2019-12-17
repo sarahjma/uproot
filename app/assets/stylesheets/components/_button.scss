@@ -50,6 +50,19 @@
   }
 }
 
+.btn-next-nav {
+  background-color: black;
+  height: 40px;
+  color: white;
+  width: 30%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  &:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+  }
+}
+
 @media (min-width: 768px) {
   .btn-main{
     width: 50%
