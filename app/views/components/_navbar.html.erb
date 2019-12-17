@@ -11,7 +11,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to "Quiz", quiz_results_path, method: :post, class: "nav-link" %>
+          <%= link_to "Start Quiz", quiz_results_path, method: :post, class: "nav-link d-flex" %>
+      </li>
+      <li>
+        <%= form_tag cities_path, method: :get, class: "d-flex align-items-center" do %>
+          <%= text_field_tag :query,
+                      params[:query],
+                      class: "form-control",
+                      placeholder: "Find a city"
+          %>
+          <%= submit_tag "Search", class: "btn-next-nav d-flex" %>
+        <% end %>
       </li>
       <!-- <li class="nav-item active"> -->
         <%#= link_to "Profile", "#", class: "nav-link" %>
