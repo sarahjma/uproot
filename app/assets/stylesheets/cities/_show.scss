@@ -22,11 +22,16 @@
   margin-top: 35px;
   ul {
     padding-left: 0px;
+    padding-top: 15px;
     list-style: none;
   }
   .fas {
     color: #4232FF;
     margin-right: 10px;
+  }
+  .down {
+    color: black;
+    font-size: 10px;
   }
   p {
     font-size: 18px;
@@ -37,6 +42,7 @@
   flex-grow: 0;
   padding-bottom: 20px;
   li {
+    display: flex;
     padding-left: 30px;
     margin-bottom: 10px;
     // border-top: .5px solid rgba(0,0,0,0.3);
