@@ -3,10 +3,10 @@ class QuizResult < ApplicationRecord
   has_many :answers, through: :chosen_answers
   attr_accessor :chosen_answer_category
 
-  def top_3_cities
+  def top_3_cities(categories)
     # get em - calling method pry>QuizResult.last.top_3_cities
     puts "123"
-    define_priorities
+    define_priorities(categories)
   end
 
   private
@@ -28,7 +28,7 @@ class QuizResult < ApplicationRecord
       question_id = Answer.find(chosen_answer.answer_id).question_id
       cat = Question.find(question_id).category
       score = chosen_answer.answer.score
-      This gives a score its corresponding value
+      # This gives a score its corresponding value
       if score.include?("rent")
         total_score = city.send("#{score}_price")
       elsif score.include?("temp")
@@ -37,21 +37,38 @@ class QuizResult < ApplicationRecord
       else
         total_score = city.send("#{score}_score")
       end
-      sum_scores_array << total_score if cat == category
+      sum_scores_array << total_score if cat.to_s == category.to_s
+
     end
     return sum_scores_array.sum / sum_scores_array.count
   end
 
-  def define_priorities
+  def define_priorities(categories)
+    # the WEIGHTING hash links the values of the VALUES array to the corresponding CATEGORIES.
     weighting = {}
     values = [0.35, 0.3, 0.2, 0.05, 0.05, 0.05, 0, 0]
-    @chosen_answer_category.each_with_index { |category, index|
-      result[category.to_sym] = values[index] }
-    overall_city_score = Hash.new(0)
-    @cities.each do |city|
-      weighting.each do |category, weight|
-        overall_city_score[category] = logic_category(category, city) * weight
-      end
+    categories.each_with_index do |category, index|
+      weighting[category.to_sym] = values[index]
     end
+
+    # the OVERAL_CITY_SCORE links the CATEGORY and to the corresponding CATEGORIES.
+    overall_category_scores = {}
+    overall_city_scores = {}
+
+    cities = City.all
+    cities.each do |city|
+      overall_city_score = 0
+      weighting.each do |category, weight|
+        overall_category_scores[category] = logic_category(category, city) * weight
+      end
+      overall_category_scores.values.each do |score|
+        overall_city_score += score
+      end
+      overall_city_scores[city.name] = overall_city_score
+    end
+
+    overall_city_scores
   end
+
+
 end

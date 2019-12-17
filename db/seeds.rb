@@ -130,11 +130,11 @@ puts "creating Questions 3"
     score: "soccer",
   )
 
-  a9 = Answer.create(
-    question: q3,
-    text: "swimming",
-    score: "swimming",
-  )
+  # a9 = Answer.create(
+  #   question: q3,
+  #   text: "swimming",
+  #   score: "swimming",
+  # )
 
   a10 = Answer.create(
     question: q3,
