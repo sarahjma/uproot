@@ -48,59 +48,58 @@ class QuizResultTest < ActiveSupport::TestCase
   end
 
 
-  # describe "category test" do
-  #   before do
-  #     City.destroy_all
-  #     Question.destroy_all
+  describe "category test" do
+    before do
+      City.destroy_all
+      Question.destroy_all
 
-  #     ams = City.create(
-  #       name: "Amsterdam",
-  #       beach_score: 0,
-  #       bike_score: 0.9
-  #     )
+      City.create(
+        name: "Amsterdam",
+        beach_score: 0,
+        bike_score: 0.9
+      )
 
-  #     la = City.create(
-  #       name: "LA",
-  #       beach_score: 0.9,
-  #       bike_score: 0.1
-  #     )
-  #   end
-  #   # chosen_answer_category = ["mobility", "education", "housing", "safety", "career", "leisure", "health"]
+      City.create(
+        name: "LA",
+        beach_score: 0.9,
+        bike_score: 0.1
+      )
 
-  #   it "chosen answer ephasis on bike so amsterdam wins" do
-  #     chosen_answer = ChosenAnswer.create(
-  #       quiz_result: QuizResult.create,
-  #       answer: Answer.create(
-  #         question: Question.create(category: "mobility"),
-  #         score: "bike"
-  #       )
-  #     )
-  #     chosen_answer_category = ["mobility"]
+    end
+    # chosen_answer_category = ["mobility", "education", "housing", "safety", "career", "leisure", "health"]
 
-  #     result = chosen_answer.quiz_result.top_3_cities(chosen_answer_category)
-  #     puts "bike test"
-  #     puts result
+    it "chosen answer ephasis on bike so amsterdam wins" do
+      chosen_answer = ChosenAnswer.create(
+        quiz_result: QuizResult.create,
+          answer: Answer.create(
+            question: Question.create(category: "mobility"),
+            score: "bike"
+          )
+        )
+      chosen_answer_category = ["mobility"]
+      binding.pry
+      result = chosen_answer.quiz_result.top_3_cities(chosen_answer_category)
+      puts "bike test"
+      puts result
 
-  #     assert result[1], "Amsterdam"
-  #     assert result[2], "LA"
-  #   end
+      assert result["Amsterdam"] > result["LA"]
+    end
 
-  #     it "chosen answer ephasis on beach so LA wins" do
-  #     chosen_answer = ChosenAnswer.create(
-  #       quiz_result: QuizResult.create,
-  #       answer: Answer.create(
-  #         question: Question.create(category: "nature"),
-  #         score: "beach"
-  #       )
-  #     )
-  #     chosen_answer_category = ["nature"]
+      # it "chosen answer emphasis on beach so LA wins" do
+      # chosen_answer = ChosenAnswer.create(
+      #   quiz_result: QuizResult.create,
+      #   answer: Answer.create(
+      #     question: Question.create(category: "leisure"),
+      #     score: "beach"
+      #   )
+      # )
+      # chosen_answer_category = ["leisure"]
 
-  #     result = chosen_answer.quiz_result.top_3_cities(chosen_answer_category)
-  #     puts "beach test"
-  #     puts result
+      # result = chosen_answer.quiz_result.top_3_cities(chosen_answer_category)
+      # puts "beach test"
+      # puts result
 
-  #     assert_equal result[1], "LA"
-  #     assert_equal result[2], "Amsterdam"
-  #   end
-  # end
+      # assert result["Amsterdam"] > result["LA"]
+    end
+  end
 end
