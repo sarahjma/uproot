@@ -7,7 +7,7 @@
   padding: 10px 20px;
   justify-content: center;
   width: 300px;
-  border-radius: 50px;
+  border-radius: 8px;
   margin: 4px auto;
   border: 1px solid black;
   vertical-align: center;
@@ -18,8 +18,9 @@
 
 #sortable-list li.drag {
   cursor: grabbing;
-  background-color: #00BAAA;
+  background-color: #4232FF;
   color: white;
+  border: inherit;
 }
 
 #sortable-list li.chosen {
@@ -33,6 +34,6 @@
 }
 
 #sortable-list li:hover {
-  background-color: #00BAAA;
+  background-color: #4232FF;
   color: white;
 }

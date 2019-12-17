@@ -19,7 +19,7 @@
   opacity: 0.8;
 
   &.active{
-    border: 3px solid #00BAAA;
+    border: 3px solid #4232FF;
     opacity: 1;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.99));
   }
@@ -39,7 +39,7 @@
   margin-right: 0px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   .far{
-    color: #00BAAA;
+    color: #4232FF;
   }
 }
 
@@ -57,4 +57,23 @@
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .grid-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .grid-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .grid-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
 }

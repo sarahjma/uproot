@@ -9,9 +9,9 @@
 }
 .slider::-webkit-slider-thumb{
   -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  background-color: #00BAAA;
+  width: 20px;
+  height: 20px;
+  background-color: #4232FF;
   border-radius: 50%;
   opacity: 0.8;
   cursor: pointer;
@@ -25,5 +25,23 @@
 }
 
 #value{
-  color: #00BAAA;
+  color: #4232FF;
 }
+@media (min-width: 768px) {
+  .slider {
+   width: 400px;
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .slider {
+   width: 500px;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .slider {
+  width: 600px;
+  }
+}
+

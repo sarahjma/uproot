@@ -15,8 +15,8 @@
   padding: 0 12px;
   // transition: opacity 0.3s ease;
   &.active {
-    border: 1px solid #00BAAA;
-    color: #00BAAA;
+    border: 1px solid #4232FF;
+    color: #4232FF;
   }
 }
 
@@ -37,6 +37,7 @@
 .btn-next {
   background-color: black;
   // border: 1px solid black;
+  height: 52px;
   color: white;
   width: 100%;
   border-radius: 3px;
@@ -54,5 +55,32 @@
   // right: 18px;
   &:focus {
     outline: 0px auto -webkit-focus-ring-color;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 30%
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 30%
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .btn-main{
+    width: 50%
+  }
+  .btn-next {
+    width: 30%
   }
 }

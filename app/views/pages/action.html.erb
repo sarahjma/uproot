@@ -1,7 +1,7 @@
 <div class="main-container action-page-position">
   <h3 class="action-h3">Select an action</h3>
 
-  <div class="grid-cards action-option-position">
+  <div class="action-option-position ">
     <!-- QUIZ ACTION -->
     <%= link_to(quiz_results_path, method: :post) do %>
       <div class="card-action d-flex flex-column">
@@ -25,32 +25,7 @@
         </div>
       </div>
     <%end%>
-
-    <!-- HANGOUT ACTION -->
-    <%= link_to("#") do %>
-      <div class="card-action d-flex flex-column">
-        <div class="card-action-item">
-          <p class="action-p">Uproot Hangout</p>
-        </div>
-        <div class="card-action-item">
-          <i class="far fa-user"></i><i class="far fa-user"></i><i class="far fa-user"></i>
-        </div>
-      </div>
-    <%end%>
-
-    <!-- UNDEFINED ACTION -->
-    <%= link_to("#") do %>
-      <div class="card-action d-flex flex-column">
-        <div class="card-action-item">
-          <!-- <p></p> -->
-        </div>
-        <div class="card-action-item">
-          <!-- <i></i> -->
-        </div>
-      </div>
-    <%end%>
   </div>
-
 </div>
 
 
