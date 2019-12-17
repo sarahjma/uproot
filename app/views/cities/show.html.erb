@@ -21,7 +21,7 @@
           <ul class="collapse content-collapse" id="weather">
             <li>Average minimum temperature:  <%= @city.temp_min %>°C</li>
             <li>Average maximum temperature:  <%= @city.temp_max %>°C</li>
-            <li>Average year percentage of sunny days:  <%= (@city.sunny_score * 100) %>%</li>
+            <li>Average yearly percentage of sunny days:  <%= (@city.sunny_score * 100) %>%</li>
             <li><%= @city.name %> has a <%= @city.weather_type %></li>
           </ul>
         </div>
@@ -90,6 +90,10 @@
         </button></li>
         <ul class="collapse content-collapse" id="cityvalue">
           <li>LGBTQ marital status:  <%= @city.lgbtq_status %></li>
+          <li>Air pollution score:  <%= ((1 - @city.air_quality_score) * 100).to_i %>%</li>
+          <li>Water quality score:  <%= ((@city.air_quality_score) * 100).to_i %>%</li>
+          <li>Average life expectancy in years: <%= @city.life_expectancy.to_i %></li>
+          <li>Urban greenery score: <%= (@city.park_score * 100).to_i %>%</li>
         </ul>
 
         <!-- Leisure -->
@@ -105,6 +109,8 @@
           <li>Number of movie theaters: <%= @city.movie_venues_count %></li>
           <li>Number of concert venues: <%= @city.concerts_venues %></li>
         </ul>
+
+        <!-- Career -->
 
 
       </ul>

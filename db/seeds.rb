@@ -599,7 +599,7 @@ obtain_cities.each do |api_city|
     "POLLUTION", \
     "DRINKING-WATER-QUALITY-TELESCORE")
 
-  city.life_expectancy = obtain_value( \
+  city.life_expectancy = obtain_score( \
     search_data['categories'], \
     "HEALTHCARE", \
     "HEALTHCARE-LIFE-EXPECTANCY")
