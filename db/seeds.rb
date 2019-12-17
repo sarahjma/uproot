@@ -1,15 +1,6 @@
 require 'open-uri'
 require 'json'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-  # enable_extension "plpgsql"
-
 puts "cleaning database"
 ChosenAnswer.destroy_all
 Answer.destroy_all
@@ -63,31 +54,16 @@ puts "creating Questions 2"
   )
 
 
-  a1 = Answer.create(
+  career_choices = ["Account Manager", "Accountant", "Administrative Assistant", "Architect", "Attorney", "Business Analyst", "Business Development", "C Level Executive", "Cashier", "Chef", "Chemical Engineer", "Civil Engineer", "Content Marketing", "Copywriter", "Customer Support", "Data Analyst", "Data Scientist", "Dentist", "Electrical Engineer", "Executive Assistant", "Fashion Designer", "Finance Manager", "Financial Analyst", "Graphic Designer", "Hardware Engineer", "Human Resources Manager", "IT Manager", "Industrial Designer", "Interior Designer", "Lecturer", "Marketing Manager", "Mechanical Engineer", "Mobile Developer", "Nurse", "Office Manager", "Operations Manager", "Pharmacist", "Physician", "Postdoctoral Researcher", "Product Manager", "Project Manager", "QA Engineer", "Receptionist", "Research Scientist", "Sales Manager", "Software Engineer", "Systems Administrator", "Teacher", "UX Designer", "Waiter", "Web Designer", "Web Developer"]
+
+  # Creating question #2
+  career_choices.each do |career|
+    Answer.create(
     question: q2,
-    text: "doctor",
-    score: "doctor",
-  )
-
-  a2 = Answer.create(
-    question: q2,
-    text: "tech",
-    score: "tech",
-  )
-
-  a3 = Answer.create(
-    question: q2,
-    text: "teacher",
-    score: "teacher",
-  )
-
-  a4 = Answer.create(
-    question: q2,
-    text: "artist",
-    score: "artist",
-  )
-
-
+    text: career,
+    score: career,
+    )
+  end
 puts "creating Questions 3"
 
   q3 = Question.create(
@@ -145,11 +121,11 @@ puts "creating Questions 3"
     score: "soccer",
   )
 
-  a9 = Answer.create(
-    question: q3,
-    text: "swimming",
-    score: "swimming",
-  )
+  # a9 = Answer.create(
+  #   question: q3,
+  #   text: "swimming",
+  #   score: "swimming",
+  # )
 
   a10 = Answer.create(
     question: q3,
@@ -181,19 +157,19 @@ puts "creating Questions 4"
   a1 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "small apartment"
+    score: "small_rent"
   )
 
   a2 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
-    score: "medium apartment"
+    score: "medium_rent"
   )
 
   a3 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "large apartment"
+    score: "large_rent"
   )
 
   a4 = Answer.create(
@@ -255,7 +231,7 @@ puts "creating Questions 5"
   a8 = Answer.create(
   question: q5,
   image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
-  score: "comedy-club"
+  score: "comedy"
   )
 
   puts "creating Questions 6"
@@ -650,9 +626,6 @@ obtain_cities.each do |api_city|
 
   city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score
 
-  # city.beach_score = (obtain_beach(search_data['categories']) + \
-  #             obtain_weather(search_data['categories'])[3]) / 2
-
   city.hiking_score = city.greenery_score
 
   city.walking_score = \
@@ -661,6 +634,18 @@ obtain_cities.each do |api_city|
   city.bike_score = \
     0.5 * (1 - city.air_quality_score) + 0.5 * city.sunny_score
 
+  # Getting careers from teleport
+  uri = URI(api_city['href'] + 'salaries/')
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+
+  i = 0
+  while search_data['salaries'][i]
+    city.career << search_data['salaries'][i]['job']['title']
+    i += 1
+  end
+
+  p city.career
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)

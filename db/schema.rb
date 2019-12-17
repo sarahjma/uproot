@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_125153) do
+ActiveRecord::Schema.define(version: 2019_12_16_164531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_125153) do
     t.string "weather_type"
     t.integer "concerts_venues"
     t.string "lgbtq_status"
+    t.string "career", default: [], array: true
   end
 
   create_table "questions", force: :cascade do |t|

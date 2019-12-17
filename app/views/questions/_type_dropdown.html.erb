@@ -1,5 +1,5 @@
 <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-  <div class="flex-grow-1">
+  <div class="flex-grow-1 d-flex justify-content-center">
     <%= f.collection_select :answer_id, @question.answers, :id, :text , prompt: true %>
   </div>
     <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
