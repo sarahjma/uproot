@@ -68,82 +68,77 @@ puts "creating Questions 3"
 
   q3 = Question.create(
     category: "leisure",
-    content: "What do you usually do in your free time?",
+    content: "What are some of the things you value?",
     display_type: "type-buttons"
   )
 
 
   a1 = Answer.create(
     question: q3,
-    text: "gym",
-    score: "gym",
+    text: "LGBTQ equality",
+    score: "lgbtq_score",
   )
 
   a2 = Answer.create(
     question: q3,
-    text: "museum",
-    score: "museum",
+    text: "Air quality",
+    score: "air_quality_score",
   )
 
   a3 = Answer.create(
     question: q3,
-    text: "cafe",
-    score: "cafe",
+    text: "Water quality",
+    score: "water_score",
   )
 
   a4 = Answer.create(
     question: q3,
-    text: "concerts",
-    score: "concerts",
+    text: "Minority equality",
+    score: "minority_score",
   )
 
   a5 = Answer.create(
     question: q3,
-    text: "pilates",
-    score: "pilates",
+    text: "Education",
+    score: "education_score",
   )
 
   a6 = Answer.create(
     question: q3,
-    text: "climbing",
-    score: "climbing",
+    text: "GDP growth",
+    score: "gdp_growth_score",
   )
 
   a7 = Answer.create(
     question: q3,
-    text: "basketball",
-    score: "basketball",
+    text: "City cleanliness",
+    score: "cleanliness_score",
   )
 
   a8 = Answer.create(
     question: q3,
-    text: "soccer",
-    score: "soccer",
+    text: "Business freedom",
+    score: "business_freedom_score",
   )
 
-  # a9 = Answer.create(
-  #   question: q3,
-  #   text: "swimming",
-  #   score: "swimming",
-  # )
 
   a10 = Answer.create(
     question: q3,
-    text: "study",
-    score: "study",
+    text: "Gun ownership rights",
+    score: "gun_ownership_score",
   )
 
   a11 = Answer.create(
     question: q3,
-    text: "code",
-    score: "code",
+    text: "Startup scene",
+    score: "startup_score",
   )
 
-  a12 = Answer.create(
-    question: q3,
-    text: "wine tasting",
-    score: "wine tasting",
-  )
+  # a12 = Answer.create(
+  #   question: q3,
+  #   text: "wine tasting",
+  #   score: "wine tasting",
+  # )
 
 puts "creating Questions 4"
 
@@ -480,6 +475,11 @@ obtain_cities.each do |api_city|
     "SAFETY", \
     "CRIME-RATE-TELESCORE" )
 
+  city.gun_ownership_score = obtain_score( \
+    search_data['categories'], \
+    "SAFETY", \
+    "GUN-OWNERSHIP-SCORE-TELESCORE" )
+
   city.traffic_score = obtain_score( \
     search_data['categories'], \
     "TRAFFIC", \
@@ -570,10 +570,25 @@ obtain_cities.each do |api_city|
     "MINORITIES", \
     "LGBT-DETAIL-MARRIAGE")
 
+  city.lgbtq_score = obtain_score( \
+    search_data['categories'], \
+    "MINORITIES", \
+    "LGBT-INDEX-TELESCORE")
+
+  city.minority = obtain_score( \
+    search_data['categories'], \
+    "MINORITIES", \
+    "TOLERANCE-TOWARDS-MINORITIES-TELESCORE")
+
   city.air_quality_score = obtain_score( \
     search_data['categories'], \
     "POLLUTION", \
     "AIR-POLLUTION-TELESCORE")
+
+  city.cleanliness_score = obtain_score( \
+    search_data['categories'], \
+    "POLLUTION", \
+    "CLEANLINESS-TELESCORE")
 
   city.greenery_score = obtain_score( \
     search_data['categories'], \
@@ -634,6 +649,21 @@ obtain_cities.each do |api_city|
     search_data['categories'], \
     "CLIMATE" , \
     "WEATHER-TYPE")
+
+  city.business_freedom_score = obtain_score( \
+    search_data['categories'], \
+    "BUSINESS-FREEDOM", \
+    "BUSINESS-FREEDOM-TELESCORE")
+
+  city.gdp_growth_score = obtain_score( \
+    search_data['categories'], \
+    "ECONOMY", \
+    "GDP-GROWTH-RATE-TELESCORE")
+
+  city.gdp_growth_score = obtain_score( \
+    search_data['categories'], \
+    "STARTUPS", \
+    "STARTUP-CLIMATE-STARTUPS-TELESCORE")
 
 
   city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score
