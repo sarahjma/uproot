@@ -1,15 +1,6 @@
 require 'open-uri'
 require 'json'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-  # enable_extension "plpgsql"
-
 puts "cleaning database"
 ChosenAnswer.destroy_all
 Answer.destroy_all
@@ -166,19 +157,19 @@ puts "creating Questions 4"
   a1 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "small apartment"
+    score: "small_rent"
   )
 
   a2 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
-    score: "medium apartment"
+    score: "medium_rent"
   )
 
   a3 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "large apartment"
+    score: "large_rent"
   )
 
   a4 = Answer.create(
@@ -240,7 +231,7 @@ puts "creating Questions 5"
   a8 = Answer.create(
   question: q5,
   image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
-  score: "comedy-club"
+  score: "comedy"
   )
 
   puts "creating Questions 6"
