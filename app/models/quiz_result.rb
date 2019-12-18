@@ -26,7 +26,7 @@ class QuizResult < ApplicationRecord
       end
     end
 
-    scores.any? ? (scores.sum / scores.count) : 0.2
+    scores.any? ? (scores.sum / scores.count) : 0
   end
 
   def rent_compatible?(city)

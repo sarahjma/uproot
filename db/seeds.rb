@@ -623,11 +623,10 @@ obtain_cities[0..4].each do |api_city|
     "ECONOMY", \
     "GDP-GROWTH-RATE-TELESCORE")
 
-  city.gdp_growth_score = obtain_score( \
+  city.startup_score = obtain_score( \
     search_data['categories'], \
     "STARTUPS", \
     "STARTUP-CLIMATE-STARTUPS-TELESCORE")
-
 
   city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score
 
