@@ -45,8 +45,13 @@
   position: relative;
   bottom: 0vh;
   left: 0px;
+  box-shadow: 0 0 11px rgba(0, 0, 0,.2);
   &:focus {
     outline: 0px auto -webkit-focus-ring-color;
+  }
+  &:disabled {
+    box-shadow: none;
+    opacity: 0.1;
   }
 }
 
