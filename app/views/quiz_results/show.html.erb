@@ -2,14 +2,13 @@
   <h3>After careful calculations, these are the top three cities we matched you with.</h3>
   <% @cities.each do |city| %>
   <div class="quiz-result-show-cards">
+    <%= @cities.each do |city| %>
       <%= link_to city_path(city.id) do %>
-        <div class="card-city top-1">
-          <p><%= city.name %></p>
+        <div class="card-city" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= city.image %>)">
+          <p> <%= city.name %> </p>
         </div>
       <% end %>
+    <% end %>
   </div>
-  <% end %>
-
 </div>
-
 
