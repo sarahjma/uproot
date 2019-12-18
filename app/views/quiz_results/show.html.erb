@@ -3,17 +3,17 @@
   <div class="quiz-result-show-cards">
     <div class="card-city d-flex flex-column" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= @first_city.image %>)">
       <p> <%= (@top_3_hash.values[0] * 100).to_i %> % </p>
-      <p> <%= @first_city.name %> </p>
+      <p> <%= @first_city.name %>, <%= @first_city.country %> </p>
     </div>
 
     <div class="card-city d-flex flex-column" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= @second_city.image %>)">
       <p> <%= (@top_3_hash.values[1] * 100).to_i %> % </p>
-      <p> <%= @second_city.name %> </p>
+      <p> <%= @second_city.name %>, <%= @second_city.country %> </p>
     </div>
 
     <div class="card-city d-flex flex-column" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= @third_city.image %>)">
       <p> <%= (@top_3_hash.values[2] * 100).to_i %> % </p>
-      <p> <%= @third_city.name %> </p>
+      <p> <%= @third_city.name %>, <%= @third_city.country %> </p>
     </div>
   </div>
 </div>
