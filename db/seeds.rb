@@ -68,82 +68,77 @@ puts "creating Questions 3"
 
   q3 = Question.create(
     category: "leisure",
-    content: "What do you usually do in your free time?",
+    content: "What are some of the things you value?",
     display_type: "type-buttons"
   )
 
 
   a1 = Answer.create(
     question: q3,
-    text: "gym",
-    score: "gym",
+    text: "LGBTQ equality",
+    score: "lgbtq",
   )
 
   a2 = Answer.create(
     question: q3,
-    text: "museum",
-    score: "museum",
+    text: "Air quality",
+    score: "air_quality",
   )
 
   a3 = Answer.create(
     question: q3,
-    text: "cafe",
-    score: "cafe",
+    text: "Water quality",
+    score: "water",
   )
 
   a4 = Answer.create(
     question: q3,
-    text: "concerts",
-    score: "concerts",
+    text: "Minority equality",
+    score: "minority",
   )
 
   a5 = Answer.create(
     question: q3,
-    text: "pilates",
-    score: "pilates",
+    text: "Education",
+    score: "education",
   )
 
   a6 = Answer.create(
     question: q3,
-    text: "climbing",
-    score: "climbing",
+    text: "GDP growth",
+    score: "gdp_growth",
   )
 
   a7 = Answer.create(
     question: q3,
-    text: "basketball",
-    score: "basketball",
+    text: "City cleanliness",
+    score: "cleanliness",
   )
 
   a8 = Answer.create(
     question: q3,
-    text: "soccer",
-    score: "soccer",
+    text: "Business freedom",
+    score: "business_freedom",
   )
 
-  # a9 = Answer.create(
-  #   question: q3,
-  #   text: "swimming",
-  #   score: "swimming",
-  # )
 
   a10 = Answer.create(
     question: q3,
-    text: "study",
-    score: "study",
+    text: "Gun ownership rights",
+    score: "gun_ownership",
   )
 
   a11 = Answer.create(
     question: q3,
-    text: "code",
-    score: "code",
+    text: "Startup scene",
+    score: "startup",
   )
 
-  a12 = Answer.create(
-    question: q3,
-    text: "wine tasting",
-    score: "wine tasting",
-  )
+  # a12 = Answer.create(
+  #   question: q3,
+  #   text: "wine tasting",
+  #   score: "wine tasting",
+  # )
 
 puts "creating Questions 4"
 
@@ -185,50 +180,25 @@ puts "creating Questions 5"
     display_type: "type-image"
   )
 
-
   a1 = Answer.create(
     question: q5,
-    image: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-    score: "homebody"
+    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
+    score: "concerts"
   )
 
   a2 = Answer.create(
     question: q5,
-    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3900&q=80",
-    score: "outgoing"
+    image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+    score: "movie_venues"
   )
 
   a3 = Answer.create(
-    question: q5,
-    image: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80",
-    score: "outgoing"
+  question: q5,
+  image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+  score: "galleries"
   )
 
   a4 = Answer.create(
-    question: q5,
-    image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-    score: "chill"
-  )
-
-  a5 = Answer.create(
-  question: q5,
-  image: "https://images.unsplash.com/photo-1558086478-d632ccc5a833?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2546&q=80",
-  score: "homebody"
-  )
-
-  a6 = Answer.create(
-  question: q5,
-  image: "https://images.unsplash.com/photo-1571942389762-b0502602ed4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1700&q=80",
-  score: "homebody"
-  )
-
-  a7 = Answer.create(
-  question: q5,
-  image: "https://images.unsplash.com/photo-1561587327-41f8d18f71df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  score: "art-gallery"
-  )
-
-  a8 = Answer.create(
   question: q5,
   image: "https://shanghaicomedybunker.com/wp-content/uploads/2018/11/20299553.jpg",
   score: "comedy"
@@ -257,7 +227,7 @@ puts "creating Questions 5"
 
   a3 = Answer.create(
     question: q6,
-    image: "https://images.unsplash.com/photo-1480884296740-b04505e99dca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
+    image: "https://cdn4.img.sputniknews.com/images/105402/35/1054023500.jpg",
     score: "beach"
   )
 
@@ -269,26 +239,14 @@ puts "creating Questions 5"
 
   a5 = Answer.create(
   question: q6,
-  image: "https://images.unsplash.com/photo-1481437156560-3205f6a55735?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  score: "shopping"
+  image: "https://cdn.getyourguide.com/img/tour_img-664632-146.jpg",
+  score: "zoo"
   )
 
   a6 = Answer.create(
   question: q6,
-  image: "https://images.unsplash.com/photo-1550763200-c150c99abfbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-  score: "homebody"
-  )
-
-  a7 = Answer.create(
-  question: q6,
-  image: "https://images.unsplash.com/photo-1503919005314-30d93d07d823?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-  score: "zoo"
-  )
-
-  a8 = Answer.create(
-  question: q6,
   image: "https://images.unsplash.com/photo-1498846323785-c40aafaaa4f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1258&q=80",
-  score: "sports-game"
+  score: "sports_venues"
   )
 
   puts "creating Questions 7"
@@ -480,6 +438,11 @@ obtain_cities[0..4].each do |api_city|
     "SAFETY", \
     "CRIME-RATE-TELESCORE" )
 
+  city.gun_ownership_score = obtain_score( \
+    search_data['categories'], \
+    "SAFETY", \
+    "GUN-OWNERSHIP-SCORE-TELESCORE" )
+
   city.traffic_score = obtain_score( \
     search_data['categories'], \
     "TRAFFIC", \
@@ -570,10 +533,25 @@ obtain_cities[0..4].each do |api_city|
     "MINORITIES", \
     "LGBT-DETAIL-MARRIAGE")
 
+  city.lgbtq_score = obtain_score( \
+    search_data['categories'], \
+    "MINORITIES", \
+    "LGBT-INDEX-TELESCORE")
+
+  city.minority_score = obtain_score( \
+    search_data['categories'], \
+    "MINORITIES", \
+    "TOLERANCE-TOWARDS-MINORITIES-TELESCORE")
+
   city.air_quality_score = obtain_score( \
     search_data['categories'], \
     "POLLUTION", \
     "AIR-POLLUTION-TELESCORE")
+
+  city.cleanliness_score = obtain_score( \
+    search_data['categories'], \
+    "POLLUTION", \
+    "CLEANLINESS-TELESCORE")
 
   city.greenery_score = obtain_score( \
     search_data['categories'], \
@@ -590,7 +568,7 @@ obtain_cities[0..4].each do |api_city|
     "POLLUTION", \
     "DRINKING-WATER-QUALITY-TELESCORE")
 
-  city.life_expectancy = obtain_value( \
+  city.life_expectancy = obtain_score( \
     search_data['categories'], \
     "HEALTHCARE", \
     "HEALTHCARE-LIFE-EXPECTANCY")
@@ -634,6 +612,21 @@ obtain_cities[0..4].each do |api_city|
     search_data['categories'], \
     "CLIMATE" , \
     "WEATHER-TYPE")
+
+  city.business_freedom_score = obtain_score( \
+    search_data['categories'], \
+    "BUSINESS-FREEDOM", \
+    "BUSINESS-FREEDOM-TELESCORE")
+
+  city.gdp_growth_score = obtain_score( \
+    search_data['categories'], \
+    "ECONOMY", \
+    "GDP-GROWTH-RATE-TELESCORE")
+
+  city.gdp_growth_score = obtain_score( \
+    search_data['categories'], \
+    "STARTUPS", \
+    "STARTUP-CLIMATE-STARTUPS-TELESCORE")
 
 
   city.beach_score = 0.5 * obtain_score(search_data['categories'], "OUTDOORS", "SEASIDE-ACCESS-TELESCORE") + 0.5 * city.sunny_score

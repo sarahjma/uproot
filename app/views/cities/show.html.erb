@@ -15,13 +15,13 @@
       <ul>
         <!-- Weather -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#weather" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-cloud-sun"></i> Weather </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-cloud-sun"></i> Weather </p>
         </button></li>
         <div class="city-show-content-card">
           <ul class="collapse content-collapse" id="weather">
             <li>Average minimum temperature:  <%= @city.temp_min %>°C</li>
             <li>Average maximum temperature:  <%= @city.temp_max %>°C</li>
-            <li>Average year percentage of sunny days:  <%= (@city.sunny_score * 100) %>%</li>
+            <li>Average yearly percentage of sunny days:  <%= (@city.sunny_score * 100) %>%</li>
             <li><%= @city.name %> has a <%= @city.weather_type %></li>
           </ul>
         </div>
@@ -29,7 +29,7 @@
 
         <!-- Housing -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#housing" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-home"></i> Housing </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-home"></i> Housing </p>
         </button></li>
         <div class="city-show-content-card">
           <ul class="collapse content-collapse" id="housing">
@@ -42,7 +42,7 @@
 
         <!-- Safety -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#safety" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-unlock-alt"></i> Safety </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-unlock-alt"></i> Safety </p>
         </button></li>
         <div class="city-show-content-card">
           <ul class="collapse content-collapse" id="safety">
@@ -54,7 +54,7 @@
 
         <!-- Education -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#education" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-graduation-cap"></i> Education </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-graduation-cap"></i> Education </p>
         </button></li>
 
         <ul class="collapse content-collapse" id="education">
@@ -65,36 +65,52 @@
 
         <!-- Mobility -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#mobility" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-traffic-light"></i> Mobility </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-traffic-light"></i> Mobility </p>
         </button></li>
         <ul class="collapse content-collapse" id="mobility">
           <li>Traffic handling score: <%= (@city.traffic_score * 100).to_i %>%</li>
           <li>Train interconnectivity score: <%= (@city.train_score * 100).to_i %>%</li>
           <li>Walking accessibility score: <%= (@city.train_score * 100).to_i %>%</li>
           <li>Bikability score: <%= (@city.train_score * 100).to_i %>%</li>
+          <li>Airport connectivity score: <%= (@city.airport_score * 100).to_i %>%</li>
         </ul>
 
 
         <!-- Healthcare -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#healthcare" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-user-md"></i> Healthcare </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-user-md"></i> Healthcare </p>
         </button></li>
         <ul class="collapse content-collapse" id="healthcare">
           <li>Healthcare quality score: <%= (@city.healthcare_score * 100).to_i %>%</li>
         </ul>
 
+        <!-- Personal Values -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#cityvalue" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-balance-scale"></i> City Values </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="cityvalue">
+          <li>LGBTQ marital status:  <%= @city.lgbtq_status %></li>
+          <li>Air pollution score:  <%= ((1 - @city.air_quality_score) * 100).to_i %>%</li>
+          <li>Water quality score:  <%= ((@city.air_quality_score) * 100).to_i %>%</li>
+          <li>Average life expectancy in years: <%= @city.life_expectancy.to_i %></li>
+          <li>Urban greenery score: <%= (@city.park_score * 100).to_i %>%</li>
+        </ul>
+
         <!-- Leisure -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#leisure" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <p><i class="fas fa-theater-masks"></i> Leisure and Culture </p>
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-theater-masks"></i> Leisure and Culture </p>
         </button></li>
         <ul class="collapse content-collapse" id="leisure">
-          <li>Number of museums in this city: <%= @city.museum_count %></li>
-          <li>Number of zoos in this city: <%= @city.zoo_count %></li>
-          <li>Number of sport venues in this city: <%= @city.sport_venues_count %></li>
-          <li>Number of comedy clubs in this city: <%= @city.comedy_count %></li>
-          <li>Number of art galleries in this city: <%= @city.galleries_count %></li>
-          <li>Number of movie theaters in this city: <%= @city.movie_venues_count %></li>
+          <li>Number of museums: <%= @city.museum_count %></li>
+          <li>Number of zoos: <%= @city.zoo_count %></li>
+          <li>Number of sport venues: <%= @city.sport_venues_count %></li>
+          <li>Number of comedy clubs: <%= @city.comedy_count %></li>
+          <li>Number of art galleries: <%= @city.galleries_count %></li>
+          <li>Number of movie theaters: <%= @city.movie_venues_count %></li>
+          <li>Number of concert venues: <%= @city.concerts_venues %></li>
         </ul>
+
+        <!-- Career -->
 
 
       </ul>

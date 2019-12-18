@@ -9,13 +9,16 @@
 
 .quiz-flow {
   display: flex;
+  padding-bottom: 4vh;
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  .fa-circle:before {
+  .fa-circle {
     font-size: 12px;
-    color: #4232FF;
     margin-right: 8px;
+  }
+  .fas {
+    color: #4232FF;
   }
 }
 
