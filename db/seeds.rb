@@ -419,8 +419,8 @@ end
 
 puts "Deleting any previous city data..."
 City.destroy_all
-#[0..4]
-obtain_cities[0..4].each do |api_city|
+
+obtain_cities.each do |api_city|
   city = City.new(name: api_city['name'])
 
   uri = URI(api_city['href'] + "details/")
@@ -581,17 +581,17 @@ obtain_cities[0..4].each do |api_city|
   city.rent_small_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
-    "APARTMENT-RENT-SMALL")
+    "APARTMENT-RENT-SMALL") * 0.9
 
   city.rent_medium_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
-    "APARTMENT-RENT-MEDIUM")
+    "APARTMENT-RENT-MEDIUM") * 0.9
 
   city.rent_large_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
-    "APARTMENT-RENT-LARGE")
+    "APARTMENT-RENT-LARGE") * 0.9
 
   city.temp_min = obtain_string( \
     search_data['categories'], \
