@@ -133,7 +133,62 @@ puts "creating Questions 3"
     text: "Startup scene",
     score: "startup",
   )
+  q20 = Question.create(
+    category: "education",
+    content: "Are you a student?",
+    display_type: "type-image"
+  )
 
+
+  a1 = Answer.create(
+    question: q20,
+    image: "https://www.thecollaborativemaroubra.com/client/blog_images/yes-snowboards-logo_1432178183.jpg",
+    score: "education",
+  )
+
+  a2 = Answer.create(
+    question: q20,
+    image: "https://cadiznoticias.es/wp-content/uploads/2016/10/no.jpg",
+    score: "education",
+  )
+
+  q21 = Question.create(
+    category: "safety",
+    content: "safety?",
+    display_type: "type-image"
+  )
+
+
+  a1 = Answer.create(
+    question: q21,
+    image: "https://www.thecollaborativemaroubra.com/client/blog_images/yes-snowboards-logo_1432178183.jpg",
+    score: "safety",
+  )
+
+  a2 = Answer.create(
+    question: q21,
+    image: "https://cadiznoticias.es/wp-content/uploads/2016/10/no.jpg",
+    score: "safety",
+  )
+
+  q22 = Question.create(
+    category: "healthcare",
+    content: "healthcare?",
+    display_type: "type-image"
+  )
+
+
+  a1 = Answer.create(
+    question: q22,
+    image: "https://www.thecollaborativemaroubra.com/client/blog_images/yes-snowboards-logo_1432178183.jpg",
+    score: "healthcare",
+  )
+
+  a2 = Answer.create(
+    question: q22,
+    image: "https://cadiznoticias.es/wp-content/uploads/2016/10/no.jpg",
+    score: "healthcare",
+  )
   # a12 = Answer.create(
   #   question: q3,
   #   text: "wine tasting",
