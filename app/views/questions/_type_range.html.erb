@@ -1,6 +1,6 @@
 <div class="container-option d-flex">
   <%= form_for @chosen_answer, url: chosen_answers_path(@chosen_answer) do |f|%>
-    <input type="range" id="rent" name=rent value="<%=@quiz_result.rent%>" min="0" max="2000" class="slider d-flex flex-column" >
+    <input type="range" id="rent" name=rent value="<%=@quiz_result.rent%>" min="100" max="5000" step="100" class="slider d-flex flex-column" >
     <label type="text align-item" class="box" for="quiz_result[rent]" id="value" value=this.value></label>
 
     <input type="hidden" name="quiz_result" value="<%=@quiz_result.id%>">
