@@ -152,25 +152,25 @@ puts "creating Questions 4"
   a1 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "rent_small"
+    score: "small_house"
   )
 
   a2 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
-    score: "rent_medium"
+    score: "medium_house"
   )
 
   a3 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "rent_large"
+    score: "large_house"
   )
 
   a4 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1548513830-5e684f0d4d82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2989&q=80",
-    score: "mobile-home"
+    score: "mobile_home_house"
   )
 puts "creating Questions 5"
 
@@ -252,7 +252,7 @@ puts "creating Questions 5"
   puts "creating Questions 7"
 
   q7 = Question.create(
-    category: "housing",
+    category: "rent",
     content: "Rent is due. How much do you pay?",
     display_type: "type-range"
   )
@@ -285,11 +285,11 @@ puts "creating Questions 5"
     score: "education"
   )
 
-  a3 = Answer.create(
-    question: q8,
-    text: "housing",
-    score: "housing"
-  )
+  # a3 = Answer.create(
+  #   question: q8,
+  #   text: "housing",
+  #   score: "housing"
+  # )
 
   a4 = Answer.create(
     question: q8,
@@ -420,7 +420,7 @@ end
 puts "Deleting any previous city data..."
 City.destroy_all
 #[0..4]
-obtain_cities.each do |api_city|
+obtain_cities[0..4].each do |api_city|
   city = City.new(name: api_city['name'])
 
   uri = URI(api_city['href'] + "details/")

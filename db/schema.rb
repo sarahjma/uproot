@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_160122) do
   create_table "quiz_results", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rent"
   end
 
   add_foreign_key "answers", "questions"
