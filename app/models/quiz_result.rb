@@ -2,10 +2,8 @@ class QuizResult < ApplicationRecord
   has_many :chosen_answers
   has_many :answers, through: :chosen_answers
 
-  def top_3_cities(sorted_categories)
-    top3 = {}
-    city_scores = calculate_city_score(sorted_categories)
-    top3 = city_scores.sort_by { |_k, v| v }.reverse[0..2].to_h
+  def top_3_cities
+    self.top_3 = calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
   end
 
   private
@@ -41,23 +39,23 @@ class QuizResult < ApplicationRecord
     rent_is_compatible = false
 
     case apartment_size
-      when "mobile_home_house"
-        rent_is_compatible = rent > city.rent_small_price
-      when "small_house"
-        rent_is_compatible = rent > city.rent_small_price
-      when "medium_house"
-        rent_is_compatible = rent > city.rent_medium_price
-      when "large_house"
-        rent_is_compatible = rent > city.rent_large_price
+    when "mobile_home_house"
+      rent_is_compatible = rent > city.rent_small_price
+    when "small_house"
+      rent_is_compatible = rent > city.rent_small_price
+    when "medium_house"
+      rent_is_compatible = rent > city.rent_medium_price
+    when "large_house"
+      rent_is_compatible = rent > city.rent_large_price
     end
 
     rent_is_compatible
   end
 
   # CALCULATE_CITY_SCORE returns { city: overal_score }
-  def calculate_city_score(sorted_categories)
+  def calculate_city_scores
     weightings = {}
-    values = [0.35, 0.3, 0.2, 0.05, 0.05, 0.05, 0, 0]
+    values = [0.4, 0.35, 0.2, 0.05, 0, 0]
     sorted_categories.each_with_index do |category, index|
       weightings[category.to_sym] = values[index]
       # WEIGHTINGS returns { category: weight_sorted_question }
@@ -85,7 +83,6 @@ class QuizResult < ApplicationRecord
       overall_city_scores[city.name] = overall_city_score
       # OVERALL_CITY_SCORE returns { city: overal_city_score }
     end
-    #binding.pry
 
     overall_city_scores
   end
