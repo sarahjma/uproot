@@ -157,25 +157,25 @@ puts "creating Questions 4"
   a1 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "small_rent"
+    score: "small_house"
   )
 
   a2 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
-    score: "medium_rent"
+    score: "medium_house"
   )
 
   a3 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-    score: "large_rent"
+    score: "large_house"
   )
 
   a4 = Answer.create(
     question: q4,
     image: "https://images.unsplash.com/photo-1548513830-5e684f0d4d82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2989&q=80",
-    score: "mobile-home"
+    score: "mobile_home_house"
   )
 puts "creating Questions 5"
 
@@ -327,11 +327,11 @@ puts "creating Questions 5"
     score: "education"
   )
 
-  a3 = Answer.create(
-    question: q8,
-    text: "housing",
-    score: "housing"
-  )
+  # a3 = Answer.create(
+  #   question: q8,
+  #   text: "housing",
+  #   score: "housing"
+  # )
 
   a4 = Answer.create(
     question: q8,

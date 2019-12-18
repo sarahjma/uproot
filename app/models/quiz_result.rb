@@ -12,27 +12,21 @@ class QuizResult < ApplicationRecord
   private
 
   def logic_category(category, city)
-    quiz_result = QuizResult.last
-    sum_scores_array = []
-    total_score = 0
-    temp_min = 0
-    temp_max = 0
-    quiz_result.chosen_answers.each do |chosen_answer|
-      question_id = Answer.find(chosen_answer.answer_id).question_id
-      question_category = Question.find(question_id).category
-      score = chosen_answer.answer.score
-      if score.include?("rent")
-        total_score = city.send("#{score}_price")
-      elsif score.include?("temp")
-        binding.pry
-        temp_min = city.send("#{score}_min")
-        temp_max = city.send("#{score}_max")
-      else
-        total_score = city.send("#{score}_score")
+    # temp_min = city.send("#{score}_min")
+    # temp_max = city.send("#{score}_max")
+    # temp_min = 0
+    # temp_max = 0
+
+    scores = []
+
+    chosen_answers.each do |chosen_answer|
+      if category.to_s == chosen_answer.answer.question.category
+        score = chosen_answer.answer.score
+        scores << city.send("#{score}_score")
       end
-      sum_scores_array << total_score if question_category.to_s == category.to_s
     end
-    sum_scores_array.sum / sum_scores_array.count
+
+    scores.any? ? (scores.sum / scores.count) : 0.2
   end
 
   def rent_compatible?(city)
@@ -42,17 +36,24 @@ class QuizResult < ApplicationRecord
       quiz_result_id: id,
       answer_id: answers
     )
-    puts chosen_answers
+
     apartment_size = chosen_answers.first.answer.score
+
+    rent_is_compatible = false
+
+
     case apartment_size
-      when "rent_small"
-        rent < city.rent_medium_price
-      when "rent_medium"
-        rent < city.rent_small_price
-      when "rent_large"
-        rent < city.rent_large_price
-      end
+      when "mobile_home_house"
+        rent_is_compatible = rent > city.rent_small_price
+      when "small_house"
+        rent_is_compatible = rent > city.rent_small_price
+      when "medium_house"
+        rent_is_compatible = rent > city.rent_medium_price
+      when "large_house"
+        rent_is_compatible = rent > city.rent_large_price
     end
+
+    rent_is_compatible
   end
 
   # CALCULATE_CITY_SCORE returns { city: overal_score }
@@ -69,6 +70,7 @@ class QuizResult < ApplicationRecord
 
     City.all.each do |city|
       overall_city_score = 0
+
       if rent_compatible?(city)
         weightings.each do |category, weight|
           overall_category_scores[category] = logic_category(category, city) * weight

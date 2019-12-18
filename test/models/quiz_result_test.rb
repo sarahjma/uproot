@@ -25,128 +25,119 @@ class QuizResultTest < ActiveSupport::TestCase
     end
 
     it "should return paris if max rent is 500" do
+      # these are the seeds
       quiz_result = QuizResult.create(
         rent: 500
       )
 
-      housing_question = Question.create(
-        category: "housing",
-        content: "Which looks most like home?",
-        display_type: "type-image"
-      )
-      housing_answer = Answer.create(
-        question: housing_question,
-        score: "rent_medium_price"
-      )
-
-      chosen_answer = ChosenAnswer.create(
-        answer_id: housing_answer.id,
-        quiz_result_id: quiz_result.id
+      ChosenAnswer.create(
+        quiz_result: quiz_result,
+        answer: Answer.create(
+          question: Question.create(
+            category: "housing"
+          ),
+          score: "medium_house"
+        )
       )
 
+      ChosenAnswer.create(
+        quiz_result: quiz_result,
+        answer: Answer.create(
+          question: Question.create(
+            category: "mobility"
+          ),
+          score: "bike"
+        )
+      )
+
+      # this is calling the method on the QuizResult model
       result = quiz_result.top_3_cities(['mobility'])
-      #binding.pry
+
       puts "rent test"
       puts result
 
-      assert_equal "Paris", result
+      # this checks is Paris is actually the first result
+      assert_equal "Paris", result.keys.first
+      assert_equal ["Paris", "Calgary"], result.keys
+
     end
   end
 
 
-  # describe "category test" do
-  #   before do
-  #     City.destroy_all
-  #     Question.destroy_all
+  describe "category test" do
+    before do
+      City.destroy_all
+      Question.destroy_all
 
-  #     City.create(
-  #       name: "Amsterdam",
-  #       beach_score: 0,
-  #       bike_score: 0.9,
-  #       rent_medium_price: 300
-  #     )
+      City.create(
+        name: "Amsterdam",
+        beach_score: 0,
+        bike_score: 0.9,
+        rent_medium_price: 100
+      )
 
-  #     City.create(
-  #       name: "LA",
-  #       beach_score: 0.9,
-  #       bike_score: 0.1,
-  #       rent_medium_price: 50,
-  #     )
+      City.create(
+        name: "LA",
+        beach_score: 0.9,
+        bike_score: 0.1,
+        rent_medium_price: 100
+      )
+    end
+    # chosen_answer_category = ["mobility", "education", "housing", "safety", "career", "leisure", "health"]
 
-  #   end
-  #   # chosen_answer_category = ["mobility", "education", "housing", "safety", "career", "leisure", "health"]
+    it "chosen answer ephasis on bike so amsterdam wins" do
+      quiz_result = QuizResult.create(rent: 500)
 
-  #   it "chosen answer ephasis on bike so amsterdam wins" do
-  #     quiz_result_housing = QuizResult.create(
-  #       rent: 500
-  #     )
-  #     housing_question = Question.create(
-  #       category: "housing",
-  #       content: "Which looks most like home?",
-  #       display_type: "type-image"
-  #     )
-  #     housing_answer = Answer.create(
-  #       question: housing_question,
-  #       score: "rent_medium_price"
-  #     )
+      ChosenAnswer.create(
+        quiz_result: quiz_result,
+        answer: Answer.create(
+          question: Question.create(
+            category: "housing"
+          ),
+          score: "medium_house"
+        )
+      )
 
-  #     chosen_answer_housing = ChosenAnswer.create(
-  #       answer_id: housing_answer.id,
-  #       quiz_result_id: quiz_result_housing.id
-  #     )
+      ChosenAnswer.create(
+         quiz_result: quiz_result,
+         answer: Answer.create(
+           question: Question.create(category: "mobility"),
+           score: "bike"
+         )
+       )
 
-  #     # chosen_answer = ChosenAnswer.create(
 
-  #     #   quiz_result: QuizResult.create,
-  #     #   answer: Answer.create(
-  #     #     question: Question.create(category: "mobility"),
-  #     #     score: "bike"
-  #     #   )
-  #     # )
-  #     chosen_answer_category = ["mobility"]
+      result = quiz_result.top_3_cities(["mobility"])
+      puts result
 
-  #     result = chosen_answer_housing.quiz_result.top_3_cities(chosen_answer_category)
-  #     puts result
+      assert result["Amsterdam"] > result["LA"]
+    end
 
-  #     assert result["Amsterdam"] > result["LA"]
-  #     # assert result[2], "LA"
-  #   end
-  # end
+    it "chosen answer emphasis on beach so LA wins" do
+      quiz_result = QuizResult.create(rent: 500)
+
+      ChosenAnswer.create(
+        quiz_result: quiz_result,
+        answer: Answer.create(
+          question: Question.create(
+            category: "housing"
+          ),
+          score: "medium_house"
+        )
+      )
+      ChosenAnswer.create(
+        quiz_result: quiz_result,
+        answer: Answer.create(
+          question: Question.create(category: "leisure"),
+          score: "beach"
+        )
+      )
+
+      result = quiz_result.top_3_cities(["leisure"])
+      puts "beach test"
+      puts result
+
+      assert result["LA"] > result["Amsterdam"]
+    end
+  end
 end
-
-      # it "chosen answer emphasis on beach so LA wins" do
-      # chosen_answer = ChosenAnswer.create(
-      #   quiz_result: QuizResult.create,
-      #   answer: Answer.create(
-      #     question: Question.create(category: "leisure"),
-      #     score: "beach"
-      #   )
-      # )
-      # chosen_answer_category = ["leisure"]
-
-      # result = chosen_answer.quiz_result.top_3_cities(chosen_answer_category)
-      # puts "beach test"
-      # puts result
-
-      # assert result["Amsterdam"] > result["LA"]
-  #   end
-  # end
-# end
-
-
-# test "chosen answer ephasis on bike so amsterdam wins" do
-#     chosen_answer = ChosenAnswer.create(
-#       quiz_result: QuizResult.create,
-#       answer: Answer.create(
-#         question: Question.create(category: "mobility"),
-#         score: "bike"
-#       )
-#     )
-#     chosen_answer_category = ["mobility"]
-
-#     result = chosen_answer.quiz_result.top_3_cities(chosen_answer_category)
-#     puts result
-
-#     assert result[1], "Amsterdam"
-#     assert result[2], "LA"
-#   end
