@@ -378,6 +378,7 @@ def obtain_percentage(search_data, main_category, sub_category)
   end
 end
 
+
 def obtain_string(search_data, main_category, sub_category)
   element_data = search_data.select{|property| property["id"] == main_category}[0]
   if element_data.nil?
@@ -403,6 +404,7 @@ def obtain_currency(search_data, main_category, sub_category)
     end
   end
 end
+
 # Do loop for each of the cities:
 def seed_scores
   # Get array of all cities
@@ -413,14 +415,13 @@ def seed_scores
     puts uri
     response = Net::HTTP.get(uri)
     search_data = JSON.parse(response)
-
   end
 end
 
 puts "Deleting any previous city data..."
 City.destroy_all
-#[0..4]
-obtain_cities[0..4].each do |api_city|
+
+obtain_cities.each do |api_city|
   city = City.new(name: api_city['name'])
 
   uri = URI(api_city['href'] + "details/")
@@ -581,17 +582,17 @@ obtain_cities[0..4].each do |api_city|
   city.rent_small_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
-    "APARTMENT-RENT-SMALL")
+    "APARTMENT-RENT-SMALL") * 0.9
 
   city.rent_medium_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
-    "APARTMENT-RENT-MEDIUM")
+    "APARTMENT-RENT-MEDIUM") * 0.9
 
   city.rent_large_price = obtain_currency( \
     search_data['categories'], \
     "HOUSING", \
-    "APARTMENT-RENT-LARGE")
+    "APARTMENT-RENT-LARGE") * 0.9
 
   city.temp_min = obtain_string( \
     search_data['categories'], \
@@ -649,7 +650,6 @@ obtain_cities[0..4].each do |api_city|
     i += 1
   end
 
-  p city.career
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)
@@ -657,9 +657,14 @@ obtain_cities[0..4].each do |api_city|
 
   city.image = search_data['photos'][0]['image']['mobile']
 
+  uri = URI(api_city['href'])
+  response = Net::HTTP.get(uri)
+  search_data = JSON.parse(response)
+  city.country = search_data['_links']['ua:countries'][0]['name']
+
   city.save!
 
-  puts "#{city.name} was created."
+  puts "#{city.name}, #{city.country} was created."
   puts "with healthcare_score #{city.healthcare_score}"
   puts "with safety score of #{city.safety_score}"
   puts "with and traffic score of #{city.traffic_score}"
