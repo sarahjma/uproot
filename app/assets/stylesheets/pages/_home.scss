@@ -1,5 +1,5 @@
 .landing-background{
-  background-image: url(<%= asset_path ‘image.png’ %>);
+  background-image: url(asset_path('landing-image.png'));
   background-size: cover;
   height:100vh;
   padding-right: 4vw;
