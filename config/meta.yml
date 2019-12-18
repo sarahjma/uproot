@@ -1,5 +1,5 @@
 meta_product_name: "Uproot"
 meta_title: "Uproot - Choose your own roots"
 meta_description: "Choosing your a new city is overwhelming. Let us help you find the perfect one."
-meta_image: "favicon-32x32.png" # should exist in `app/assets/images/`
+meta_image: "uproot_meta_image.jpg" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
