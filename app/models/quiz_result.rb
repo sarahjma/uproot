@@ -1,7 +1,6 @@
 class QuizResult < ApplicationRecord
   has_many :chosen_answers
   has_many :answers, through: :chosen_answers
-  attr_accessor :chosen_answer_category, :top3
 
   def top_3_cities(sorted_categories)
     top3 = {}
