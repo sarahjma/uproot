@@ -30,8 +30,8 @@ class ChosenAnswersController < ApplicationController
 
   def navigate_to_next_page
     if @question == Question.last
-      QuizResult.last.top_3_cities(@chosen_answer_category)
-      redirect_to quiz_result_path(params[:quiz_result])
+      top_3_final_results = QuizResult.last.top_3_cities(@chosen_answer_category)
+      redirect_to quiz_result_path(@quiz_result, data: top_3_final_results.to_json)
     else
       next_question = Question.find(params[:question].to_i + 1)
       next_question = Question.find(next_question.id + 1) while next_question.nil?
