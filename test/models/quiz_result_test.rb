@@ -71,7 +71,7 @@ class QuizResultTest < ActiveSupport::TestCase
 
       City.create(
         name: "Amsterdam",
-        beach_score: 0,
+        beach_score: 0.1,
         bike_score: 0.9,
         rent_medium_price: 100
       )
@@ -82,8 +82,42 @@ class QuizResultTest < ActiveSupport::TestCase
         bike_score: 0.1,
         rent_medium_price: 100
       )
+
+      City.create(
+        name: "SF",
+        beach_score: 0,
+        bike_score: 0,
+        rent_medium_price: 100
+      )
+
+
+      City.create(
+        name: "Leiden",
+        beach_score: 0,
+        bike_score: 0,
+        rent_medium_price: 100
+      )
     end
     # chosen_answer_category = ["mobility", "education", "housing", "safety", "career", "leisure", "health"]
+
+    it 'should only return three cities' do
+      quiz_result = QuizResult.create(rent: 500)
+
+      ChosenAnswer.create(
+        quiz_result: quiz_result,
+        answer: Answer.create(
+          question: Question.create(
+            category: "housing"
+          ),
+          score: "medium_house"
+        )
+      )
+
+      result = quiz_result.top_3_cities([])
+      puts result
+
+      assert result.keys.count, 3
+    end
 
     it "chosen answer ephasis on bike so amsterdam wins" do
       quiz_result = QuizResult.create(rent: 500)
