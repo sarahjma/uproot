@@ -3,5 +3,7 @@ class PagesController < ApplicationController
   end
 
   def action
+    cities = City.all
+    @city = cities.sample
   end
 end
