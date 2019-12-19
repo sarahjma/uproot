@@ -5,6 +5,7 @@ const fillSearchValue = () => {
   document.querySelectorAll(".autocomplete-value").forEach((li) =>
     li.addEventListener("click", (event) => {
       inputSearch.value = event.currentTarget.innerText
+      form.submit();
       results.innerHTML = ""
     })
   )
