@@ -16,6 +16,7 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+      <input type="hidden" value="<%= params[:quiz_result_id] %>" name="quiz_result_id">
     </div>
 
     <div class="form-actions">

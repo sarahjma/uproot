@@ -48,6 +48,12 @@
     <% end %>
   </div>
   <div class="footer-submit">
-    <%= link_to "Save your result", current_user, class: "btn-save" %>
+    <%if current_user%>
+      <%= link_to "Save your result", current_user, class: "btn-save" %>
+    <% else %>
+      <%= link_to "Save your result", new_user_registration_path(quiz_result_id: @quiz_result.id), class: "btn-save" %>
+    <% end %>
+
   </div>
 </div>
+
