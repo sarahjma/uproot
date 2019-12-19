@@ -4,11 +4,11 @@
   <%= form_tag cities_path, method: :get, class: "city-form" do %>
     <%= text_field_tag :query,
       params[:query],
-      class: "form-control search dropdown",
+      class: "form-control search",
       placeholder: "Find a city",
       autocomplete: "off"
     %>
-    <ul id="results" class="pl-3 "></ul>
+    <ul id="results" class="pl-3"></ul>
     <%= submit_tag "Search", class: "btn-next" %>
   <% end %>
   <div class="mt-3">
