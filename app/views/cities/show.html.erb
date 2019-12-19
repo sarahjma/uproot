@@ -83,6 +83,34 @@
           <li>Healthcare quality score: <%= (@city.healthcare_score * 100).to_i %>%</li>
         </ul>
 
+        <!-- Career -->
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#career" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-money-bill-alt"></i> Career Salary Calculator </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="career">
+          <div class="career-container">
+            <div class="job-container">
+              <p>Enter your job title to find out the median salary for this city.</p>
+              <select class="career-dropdown" id="selectjob">
+                  <% @city.career.each do |job| %>
+                    <option value=<%= job %>>
+                      <p><%= job %></p></option>
+                  <% end %>
+              </select>
+
+              <button class="btn-career">
+                Enter
+              </button>
+            </div>
+
+            <div class="salary-container">
+              <span class="median-salary" id="salary" data-salaries='<%= @city.salary.to_json %>'></span>
+              <p>Median Salary </p>
+            </div>
+
+          </div>
+        </ul>
+
         <!-- Personal Values -->
         <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#cityvalue" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <p><i class="fas fa-chevron-down down"></i><i class="fas fa-balance-scale"></i> City Values </p>
@@ -108,8 +136,6 @@
           <li>Number of movie theaters: <%= @city.movie_venues_count %></li>
           <li>Number of concert venues: <%= @city.concerts_venues %></li>
         </ul>
-
-        <!-- Career -->
 
 
       </ul>
