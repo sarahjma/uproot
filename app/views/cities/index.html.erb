@@ -1,6 +1,6 @@
 <div class="main-container">
 <span id="city-list" class="d-none" data-cities="<%= City.all.pluck(:name).sort %>"></span>
-<h3 class="text-center">Enter the name of the city you would like to explore </h3>
+<h3 class="text-center">Enter the name of a city to start exploring </h3>
   <%= form_tag cities_path, method: :get, class: "city-form" do %>
     <%= text_field_tag :query,
       params[:query],
