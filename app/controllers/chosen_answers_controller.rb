@@ -29,7 +29,6 @@ class ChosenAnswersController < ApplicationController
 
   def navigate_to_next_page
     if @question == Question.last
-      @quiz_result.top_3_cities
       redirect_to quiz_result_path(@quiz_result)
     else
       next_question = Question.find(params[:question].to_i + 1)

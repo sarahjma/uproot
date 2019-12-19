@@ -3,7 +3,7 @@ class QuizResult < ApplicationRecord
   has_many :answers, through: :chosen_answers
 
   def top_3_cities
-    self.top_3 = calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
+    calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
   end
 
   private
