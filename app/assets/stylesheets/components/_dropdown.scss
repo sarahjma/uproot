@@ -29,3 +29,15 @@
     outline: 0px auto -webkit-focus-ring-color;
   }
 }
+
+.search-box{
+  background-color: white;
+  color: black;
+  .autocomplete-value{
+    padding: 8px;
+    border: 1px solid #F1F1F1;
+  }
+  #results{
+    padding: 0px;
+  }
+}
