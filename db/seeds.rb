@@ -151,19 +151,19 @@ puts "creating Questions 4"
 
   a1 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1560448075-cbc16bb4af8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+    image: "https://images.unsplash.com/photo-1551545560-bc5254fdcfe9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3718&q=80",
     score: "small_house"
   )
 
   a2 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2173&q=80",
+    image: "https://cdn.pixabay.com/photo/2015/12/20/12/57/townhouses-1101084_1280.jpg",
     score: "medium_house"
   )
 
   a3 = Answer.create(
     question: q4,
-    image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
+    image: "https://images.unsplash.com/photo-1430285561322-7808604715df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80",
     score: "large_house"
   )
 
@@ -650,6 +650,13 @@ obtain_cities.each do |api_city|
     i += 1
   end
 
+  i = 0
+  while search_data['salaries'][i]
+    city.salary << (search_data['salaries'][i]['salary_percentiles']['percentile_50'] * 0.9).to_i
+    i += 1
+  end
+
+
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)
@@ -664,6 +671,8 @@ obtain_cities.each do |api_city|
 
   city.save!
 
+  puts "jobs are these #{city.career}"
+  puts "jobs are these #{city.salary}"
   puts "#{city.name}, #{city.country} was created."
   puts "with healthcare_score #{city.healthcare_score}"
   puts "with safety score of #{city.safety_score}"

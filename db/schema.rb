@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_105005) do
     t.float "business_freedom_score"
     t.float "minority_score"
     t.string "country"
+    t.float "salary", default: [], array: true
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
