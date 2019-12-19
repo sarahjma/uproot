@@ -1,0 +1,50 @@
+<div class="main-container">
+  <div class="positioning-avatar">
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+  </div>
+
+  <div class="profile-content">
+    <ul>
+      <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#quizresults" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <p><i class="fas fa-chevron-down down"></i> <i class="fas fa-poll"></i> Quiz Results </p>
+      </button></li>
+      <div class="collapse content-collapse" id="quizresults">
+        <div class="quizresult-option-position">
+          <%if @quiz_results.count <= 1%>
+            <%= link_to(quiz_result_path(@quiz_results[0])) do %>
+              <div class="card-quizresult">
+                <div class="card-content">
+                  <p><strong>Result</strong></p>
+                  <% quiz_result.top_3_cities.each do |pair|%>
+                    <div class="top3">
+                      <p><%=pair[0]%></p>
+                      <p><%=(pair[1] * 100).round%> %</p>
+                    </div>
+                  <%end%>
+                </div>
+              </div>
+            <%end%>
+
+          <%else%>
+            <%@quiz_results.each_with_index do |quiz_result, index|%>
+              <%= link_to(quiz_result_path(quiz_result)) do %>
+                <div class="card-quizresult">
+                  <div class="card-content">
+                    <p><strong>Result <%=index + 1%></strong></p>
+                    <% quiz_result.top_3_cities.each do |pair|%>
+                      <div class="top3">
+                        <p><%=pair[0]%></p>
+                        <p><%=(pair[1] * 100).round%> %</p>
+                      </div>
+                    <%end%>
+                  </div>
+                </div>
+              <%end%>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+
