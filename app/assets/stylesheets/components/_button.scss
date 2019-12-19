@@ -15,7 +15,8 @@
   padding: 0 12px;
   &.active {
     border: 1px solid #4232FF;
-    color: #4232FF;
+    background-color: #4232FF;
+    color: white;
   }
 }
 .city-form .btn-next{
