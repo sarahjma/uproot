@@ -5,9 +5,9 @@
     <div class="card-city d-flex flex-column" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= @first_city.image %>)">
 
       <p> <%= @first_city.name %>, <%= @first_city.country %> </p>
-      <p> <%= (@top_3_hash.values[0] * 100).to_i %>% </p>
+      <p> <%= (@first_score * 100).to_i %>% </p>
       <div class="percent">
-        <div class="percent-color" style="width:<%=(@top_3_hash.values[0] * 100).to_i %>%">
+        <div class="percent-color" style="width:<%=(@first_score * 100).to_i %>%">
         </div>
       </div>
     </div>
@@ -16,9 +16,9 @@
     <%= link_to  city_path(@second_city.id) do  %>
     <div class="card-city d-flex flex-column" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= @second_city.image %>)">
       <p> <%= @second_city.name %>, <%= @second_city.country %> </p>
-      <p> <%= (@top_3_hash.values[1] * 100).to_i %>% </p>
+      <p> <%= (@second_score * 100).to_i %>% </p>
       <div class="percent">
-        <div class="percent-color" style="width: <%= (@top_3_hash.values[1] * 100).to_i %>%">
+        <div class="percent-color" style="width: <%= (@second_score * 100).to_i %>%">
         </div>
       </div>
     </div>
@@ -27,15 +27,12 @@
     <%= link_to  city_path(@third_city.id) do  %>
     <div class="card-city d-flex flex-column" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(<%= @third_city.image %>)">
       <p> <%= @third_city.name %>, <%= @third_city.country %> </p>
-      <p> <%= (@top_3_hash.values[2] * 100).to_i %>% </p>
+      <p> <%= (@third_score * 100).to_i %>% </p>
       <div class="percent">
-        <div class="percent-color" style="width:<%= (@top_3_hash.values[2] * 100).to_i %>%">
+        <div class="percent-color" style="width:<%= (@third_score * 100).to_i %>%">
         </div>
       </div>
     </div>
     <% end %>
   </div>
 </div>
-
-
-
