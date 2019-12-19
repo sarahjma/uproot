@@ -650,6 +650,13 @@ obtain_cities.each do |api_city|
     i += 1
   end
 
+  i = 0
+  while search_data['salaries'][i]
+    city.salary = search_data['salaries'][i]['salary_percentiles']['percentile_50']
+    i += 1
+  end
+
+
   # This is to obtain the image associated with each city. In different part or API
   uri = URI(api_city['href'] + 'images/')
   response = Net::HTTP.get(uri)
@@ -664,6 +671,7 @@ obtain_cities.each do |api_city|
 
   city.save!
 
+  puts "jobs are these #{city.career}"
   puts "#{city.name}, #{city.country} was created."
   puts "with healthcare_score #{city.healthcare_score}"
   puts "with safety score of #{city.safety_score}"

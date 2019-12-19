@@ -111,7 +111,17 @@
         </ul>
 
         <!-- Career -->
-
+        <li><button class="content-toggler" type="button" data-toggle="collapse" data-target="#career" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <p><i class="fas fa-chevron-down down"></i><i class="fas fa-theater-masks"></i> Career Salary Calculator </p>
+        </button></li>
+        <ul class="collapse content-collapse" id="career">
+          <select class="career">
+              <% @city.career.each do |job| %>
+                <option value=<%= job %>>
+                  <p><%= job %></p></option>
+              <% end %>
+          </select>
+        </ul>
 
       </ul>
     </div>
