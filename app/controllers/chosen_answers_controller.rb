@@ -30,6 +30,8 @@ class ChosenAnswersController < ApplicationController
 
   def navigate_to_next_page
     if @question == Question.last
+      categories = ["education", "healthcare", "safety"]
+      categories.each { |category| create_additional_chosen_answers(category) }
       top_3_final_results = QuizResult.last.top_3_cities(@chosen_answer_category)
       redirect_to quiz_result_path(@quiz_result, data: top_3_final_results.to_json)
     else
@@ -37,5 +39,14 @@ class ChosenAnswersController < ApplicationController
       next_question = Question.find(next_question.id + 1) while next_question.nil?
       redirect_to quiz_result_question_path(@quiz_result, next_question.id, params.permit!)
     end
+  end
+
+  def create_additional_chosen_answers(category)
+    question = Question.create(category: category)
+    answer = Answer.create(question: question, score: category)
+    ChosenAnswer.create(
+        answer_id: answer.id,
+        quiz_result: @quiz_result
+      )
   end
 end
