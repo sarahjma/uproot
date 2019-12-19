@@ -4,7 +4,10 @@ class QuizResult < ApplicationRecord
   attr_accessor :chosen_answer_category
 
   def top_3_cities
-    calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
+    ff = 0.92
+    max_score = calculate_city_scores.values.max
+    standardized = calculate_city_scores.map { |k, v| [k, (v / max_score * ff)] }.to_h
+    standardized.sort_by { |_k, v| v }.reverse[0..2]
   end
 
   private
