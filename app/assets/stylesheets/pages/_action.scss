@@ -1,13 +1,13 @@
 .action-page-position {
-  margin-top: 20px;
+  // margin-top: px;
   text-align: center;
 }
 
 .action-option-position {
-  margin-top: 45px;
+  margin-top: 18px;
   justify-content: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 4vw;
   a {
     color: black;
@@ -15,21 +15,20 @@
   }
 }
 
-
-// @media (min-width: 768px) {
-//   .action-option-position {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// }
-// // Large devices (desktops, 992px and up)
-// @media (min-width: 992px) {
-//   .action-option-position {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// }
-// // Extra large devices (large desktops, 1200px and up)
-// @media (min-width: 1200px) {
-//   .action-option-position {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// }
+@media (min-width: 768px) {
+  .action-option-position {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .action-option-position {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .action-option-position {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
