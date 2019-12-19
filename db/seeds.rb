@@ -652,7 +652,7 @@ obtain_cities.each do |api_city|
 
   i = 0
   while search_data['salaries'][i]
-    city.salary << search_data['salaries'][i]['salary_percentiles']['percentile_50']
+    city.salary << (search_data['salaries'][i]['salary_percentiles']['percentile_50'] * 0.9).to_i
     i += 1
   end
 
