@@ -32,10 +32,13 @@
   width: 100%;
   border: 1px solid black;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  background-color: white;
   .card-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     .far {
       font-size: 36px;
