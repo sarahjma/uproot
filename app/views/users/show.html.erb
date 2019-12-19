@@ -10,7 +10,9 @@
       </button></li>
       <div class="collapse content-collapse" id="quizresults">
         <div class="quizresult-option-position">
-          <%if @quiz_results.count <= 1%>
+          <%if @quiz_results == [] %>
+            <p></p>
+          <% elsif @quiz_results.count = 1%>
             <%= link_to(quiz_result_path(@quiz_results[0])) do %>
               <div class="card-quizresult">
                 <div class="card-content">
