@@ -1,22 +1,17 @@
 class QuizResultsController < ApplicationController
-  def new
-  end
-
   def create
     quiz_result = QuizResult.create
     redirect_to quiz_result_question_path(quiz_result, Question.first)
   end
 
   def show
-    @top_3_hash = JSON.parse(params[:data])
-    @first_city = City.find_by(name: @top_3_hash.keys[0])
-    @second_city = City.find_by(name: @top_3_hash.keys[1])
-    @third_city = City.find_by(name: @top_3_hash.keys[2])
+    quiz_result = QuizResult.find(params[:id])
+    @first_city = City.find_by(name: quiz_result.top_3_cities[0][0])
+    @second_city = City.find_by(name: quiz_result.top_3_cities[1][0])
+    @third_city = City.find_by(name: quiz_result.top_3_cities[2][0])
 
-    @display_top_3 = []
+    @first_score = quiz_result.top_3_cities[0][1]
+    @second_score = quiz_result.top_3_cities[1][1]
+    @third_score = quiz_result.top_3_cities[2][1]
   end
-
-  # def results
-  #   @cities = @quiz_result.top_3_cities
-  # end
 end

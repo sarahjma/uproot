@@ -3,10 +3,8 @@ class QuizResult < ApplicationRecord
   has_many :answers, through: :chosen_answers
   attr_accessor :chosen_answer_category
 
-  def top_3_cities(sorted_categories)
-    top3 = {}
-    city_scores = calculate_city_score(sorted_categories)
-    top3 = city_scores.sort_by { |_k, v| v }.reverse[0..2].to_h
+  def top_3_cities
+    calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
   end
 
   private
@@ -16,17 +14,34 @@ class QuizResult < ApplicationRecord
     # temp_max = city.send("#{score}_max")
     # temp_min = 0
     # temp_max = 0
+    # !!!!!! This is a shorter way to write our piece of code
+    # if ["education", "healthcare", "safety"].include?(category.to_s)
+    #   city.sent("#{category.to_s}_score")
+    # else
+    #   scores = []
+    #   chosen_answers.each do |chosen_answer|
+    #     if category.to_s == chosen_answer.answer.question.category
+    #       scores << city.send("#{chosen_answer.answer.score}_score")
+    #     end
+    #   end
+    #   scores.any? ? (scores.sum / scores.count) : 0
+    # end
 
-    scores = []
-
-    chosen_answers.each do |chosen_answer|
-      if category.to_s == chosen_answer.answer.question.category
-        score = chosen_answer.answer.score
-        scores << city.send("#{score}_score")
+    # if the category education healthcare and safety get the score directly
+    categories = ["education", "healthcare", "safety"]
+    if categories.include?(category.to_s)
+      score = city.send("#{category.to_s}_score")
+      return score
+    else
+      scores = []
+      chosen_answers.each do |chosen_answer|
+        if category.to_s == chosen_answer.answer.question.category
+          score = chosen_answer.answer.score
+          scores << city.send("#{score}_score")
+        end
       end
+      scores.any? ? (scores.sum / scores.count) : 0
     end
-
-    scores.any? ? (scores.sum / scores.count) : 0
   end
 
   def rent_compatible?(city)
@@ -42,23 +57,23 @@ class QuizResult < ApplicationRecord
     rent_is_compatible = false
 
     case apartment_size
-      when "mobile_home_house"
-        rent_is_compatible = rent > city.rent_small_price
-      when "small_house"
-        rent_is_compatible = rent > city.rent_small_price
-      when "medium_house"
-        rent_is_compatible = rent > city.rent_medium_price
-      when "large_house"
-        rent_is_compatible = rent > city.rent_large_price
+    when "mobile_home_house"
+      rent_is_compatible = rent > city.rent_small_price
+    when "small_house"
+      rent_is_compatible = rent > city.rent_small_price
+    when "medium_house"
+      rent_is_compatible = rent > city.rent_medium_price
+    when "large_house"
+      rent_is_compatible = rent > city.rent_large_price
     end
 
     rent_is_compatible
   end
 
   # CALCULATE_CITY_SCORE returns { city: overal_score }
-  def calculate_city_score(sorted_categories)
+  def calculate_city_scores
     weightings = {}
-    values = [0.35, 0.3, 0.2, 0.05, 0.05, 0.05, 0, 0]
+    values = [0.4, 0.35, 0.2, 0.05, 0, 0]
     sorted_categories.each_with_index do |category, index|
       weightings[category.to_sym] = values[index]
       # WEIGHTINGS returns { category: weight_sorted_question }
@@ -86,7 +101,6 @@ class QuizResult < ApplicationRecord
       overall_city_scores[city.name] = overall_city_score
       # OVERALL_CITY_SCORE returns { city: overal_city_score }
     end
-    #binding.pry
 
     overall_city_scores
   end
