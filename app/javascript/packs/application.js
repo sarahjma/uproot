@@ -4,9 +4,11 @@ import { thumbOption } from "../functions/thumb"
 import { btnOption } from "../functions/btn_options"
 import { slider } from "../functions/slider"
 import { submit } from "../functions/submit_btn"
+import { loader } from "../functions/loader"
 
 startSortable();
 thumbOption();
 btnOption();
 slider();
 submit();
+loader();
