@@ -20,9 +20,6 @@
   }
 }
 
-.city-form .btn-next{
-  position: fixed;
-}
 
 // BUTTON HOMEPAGE
 .btn-main {
@@ -57,7 +54,7 @@
   }
   &:disabled {
     box-shadow: none;
-    opacity: 0.1;
+    opacity: 0.2;
   }
 }
 

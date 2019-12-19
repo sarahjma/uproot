@@ -5,6 +5,7 @@ const submit = () => {
     btn_next.disabled = true
     labels.forEach((label) => {
       label.addEventListener("click", (event) =>{
+        btn_next.value = "Submit";
         btn_next.disabled = false
       })
     })

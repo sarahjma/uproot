@@ -1,40 +1,40 @@
-<div class="main-container action-page-position">
-  <h3 class="action-h3">Select an action</h3>
+<div class="action-bg">
+  <div class="main-container action-page-position">
+    <h3 class="action-h3">Select an action</h3>
 
-  <div class="action-option-position ">
-    <!-- QUIZ ACTION -->
-    <%= link_to(quiz_results_path, method: :post) do %>
-      <div class="card-action ">
-        <div class="card-content">
-          <p>Get matched with a city</p>
-          <i class="far fa-heart"></i>
+    <div class="action-option-position ">
+      <!-- QUIZ ACTION -->
+      <%= link_to(quiz_results_path, method: :post) do %>
+        <div class="card-action ">
+          <div class="card-content">
+            <p>Get matched with a city</p>
+            <i class="far fa-heart"></i>
+          </div>
         </div>
-      </div>
-    <%end%>
+      <%end%>
 
-    <!-- DISCOVER ACTION -->
+      <!-- DISCOVER ACTION -->
 
-    <%= link_to(cities_path) do %>
-      <div class="card-action">
-        <div class="card-content">
-          <p>Discover a city</p>
-          <i class="far fa-compass"></i>
+      <%= link_to(cities_path) do %>
+        <div class="card-action">
+          <div class="card-content">
+            <p>Discover a city</p>
+            <i class="far fa-compass"></i>
+          </div>
         </div>
-      </div>
-    <%end%>
+      <%end%>
 
-    <!-- DISCOVER RANDOM CITY -->
-    <%= link_to(city_path(@city)) do %>
-      <div class="card-action">
-        <div class="card-content">
-          <p>Discover a random city</p>
-          <i class="fas fa-random"></i>
+      <!-- DISCOVER RANDOM CITY -->
+      <%= link_to(city_path(@city)) do %>
+        <div class="card-action">
+          <div class="card-content">
+            <p>Discover a random city</p>
+            <i class="fas fa-random"></i>
+          </div>
         </div>
-      </div>
-    <%end%>
+      <%end%>
 
+    </div>
   </div>
 </div>
-
-
 
