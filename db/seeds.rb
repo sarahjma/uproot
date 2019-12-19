@@ -652,7 +652,7 @@ obtain_cities.each do |api_city|
 
   i = 0
   while search_data['salaries'][i]
-    city.salary = search_data['salaries'][i]['salary_percentiles']['percentile_50']
+    city.salary << search_data['salaries'][i]['salary_percentiles']['percentile_50']
     i += 1
   end
 
@@ -672,6 +672,7 @@ obtain_cities.each do |api_city|
   city.save!
 
   puts "jobs are these #{city.career}"
+  puts "jobs are these #{city.salary}"
   puts "#{city.name}, #{city.country} was created."
   puts "with healthcare_score #{city.healthcare_score}"
   puts "with safety score of #{city.safety_score}"

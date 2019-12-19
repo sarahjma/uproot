@@ -115,12 +115,38 @@
           <p><i class="fas fa-chevron-down down"></i><i class="fas fa-theater-masks"></i> Career Salary Calculator </p>
         </button></li>
         <ul class="collapse content-collapse" id="career">
-          <select class="career">
+          <select class="career" id="selectjob">
               <% @city.career.each do |job| %>
                 <option value=<%= job %>>
                   <p><%= job %></p></option>
               <% end %>
           </select>
+          <p>
+            Median Salary:
+            <span class="output"></span>
+            <p><%= @city.salary[0] %></p>
+          </p>
+
+          <button onclick="getSalary()">
+            Enter
+          </button>
+
+
+          <script type="text/javascript">
+            function getSalary() {
+              selectElement = document.querySelector('#selectjob');
+
+
+              output =
+              selectElement.options[selectElement.selectedIndex].index;
+
+              // output =
+              // <%= @city.salary[0] %>
+
+
+              document.querySelector('.output').textContent = output;
+            }
+          </script>
         </ul>
 
       </ul>
