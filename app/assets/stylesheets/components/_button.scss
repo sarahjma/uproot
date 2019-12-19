@@ -59,13 +59,19 @@
 }
 
 .btn-save {
-  color: white;
   background-color: black;
-  padding: 1vh 16vw;
-  margin-bottom: 47px;
-  font-size: 1.25em;
-  text-align: center;
-  font-size: 16px;
+  padding: 12px 48px;
+  color: white;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 12px auto;
+  position: relative;
+  bottom: 0vh;
+  left: 0px;
+  box-shadow: 0 0 11px rgba(0, 0, 0,.2);
   &:hover {
     text-decoration: none;
     color: white;
