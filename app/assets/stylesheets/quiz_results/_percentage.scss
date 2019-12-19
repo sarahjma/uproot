@@ -1,0 +1,25 @@
+.circle{
+  position: relative;
+  width: 16vh;
+  height: 16vh;
+  background: transparent;
+  border-radius: 50%;
+  stroke-width: 20;
+  stroke-linecap: 20;
+
+}
+.percent{
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 8px;
+  width: 200px;
+  border-radius:5px;
+  border: 0.5px solid white;
+
+}
+.percent-color{
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-radius:5px;
+  animation: animate 0.05s linear;
+}
