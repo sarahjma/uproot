@@ -21,7 +21,7 @@
       <%= render 'type_buttons'%>
     <% elsif @question.display_type == "type-range"%>
       <%= render 'type_range'%>
-    <% else %>
+    <% elsif   @question.display_type == "type-sortable"%>
       <%= render 'type_sortable'%>
     <% end %>
   </div>
