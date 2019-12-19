@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     resources :questions, only: [:show]
   end
   resources :cities, only: [:show, :index]
+  resources :users, only: [:show]
 end

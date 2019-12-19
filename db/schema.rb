@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2019_12_19_125541) do
     t.datetime "updated_at", null: false
     t.integer "rent"
     t.string "sorted_categories", default: [], array: true
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_quiz_results_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

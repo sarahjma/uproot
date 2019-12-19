@@ -1,0 +1,28 @@
+.positioning-avatar {
+  display: flex;
+  justify-content: center;
+  padding: 4vh 4vw;
+}
+
+.quizresult-option-position {
+  margin-top: 45px;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4vw;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.profile-content {
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  .fa-poll {
+    color: #4232FF;
+  }
+
+}
