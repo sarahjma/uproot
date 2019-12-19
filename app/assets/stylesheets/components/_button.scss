@@ -19,6 +19,7 @@
     color: white;
   }
 }
+
 .city-form .btn-next{
   position: fixed;
 }
@@ -45,6 +46,7 @@
   border-radius: 3px;
   display: flex;
   justify-content: center;
+  align-item: center;
   margin: 12px auto;
   position: relative;
   bottom: 0vh;
@@ -56,6 +58,20 @@
   &:disabled {
     box-shadow: none;
     opacity: 0.1;
+  }
+}
+
+.btn-save {
+  color: white;
+  background-color: black;
+  padding: 1vh 16vw;
+  margin-bottom: 47px;
+  font-size: 1.25em;
+  text-align: center;
+  font-size: 16px;
+  &:hover {
+    text-decoration: none;
+    color: white;
   }
 }
 
