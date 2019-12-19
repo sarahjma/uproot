@@ -4,7 +4,7 @@ class QuizResult < ApplicationRecord
   attr_accessor :chosen_answer_category
 
   def top_3_cities
-    self.top_3 = calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
+    calculate_city_scores.sort_by { |_k, v| v }.reverse[0..2]
   end
 
   private
@@ -14,17 +14,34 @@ class QuizResult < ApplicationRecord
     # temp_max = city.send("#{score}_max")
     # temp_min = 0
     # temp_max = 0
+    # !!!!!! This is a shorter way to write our piece of code
+    # if ["education", "healthcare", "safety"].include?(category.to_s)
+    #   city.sent("#{category.to_s}_score")
+    # else
+    #   scores = []
+    #   chosen_answers.each do |chosen_answer|
+    #     if category.to_s == chosen_answer.answer.question.category
+    #       scores << city.send("#{chosen_answer.answer.score}_score")
+    #     end
+    #   end
+    #   scores.any? ? (scores.sum / scores.count) : 0
+    # end
 
-    scores = []
-
-    chosen_answers.each do |chosen_answer|
-      if category.to_s == chosen_answer.answer.question.category
-        score = chosen_answer.answer.score
-        scores << city.send("#{score}_score")
+    # if the category education healthcare and safety get the score directly
+    categories = ["education", "healthcare", "safety"]
+    if categories.include?(category.to_s)
+      score = city.send("#{category.to_s}_score")
+      return score
+    else
+      scores = []
+      chosen_answers.each do |chosen_answer|
+        if category.to_s == chosen_answer.answer.question.category
+          score = chosen_answer.answer.score
+          scores << city.send("#{score}_score")
+        end
       end
+      scores.any? ? (scores.sum / scores.count) : 0
     end
-
-    scores.any? ? (scores.sum / scores.count) : 0
   end
 
   def rent_compatible?(city)
