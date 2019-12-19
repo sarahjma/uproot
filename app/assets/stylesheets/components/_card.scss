@@ -9,7 +9,6 @@
   }
 }
 
-
 // IMAGE CARD IN QUIZ
 .thumb-option {
   height: 160px;
@@ -62,6 +61,27 @@
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin-bottom: 10px;
+}
+
+.card-quizresult {
+  padding: 4vw;
+  width: 100%;
+  border: 1px solid black;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  .card-content {
+    height: 100%;
+    .fas {
+      font-size: 36px;
+      color: #2613FF;
+    }
+  }
+  .top3 {
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 1em;
+    }
+  }
 }
 
 @media (min-width: 768px) {
